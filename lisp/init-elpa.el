@@ -1,8 +1,7 @@
 (require 'package)
 (package-initialize)
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
 (unless (package-installed-p 'use-package)
