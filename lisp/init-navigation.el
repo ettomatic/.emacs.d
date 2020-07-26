@@ -1,9 +1,18 @@
-(require 'init-elpa)
 (require 'ido)
 (require 'recentf)
 (require-package 'ido-completing-read+)
 (require-package 'smex)
-(require-package 'projectile)
+
+;; Projectile is a project interaction library for Emacs
+(use-package projectile
+  :ensure t
+  :defer 1
+  :preface
+  :custom
+  (projectile-keymap-prefix (kbd "C-c C-p"))
+  (projectile-mode-line '(:eval (projectile-project-name)))
+  :config (projectile-global-mode))
+
 
 (setq recentf-save-file (concat user-emacs-directory ".recentf"))
 (recentf-mode 1)
@@ -23,8 +32,6 @@
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
-
-(projectile-global-mode)
 
 ;; Enable move point from window to window using Shift and the arrow keys
 (windmove-default-keybindings)

@@ -14,4 +14,11 @@
 
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package delight :ensure t)
+(use-package use-package-ensure-system-package :ensure t)
+
 (provide 'init-elpa)

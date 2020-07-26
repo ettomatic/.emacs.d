@@ -1,7 +1,17 @@
-(require 'init-elpa)
 (require 'saveplace)
-(require-package 'rainbow-delimiters)
-(require-package 'flycheck)
+
+;; Flycheck lints warnings and errors directly within buffers.
+(use-package flycheck
+  :defer 2
+  :delight
+  :init (global-flycheck-mode)
+  :custom
+  (flycheck-display-errors-delay .3)
+  :config)
+
+;; Highlights delimiters such as parentheses, brackets or braces according to their dept
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; Highlights matching parenthesis
 (show-paren-mode 1)
@@ -18,13 +28,11 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;; When you visit a file, point goes to the last place where it
 ;; was when you previously visited the same file.
 ;; http://www.emacswiki.org/emacs/SavePlace
-
 (setq-default save-place t)
+
 ;; keep track of saved places in ~/.emacs.d/places
 (setq save-place-file (concat user-emacs-directory "places"))
 
@@ -40,7 +48,5 @@
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (provide 'init-editing)

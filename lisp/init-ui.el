@@ -1,8 +1,10 @@
-(require 'init-elpa)
-(require-package 'atom-one-dark-theme)
-(require-package 'golden-ratio)
+(use-package atom-one-dark-theme
+  :ensure t)
 
-(require 'golden-ratio)
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode 1))
 
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
@@ -21,13 +23,9 @@
       apropos-do-all t
       mouse-yank-at-point t)
 
-(load-theme 'atom-one-dark t)
-
 (blink-cursor-mode 1)
-;;(setq-default cursor-type 'bar)
 (set-cursor-color "#cccccc")
 (setq ring-bell-function 'ignore)
 
-(golden-ratio-mode 1)
 
 (provide 'init-ui)
