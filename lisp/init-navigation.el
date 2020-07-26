@@ -1,7 +1,7 @@
 (require 'ido)
 (require 'recentf)
-(require-package 'ido-completing-read+)
-(require-package 'smex)
+(use-package ido-completing-read+)
+(use-package smex)
 
 ;; Projectile is a project interaction library for Emacs
 (use-package projectile

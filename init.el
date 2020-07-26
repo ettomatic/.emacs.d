@@ -6,20 +6,7 @@
 (require 'init-navigation)
 (require 'init-miscellaneous)
 (require 'init-company-mode)
-
+(require 'init-langs)
+(require 'init-ocaml)
+(require 'init-version-control)
 (provide 'init)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(delete-selection-mode nil)
- '(package-selected-packages
-   (quote
-    (company projectile smex ido-completing-read+ rainbow-delimiters golden-ratio flycheck atom-one-dark-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
