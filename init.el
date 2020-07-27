@@ -5,14 +5,15 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 (require 'init-elpa)
+(require 'init-defaults)
 (require 'init-ui)
 (require 'init-editing)
 (require 'init-navigation)
-(require 'init-miscellaneous)
 (require 'init-org)
 (require 'init-company-mode)
 (require 'init-langs)
 (require 'init-ocaml)
+(require 'init-elixir)
 (require 'init-version-control)
 
 ;; Make gc pauses faster by decreasing the threshold.
@@ -27,7 +28,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (org-brain use-package-ensure-system-package smex rainbow-delimiters projectile magit ido-completing-read+ golden-ratio flycheck delight crystal-mode company atom-one-dark-theme))))
+    (eglot org-brain use-package-ensure-system-package smex rainbow-delimiters projectile magit ido-completing-read+ golden-ratio flycheck delight crystal-mode company atom-one-dark-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
