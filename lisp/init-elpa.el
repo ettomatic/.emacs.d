@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
+
 (require 'package)
 (package-initialize)
 
@@ -12,3 +16,4 @@
 (use-package use-package-ensure-system-package :ensure t)
 
 (provide 'init-elpa)
+;;; init-elpa ends here

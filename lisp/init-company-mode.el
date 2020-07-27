@@ -1,6 +1,12 @@
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
+
 (use-package company
   :defer 0.5
   :delight
+  :init
+  (add-hook 'prog-mode-hook 'company-mode)
   :custom
   (company-begin-commands '(self-insert-command))
   (company-idle-delay 0)
@@ -9,6 +15,5 @@
   (company-tooltip-align-annotations 't)
   (global-company-mode t))
 
-(add-hook 'prog-mode-hook 'company-mode)
-
 (provide 'init-company-mode)
+;;; init-company-mode ends here

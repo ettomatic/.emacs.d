@@ -1,12 +1,16 @@
-(use-package atom-one-dark-theme
-  :ensure t)
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
+
+(use-package ayu-theme
+  :ensure t
+  :config (load-theme 'ayu-dark t))
 
 (use-package golden-ratio
   :ensure t
   :config
   (golden-ratio-mode 1))
 
-(setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -14,7 +18,7 @@
   (scroll-bar-mode -1))
 
 (set-face-attribute 'default nil :height 100)
-(setq-default line-spacing 0.4)
+(setq-default line-spacing 0.2)
 
 (setq
       x-select-enable-clipboard t
@@ -27,5 +31,5 @@
 (set-cursor-color "#cccccc")
 (setq ring-bell-function 'ignore)
 
-
 (provide 'init-ui)
+;;; init-ui ends here
