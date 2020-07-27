@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-web --- Web technologies Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

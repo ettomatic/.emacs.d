@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-editing --- Editing configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

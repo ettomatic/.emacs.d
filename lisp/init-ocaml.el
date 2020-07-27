@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-ocaml --- Ocaml Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -9,8 +9,6 @@
 (autoload 'merlin-mode "merlin" "Merlin mode" t)
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (add-hook 'caml-mode-hook 'merlin-mode)
-
-;(add-to-list 'eglot-server-programs '(caml-mode . ("~/.opam/default/bin/ocamllsp" "")))
 
 (provide 'init-ocaml)
 ;;; init-ocaml ends here

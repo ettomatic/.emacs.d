@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-elpa --- Package management -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,3 +1,7 @@
+;;; init-navigation --- Navigation configuration -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'ido)
 (require 'recentf)
 (use-package ido-completing-read+)

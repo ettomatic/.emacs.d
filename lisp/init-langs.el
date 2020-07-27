@@ -1,7 +1,8 @@
-;;; package --- Summary
+;;; init-lang --- Languages miscellaneous -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
+;;; ls-server
 (use-package eglot
   :ensure t
   :init
@@ -9,12 +10,11 @@
   )
 
 (add-to-list 'eglot-server-programs `(elixir-mode "~/code/elixir-ls/release/language_server.sh"))
-;;(require 'eglot)
+(add-to-list 'eglot-server-programs '(caml-mode . ("~/.opam/default/bin/ocamllsp" "")))
 
+;;; Crystal Lang
 (use-package crystal-mode
   :ensure t)
 
-;;; org-mode
-(use-package ob-ruby :ensure nil :after org)
 (provide 'init-langs)
 ;;; init-langs ends here

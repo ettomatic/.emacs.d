@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-defaults --- Basic Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

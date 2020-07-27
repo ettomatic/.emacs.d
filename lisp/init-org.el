@@ -1,4 +1,7 @@
+;;; init-org --- org-mode Configuration -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
+
 (setq org-directory "~/org")
 
 (use-package org

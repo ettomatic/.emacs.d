@@ -14,6 +14,7 @@
 (require 'init-langs)
 (require 'init-ocaml)
 (require 'init-elixir)
+(require 'init-ruby)
 (require 'init-version-control)
 
 ;; Make gc pauses faster by decreasing the threshold.

@@ -1,7 +1,8 @@
-;;; package --- Summary
+;;; init-company-mode ---  modular in-buffer completion framework  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
+;;;  modular in-buffer completion framework
 (use-package company
   :defer 0.5
   :delight

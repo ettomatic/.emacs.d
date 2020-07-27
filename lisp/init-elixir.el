@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-elixir --- Elixir & Erlang Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

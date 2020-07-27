@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init-ui --- UI & Appearance Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
