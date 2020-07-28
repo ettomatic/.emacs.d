@@ -35,5 +35,7 @@
 
 (setq create-lockfiles nil)
 
+(defconst *is-a-mac* (eq system-type 'darwin))
+
 (provide 'init-defaults)
 ;;; init-defaults ends here
