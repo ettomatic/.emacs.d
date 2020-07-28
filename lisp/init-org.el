@@ -1,9 +1,6 @@
 ;;; init-org --- org-mode Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
-
-(setq org-directory "~/org")
-
 (use-package org
   :init
   (add-hook 'org-mode-hook #'toggle-word-wrap)
@@ -24,6 +21,8 @@
                    (:endgroup . nil)
                    ))
   (org-archive-location "~/org/archives/%s::"))
+
+(setq org-directory "~/org")
 
 (use-package org-capture
   :ensure nil
