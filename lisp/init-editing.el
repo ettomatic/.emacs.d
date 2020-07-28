@@ -59,5 +59,11 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
+(when *is-a-mac*
+  (setq mac-option-modifier        'meta)
+  (setq mac-command-modifier       'super)
+  (setq mac-right-command-modifier 'hyper)
+  (setq mac-function-modifier      'super))
+
 (provide 'init-editing)
 ;;; init-editing ends here
