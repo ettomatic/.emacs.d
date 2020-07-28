@@ -36,6 +36,10 @@
 
 (setq-default line-spacing 0.2)
 
+(when (or window-system (daemonp))
+  (setq default-frame-alist '((width . 160)
+                              (height . 50))))
+
 (setq
       x-select-enable-clipboard t
       x-select-enable-primary t
@@ -44,8 +48,6 @@
       mouse-yank-at-point t)
 
 (blink-cursor-mode 1)
-(set-cursor-color "#cccccc")
-(setq ring-bell-function 'ignore)
 
 ;;; The fringe is a thin strip down the left and/or right edge of a window.
 ;;; They can contain glyphs to indicate various things
