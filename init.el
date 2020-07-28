@@ -1,3 +1,7 @@
+;;; init --- startup conf -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
 ;; Make startup faster by reducing the frequency of garbage
@@ -36,3 +40,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init ends here
