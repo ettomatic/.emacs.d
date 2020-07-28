@@ -15,6 +15,10 @@
   :hook ((ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-auto-enter)))
 
+(use-package robe
+  :config
+  (add-hook 'ruby-mode-hook 'robe-mode))
+
 ;;; org-mode
 (use-package ob-ruby :ensure nil :after org)
 
