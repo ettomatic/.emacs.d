@@ -38,6 +38,9 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;;; smart tab behavior - indent or complete
+(setq tab-always-indent 'complete)
+
 ;;; When you visit a file, point goes to the last place where it
 ;;; was when you previously visited the same file.
 ;;; http://www.emacswiki.org/emacs/SavePlace
