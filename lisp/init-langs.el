@@ -9,12 +9,18 @@
   (add-hook 'elixir-mode-hook 'eglot-ensure)
   )
 
-(add-to-list 'eglot-server-programs `(elixir-mode "~/code/ls-servers/elixir-ls/release/language_server.sh"))
+(add-to-list 'eglot-server-programs '(elixir-mode "~/code/ls-servers/elixir-ls/release/language_server.sh"))
 (add-to-list 'eglot-server-programs '(caml-mode . ("~/.opam/default/bin/ocamllsp" "")))
 
 ;;; Crystal Lang
 (use-package crystal-mode
-  :ensure t)
+  :ensure t
+  :defer t)
+
+;;; Fish Sell
+(use-package fish-mode
+  :ensure t
+  :defer t)
 
 (provide 'init-langs)
 ;;; init-langs ends here
