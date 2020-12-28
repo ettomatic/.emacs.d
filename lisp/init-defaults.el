@@ -7,6 +7,7 @@
  calendar-location-name "London"                  ; Calendar Location
  calendar-latitude 51.509865                      ; lendar Lat
  calendar-longitude  -0.118092                    ; Calendar Long
+ calendar-week-start-day 1                        ; starts on Monday
  cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
  display-time-default-load-average nil            ; Don't display load average
  fill-column 80                                   ; Set width for automatic line breaks
@@ -23,7 +24,9 @@
  tab-width 2                                      ; Set width for tabs
  use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
  user-full-name "Ettore Berardi"                  ; Set the full name of the current user
- user-mail-address "ettore.berardi@outlook.com"  ; Set the email address of the current user
+ user-mail-address "ettore.berardi@outlook.com"   ; Set the email address of the current user
+ bidi-paragraph-direction 'left-to-right          ; Enable left-to-right as a default to get faster rendering
+ bidi-inhibit-bpa t                               ; Disabling he Bidirectional Parentheses Algorithm makes redisplay faster
  vc-follow-symlinks t)                            ; Always follow the symlinks
 (cd "~/")                                         ; Move to the user directory
 (column-number-mode 1)                            ; Show the column number
@@ -32,6 +35,9 @@
 (global-hl-line-mode)                             ; Hightlight current line
 (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
 (show-paren-mode 1)                               ; Show the parent
+
+;;; Automatically Kill Running Processes on Exit
+(setq confirm-kill-processes nil)
 
 (setq create-lockfiles nil)
 
