@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'ido)
-(require 'recentf)
-(use-package ido-completing-read+)
-(use-package smex)
-
 ;; Projectile is a project interaction library for Emacs
 (use-package projectile
   :ensure t
@@ -15,26 +10,11 @@
   :custom
   (projectile-keymap-prefix (kbd "C-c C-p"))
   (projectile-mode-line '(:eval (projectile-project-name)))
+  (projectile-completion-system 'ivy)
   :config (projectile-mode))
-
-(setq recentf-save-file (concat user-emacs-directory ".recentf"))
-(recentf-mode 1)
-(setq recentf-max-menu-items 40)
-
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-(setq ido-use-filename-at-point nil)
-(setq ido-auto-merge-work-directories-length -1)
-(setq ido-use-virtual-buffers t)
-
-(ido-ubiquitous-mode 1)
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-(setq smex-save-file (concat user-emacs-directory ".smex-items"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
 
 ;; Enable move point from window to window using Shift and the arrow keys
 (windmove-default-keybindings)
@@ -54,6 +34,59 @@
   :defer t
   :init
   (rg-enable-default-bindings))
+
+;;; Global
+;; Ivy is a generic completion tool
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :defer 0.9
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "(%d/%d) ")
+  :config
+  (use-package swiper
+    :ensure t
+    :bind (("C-s" . swiper)))
+  (use-package counsel
+    :ensure t
+    :diminish counsel-mode
+    :config (counsel-mode)
+    :bind (("C-c s" . counsel-rg) ; ripgrep
+           ("M-x"   . counsel-M-x)
+           ("C-c b" . counsel-bookmark)
+           :map ivy-minibuffer-map
+            ("<return>" . ivy-alt-done)))
+  (use-package ivy-avy
+    :ensure t)
+  (ivy-mode))
+
+;; A convenient interface to your recently and most frequently used commands
+;; Will work with ivy out of the box
+;; A fork of Smex
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode 1))
+
+;; A minor mode that builds a list of recently opened files.
+;; This list is is automatically saved across sessions on exiting Emacs
+(require 'recentf)
+(setq recentf-save-file (concat user-emacs-directory ".recentf"))
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+
+(use-package ivy
+  :ensure t)
+
+;; (use-package ivy-prescient
+;;   :ensure t
+;;   :after counsel
+;;   :config
+;;   (ivy-prescient-mode 1))
+
+;; (use-package company-prescient
+;;   :ensure t)
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
