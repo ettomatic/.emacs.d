@@ -2,10 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 (use-package org
+  :ensure t
   :init
-  (add-hook 'org-mode-hook #'toggle-word-wrap)
+  (add-hook 'org-mode-hook #'visual-line-mode)
   :custom
   (org-startup-truncated nil)
+  (org-indent-indentation-per-level 1)
+  (org-adapt-indentation nil)
+  (org-hide-leading-stars 't)
   (org-tags-column 10)
   (org-tag-alist '(
                    (:startgroup . nil)
@@ -20,21 +24,54 @@
                    ("@research" . ?r)
                    (:endgroup . nil)
                    ))
-  (org-archive-location "~/org/archives/%s::"))
+  (org-archive-location "~/org/archives/%s::")
+  (org-src-fontify-natively t)
+  (org-log-done 'time))
 
 (setq org-directory "~/org")
+
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 1))))
+
+(setq org-use-fast-todo-selection t)
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "|" "DONE(d)")
+	      (sequence "TASK(T)")
+	      (sequence "WAITING(w@/!)" "INACTIVE(i)" "SOMEDAY(s)" "|" "CANCELLED(c@/!)")))
+;; Custom colors for the keywords
+(setq org-todo-keyword-faces
+      '(("TODO" :foreground "red" :weight bold)
+	      ("TASK" :foreground "#5C888B" :weight bold)
+	      ("NEXT" :foreground "blue" :weight bold)
+	      ("PROJ" :foreground "magenta" :weight bold)
+	      ("DONE" :foreground "forest green" :weight bold)
+	      ("WAITING" :foreground "orange" :weight bold)
+	      ("INACTIVE" :foreground "magenta" :weight bold)
+	      ("SOMEDAY" :foreground "cyan" :weight bold)
+	      ("CANCELLED" :foreground "forest green" :weight bold)))
+
+(require 'org)
 
 (use-package org-capture
   :ensure nil
   :after org
+  :init
+  (global-set-key (kbd "C-c e") 'org-capture)
   :custom
   (org-capture-templates
-   '(("t" "Todo [inbox]" entry
+   '(("i" "Inbox [inbox, nolink]" entry
+      (file+headline "~/org/inbox.org" "Tasks")
+      "* TODO %?\n/Entered on/ %U")
+     ("L" "Inbox No Link [inbox, link]" entry
       (file+headline "~/org/inbox.org" "Tasks")
       "* TODO %i%?\n%a")
-     ("n" "Todo [inbox, no link]" entry
-      (file+headline "~/org/inbox.org" "Tasks")
-      "* TODO %i%?\n")
+     ("n" "Note [inbox]" entry
+      (file+headline "~/org/inbox.org" "Notes")
+      "* %i%?\n%a")
+     ("m" "Meeting" entry  (file+headline "agenda.org")
+      (concat "* %? :meeting:\n"
+         "<%<%Y-%m-%d %a %H:00>>"))
      ("s" "Someday [inbox]" entry
       (file+headline "~/org/inbox.org" "Someday")
       "* %i%?\n%a")
@@ -48,26 +85,25 @@
       (file+headline "~/org/backlog.org" "Backlog")
       "* %i%?\n%a"))))
 
+(defun org-capture-inbox ()
+     (interactive)
+     (call-interactively 'org-store-link)
+     (org-capture nil "i"))
+
+(define-key global-map (kbd "C-c i") 'org-capture-inbox)
+
 (use-package org-journal
   :ensure t
-  :defer nil
+  :defer f
   :after org
+  :init
+  (global-set-key (kbd "C-c C-j") 'org-journal-new-entry)
   :custom
   (org-journal-dir "~/org/journal")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-file-format "%Y%m%d.org")
   (org-journal-enable-agenda-integration t)
   (org-journal-date-prefix "#+TITLE: Daily Notes "))
-
-(use-package org-agenda
-  :ensure nil
-  :after org
-  :custom
-  (org-directory "~/org")
-  (org-agenda-tags-column -100)
-  (org-agenda-show-log t)
-  (org-agenda-span 14)
-  (org-agenda-start-on-weekday 1))
 
 ;; Org Brain
 (use-package org-brain :ensure t
@@ -79,15 +115,27 @@
   (setq org-id-track-globally t))
 
 ;; Allows you to edit entries directly from org-brain-visualize
-(use-package polymode
-  :config
-  (add-hook 'org-brain-visualize-mode-hook #'org-brain-polymode))
+;;(use-package polymode
+;;  :config
+;;  (add-hook 'org-brain-visualize-mode-hook #'org-brain-polymode))
 
 ;; Org Cliplink
 (use-package org-cliplink
   :ensure t
   :config
   (bind-key "C-x p i" '' org-cliplink))
+
+;;; beutify it
+(setq org-hide-emphasis-markers t)
+(font-lock-add-keywords 'org-mode
+                        '(("^ *\\([-]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+;; Show org-mode bullets as UTF-8 characters.
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (provide 'init-org)
 ;;; init-org ends here
