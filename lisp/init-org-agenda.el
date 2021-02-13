@@ -20,9 +20,9 @@
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t))
 
-;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org"))
-(setq org-agenda-files (list org-directory))
 
+;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org" "~/org/exchange.org"))
+(setq org-agenda-files (list org-directory))
 ;; Compact the block agenda view (disabled)
 (setq org-agenda-compact-blocks nil)
 
@@ -30,7 +30,7 @@
 (setq org-agenda-time-grid
       (quote
        ((daily today remove-match)
-        (800 1000 1200 1400 1600 1800 2000)
+        (800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000)
         "......" "----------------")))
 
 ;; not sure why need to set it here as well
