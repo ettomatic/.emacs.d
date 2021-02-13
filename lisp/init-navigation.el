@@ -69,15 +69,10 @@
   :config
   (amx-mode 1))
 
-;; A minor mode that builds a list of recently opened files.
-;; This list is is automatically saved across sessions on exiting Emacs
-(require 'recentf)
-(setq recentf-save-file (concat user-emacs-directory ".recentf"))
-(recentf-mode 1)
-(setq recentf-max-menu-items 40)
-
-(use-package ivy
+(use-package avy
   :ensure t)
+
+(global-set-key (kbd "s-;") 'avy-goto-char-2)
 
 ;; (use-package ivy-prescient
 ;;   :ensure t

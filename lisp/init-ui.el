@@ -82,7 +82,7 @@
 
 (custom-theme-set-faces
  'user
- '(variable-pitch ((t (:family "Spectral" :height 150 :weight thin))))
+ '(variable-pitch ((t (:family "Spectral" :height 160 :weight thin))))
  '(fixed-pitch ((t ( :family "B612 Mono":height 110 :weight normal :width normal)))))
 
 (when (or window-system (daemonp))
