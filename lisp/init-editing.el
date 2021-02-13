@@ -59,6 +59,10 @@
  'olivetti-mode-hook
  'variable-pitch-mode)
 
+(add-hook
+ 'olivetti-mode-hook
+ 'toggle-word-wrap 1)
+
 (customize-set-variable 'ispell-program-name "aspell")
 (customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
 (add-hook 'olivetti-mode-hook 'flyspell-mode)
