@@ -20,7 +20,6 @@
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t))
 
-
 ;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org" "~/org/exchange.org"))
 (setq org-agenda-files (list org-directory))
 ;; Compact the block agenda view (disabled)

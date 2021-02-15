@@ -22,6 +22,7 @@
 (require 'init-org)
 (require 'init-org-agenda)
 (require 'init-company-mode)
+(require 'init-docker)
 (require 'init-langs)
 (require 'init-ocaml)
 (require 'init-elixir)
