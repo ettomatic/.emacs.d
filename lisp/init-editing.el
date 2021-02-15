@@ -40,6 +40,11 @@
   :ensure t
   :init (whole-line-or-region-global-mode))
 
+;; YAML
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
 ;;
 ;; Writing space
 ;;
