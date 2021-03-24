@@ -90,5 +90,13 @@
           ,eb-org-agenda-block--upcoming-week
           ,eb-org-agenda-block--closed-today))))
 
+(defun organised-exchange ()
+  "Sync Outlook Calendar ics with Org Agenda."
+  (interactive)
+  (if (get-buffer "exchange.org")
+      (kill-buffer "exchange.org"))
+  (shell-command "~/code/organised-exchange/bin/eto")
+  (message "calendar imported!"))
+
 (provide 'init-org-agenda)
 ;;; init-org-agenda ends here
