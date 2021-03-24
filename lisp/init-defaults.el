@@ -10,7 +10,7 @@
  calendar-week-start-day 1                        ; starts on Monday
  cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
  display-time-default-load-average nil            ; Don't display load average
- fill-column 80                                   ; Set width for automatic line breaks
+ fill-column 120                                  ; Set width for automatic line breaks
  help-window-select t                             ; Focus new help windows when opened
  indent-tabs-mode nil                             ; Prefers spaces over tabs
  inhibit-startup-screen t                         ; Disable start-up screen
@@ -27,6 +27,12 @@
  user-mail-address "ettore.berardi@outlook.com"   ; Set the email address of the current user
  bidi-paragraph-direction 'left-to-right          ; Enable left-to-right as a default to get faster rendering
  bidi-inhibit-bpa t                               ; Disabling he Bidirectional Parentheses Algorithm makes redisplay faster
+ auto-save-interval 5                             ; Auto save every 5secs
+ make-backup-files nil                            ; Turn Off Backup
+;; save-place t                                   ; Go to the last place where it was when you previously visited the same file
+ auto-save-visited-file-name t                    ;
+ savehist-mode 1                                  ; Preserve commands preserved between sessions
+ savehist-file "~/.emacs.d/savehist"              ;
  vc-follow-symlinks t)                            ; Always follow the symlinks
 (cd "~/")                                         ; Move to the user directory
 (column-number-mode 1)                            ; Show the column number
