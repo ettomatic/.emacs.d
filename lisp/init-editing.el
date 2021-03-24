@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'saveplace)
-
 ;;; Flycheck lints warnings and errors directly within buffers.
 (use-package flycheck
   :defer 2
@@ -30,10 +28,6 @@
   :ensure t
   :init
   (move-text-default-bindings))
-
-;; (use-package popup-kill-ring
-;;   :ensure t
-;;   :bind (("M-y" . popup-kill-ring)))
 
 ;; operate on the current line if no region is active
 (use-package whole-line-or-region
@@ -98,20 +92,15 @@
 ;;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-;;; When you visit a file, point goes to the last place where it
-;;; was when you previously visited the same file.
-;;; http://www.emacswiki.org/emacs/SavePlace
+(require 'saveplace)
+
+;; ;;; When you visit a file, point goes to the last place where it
+;; ;;; was when you previously visited the same file.
+;; ;;; http://www.emacswiki.org/emacs/SavePlace
 (setq-default save-place t)
 
 ;;; keep track of saved places in ~/.emacs.d/places
 (setq save-place-file (concat user-emacs-directory "places"))
-
-;;; Emacs can automatically create backup files. This tells Emacs to
-;;; put all backups in ~/.emacs.d/backups. More info:
-;;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
-(setq backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                               "backups"))))
-(setq auto-save-default nil)
 
 (defun toggle-comment-on-line ()
   "Comment or uncomment current line."
@@ -121,7 +110,7 @@
 
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated. However, if
+If there's no region, the current line will be duplicated.  However, if
 there's a region, all lines that region covers will be duplicated."
   (interactive "p")
   (let (beg end (origin (point)))
@@ -145,6 +134,16 @@ there's a region, all lines that region covers will be duplicated."
   (setq mac-command-modifier       'super)
   (setq mac-right-command-modifier 'hyper)
   (setq mac-function-modifier      'super))
+
+;; undo tree (q to exit)
+(use-package undo-tree
+  :ensure t
+  :bind ("C-x u" . undo-tree-visualize)
+  :diminish undo-tree-mode
+  :hook (after-init . global-undo-tree-mode)
+  :init
+  (setq undo-tree-visualizer-relative-timestamps t
+        undo-tree-visualizer-diff t))
 
 (provide 'init-editing)
 ;;; init-editing ends here
