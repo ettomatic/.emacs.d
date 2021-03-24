@@ -2,60 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;; Some themes
-(use-package ayu-theme
-  :ensure t)
-
-(use-package kaolin-themes
-  :ensure t)
-
-(use-package modus-themes
-  :ensure t)
-
-(use-package solo-jazz-theme
-  :ensure t)
-
-;; disabled themes setup
-
-;;(load-theme 'modus-operandi t)          ; Light theme
-;(load-theme 'modus-vivendi t)           ; Dark theme
-
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;   ;; Enable flashing mode-line on errors
-;;   (doom-themes-visual-bell-config)
-;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config))
-
-;;(setq *theme-dark* 'doom-acario-dark)
-;; (setq *theme-dark* 'doom-snazzy)
-;;(setq *theme-dark* 'modus-operandi)
-(setq *theme-dark* 'kaolin-galaxy)
-
-;;(setq *theme-light* 'ayu-light)
-;;(setq *theme-light* 'doom-acario-light)
-(setq *theme-light* 'solo-jazz)
-
-(setq *current-theme* *theme-dark*)
-
-(load-theme *current-theme* t)
-
-(defun my-fn/next-theme (theme)
-  (disable-theme *current-theme*)
-  (load-theme theme t)
-  (setq *current-theme* theme))
-
-(defun my-fn/toggle-theme ()
-  (interactive)
-  (cond ((eq *current-theme* *theme-dark*) (my-fn/next-theme *theme-light*))
-	((eq *current-theme* *theme-light*) (my-fn/next-theme *theme-dark*))))
-
-(global-set-key (kbd "<f5>") #'my-fn/toggle-theme)
-
 ;; Automatic resizing of Emacs windows to the golden ratio
 (use-package golden-ratio
   :ensure t
@@ -76,6 +22,7 @@
                         :family "JuliaMono"
                         :height 130)
   (set-face-attribute 'default nil
+                      :family "Fira Code"
                       :height 100))
 
 (setq-default line-spacing 0.2)
@@ -89,9 +36,8 @@
   (setq default-frame-alist '((width . 160)
                               (height . 50))))
 
-(setq
-      x-select-enable-clipboard t
-      x-select-enable-primary t
+(setq select-enable-clipboard t
+      select-enable-primary t
       save-interprogram-paste-before-kill t
       apropos-do-all t
       mouse-yank-at-point t)
@@ -110,9 +56,18 @@
       window-divider-default-right-width 2)
 (add-hook 'window-setup-hook #'window-divider-mode)
 
+(setq default-frame-alist '((cursor-color . "white")))
+
 ;;; When you try to align your Emacs frame flush on macOS and it just doesn’t quite reach the edge
 (if *is-a-mac*
     (setq frame-resize-pixelwise t))
+
+(use-package all-the-icons)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+(setq doom-modeline-height 10)
 
 (provide 'init-ui)
 ;;; init-ui ends here
