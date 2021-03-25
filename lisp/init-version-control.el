@@ -21,5 +21,9 @@
   :diminish
   :hook (after-init . global-git-gutter+-mode))
 
+(use-package git-timemachine
+  :ensure t
+  :commands (git-timemachine))
+
 (provide 'init-version-control)
 ;;; init-version-control ends here
