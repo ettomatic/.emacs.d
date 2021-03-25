@@ -80,26 +80,14 @@
 ;;; Highlight current line
 (global-hl-line-mode 1)
 
-;;; Interactive search key bindings. By default, C-s runs
-;;; isearch-forward, so this swaps the bindings.
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-(require 'saveplace)
-
-;; ;;; When you visit a file, point goes to the last place where it
-;; ;;; was when you previously visited the same file.
-;; ;;; http://www.emacswiki.org/emacs/SavePlace
-(setq-default save-place t)
-
-;;; keep track of saved places in ~/.emacs.d/places
+;; remember last position
+(use-package saveplace
+  :hook (after-init . save-place-mode))
 (setq save-place-file (concat user-emacs-directory "places"))
 
 (defun toggle-comment-on-line ()
@@ -129,7 +117,7 @@ there's a region, all lines that region covers will be duplicated."
       (goto-char (+ origin (* (length region) arg) arg)))))
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
-(when *is-a-mac*
+(when is-mac
   (setq mac-option-modifier        'meta)
   (setq mac-command-modifier       'super)
   (setq mac-right-command-modifier 'hyper)

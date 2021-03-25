@@ -22,9 +22,10 @@
 		  enh-ruby-bounce-deep-indent t
 		  enh-ruby-hanging-indent-level 2)))
 
-(if *is-a-mac*
+(if is-mac
     (setq enh-ruby-program "~/.asdf/shims/ruby")
-    (setq enh-ruby-program "/usr/bin/ruby"))
+  (setq enh-ruby-program "/usr/bin/ruby"))
+
 ;;; RSpec
 (use-package rspec-mode
   :ensure t

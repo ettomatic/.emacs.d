@@ -5,8 +5,8 @@
 (require 'package)
 (package-initialize)
 
-(setq package-archives '(("melpa" . "http://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

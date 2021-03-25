@@ -17,7 +17,7 @@
   (scroll-bar-mode -1))
 
 ;; Fonts
-(if *is-a-mac*
+(if is-mac
     (set-face-attribute 'default nil
                         :family "JuliaMono"
                         :height 130)
@@ -25,16 +25,16 @@
                       :family "Fira Code"
                       :height 100))
 
+;; size & scaling
+(setq text-scale-mode-step 1.05)
+(define-key global-map (kbd "C-+") 'text-scale-increase)
+(define-key global-map (kbd "C--") 'text-scale-decrease)
+
 (setq-default line-spacing 0.2)
 
-(custom-theme-set-faces
- 'user
- '(variable-pitch ((t (:family "Spectral" :height 160 :weight thin))))
- '(fixed-pitch ((t ( :family "B612 Mono":height 110 :weight normal :width normal)))))
-
-(when (or window-system (daemonp))
-  (setq default-frame-alist '((width . 160)
-                              (height . 50))))
+(if is-gui
+    (setq default-frame-alist '((width . 160)
+                                (height . 60))))
 
 (setq select-enable-clipboard t
       select-enable-primary t
@@ -59,7 +59,7 @@
 (setq default-frame-alist '((cursor-color . "white")))
 
 ;;; When you try to align your Emacs frame flush on macOS and it just doesn’t quite reach the edge
-(if *is-a-mac*
+(if is-mac
     (setq frame-resize-pixelwise t))
 
 (use-package all-the-icons)
@@ -69,6 +69,7 @@
 
 (setq doom-modeline-height 10)
 
+;; Show a Dashboard at startup
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 ;; Or if you use use-package
