@@ -69,5 +69,18 @@
 
 (setq doom-modeline-height 10)
 
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+;; Or if you use use-package
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(setq dashboard-center-content t)
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-startup-banner 1)
+
 (provide 'init-ui)
 ;;; init-ui ends here
