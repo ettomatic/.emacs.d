@@ -14,5 +14,9 @@
   :ensure t
   :defer t)
 
+(use-package docker-tramp
+  :ensure t
+  :defer t)
+
 (provide 'init-docker)
 ;;; init-docker ends here
