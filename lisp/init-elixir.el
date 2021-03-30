@@ -6,6 +6,12 @@
   :ensure t
   :defer t)
 
+(use-package exunit
+  :ensure t
+  :defer t)
+
+(add-hook 'elixir-mode-hook 'exunit-mode)
+
 ;;; org-mode
 (use-package ob-elixir
   :init
@@ -14,6 +20,11 @@
    '((emacs-lisp . t)
      (elixir . t)))
   :after org)
+
+;;; Mostly to have a working iex console
+(use-package alchemist
+  :ensure t
+  :defer t)
 
 (provide 'init-elixir)
 ;;; init-elixir ends here
