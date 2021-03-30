@@ -91,7 +91,8 @@
          ("C-s" . consult-line)
          ("C-x C-a" . consult-ripgrep)
          ("M-g M-g" . consult-goto-line)
-         ("M-y" . consult-yank-pop)))
+         ("M-y" . consult-yank-pop)
+         ("M-h" . consult-history)))
 
 (require 'consult)
 

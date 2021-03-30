@@ -19,6 +19,7 @@
 
 (require 'init-theme)
 (require 'init-ui)
+(require 'init-shell)
 (require 'init-editing)
 (require 'init-navigation)
 (require 'init-org)
@@ -46,11 +47,11 @@
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(diff-hl undo-tree marginalia doom-modeline all-the-icons moody whole-line-or-region use-package-ensure-system-package solo-jazz-theme selectrum-prescient rspec-mode rg rainbow-delimiters projectile org-roam org-cliplink org-bullets org-brain orderless olivetti ob-elixir move-text modus-themes markdown-mode magit kaolin-themes inf-ruby golden-ratio flycheck fish-mode exec-path-from-shell enh-ruby-mode elpher elixir-mode eglot dockerfile-mode docker-compose-mode docker delight deft crystal-mode consult company-prescient ayu-theme avy)))
+   '(esh-autosuggest eshell-syntax-highlighting fish-completion alchemist shx eshell-bookmark exunit excorporate git-timemachine dashboard diff-hl undo-tree marginalia doom-modeline all-the-icons moody whole-line-or-region use-package-ensure-system-package solo-jazz-theme selectrum-prescient rspec-mode rg rainbow-delimiters projectile org-roam org-cliplink org-bullets org-brain orderless olivetti ob-elixir move-text modus-themes markdown-mode magit kaolin-themes inf-ruby golden-ratio flycheck fish-mode exec-path-from-shell enh-ruby-mode elpher elixir-mode eglot dockerfile-mode docker-compose-mode docker delight deft crystal-mode consult company-prescient ayu-theme avy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(fixed-pitch ((t (:family "B612 Mono" :height 110 :weight normal :width normal))))
- '(variable-pitch ((t (:family "Spectral" :height 160 :weight thin)))))
+ '(variable-pitch ((t (:family "Spectral" :height 80 :weight thin)))))
