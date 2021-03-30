@@ -76,12 +76,17 @@
 (use-package dashboard
   :ensure t
   :config
-  (dashboard-setup-startup-hook))
-
-(setq dashboard-center-content t)
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-(setq dashboard-startup-banner 1)
+  (dashboard-setup-startup-hook)
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)))
+  (setq dashboard-center-content t)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-startup-banner 1)
+  (setq dashboard-projects-switch-function 'projectile-switch-project)
+  (setq dashboard-footer-messages '("Emacs is LISP!")))
 
 (provide 'init-ui)
 ;;; init-ui ends here

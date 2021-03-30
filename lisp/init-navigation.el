@@ -82,17 +82,21 @@
 ;;; If Emacs exits abruptly for some reason the recent file list will be lost
 ;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5
 (run-at-time nil (* 5 60) 'recentf-save-list)
+(setq recentf-exclude '("/\\.emacs\\.d/elpa/" "recentf"))
 
 (use-package consult
   :ensure t
   :config
   :bind (([C-tab] . consult-buffer)
+         ("C-x b" . consult-buffer)
          ("C-x C-r" . consult-recent-file)
          ("C-s" . consult-line)
          ("C-x C-a" . consult-ripgrep)
          ("M-g M-g" . consult-goto-line)
          ("M-y" . consult-yank-pop)
-         ("M-h" . consult-history)))
+         ("C-c h" . consult-history)
+         ("s-#" .  consult-project-imenu)
+         ("M-g o" . consult-outline)))
 
 (require 'consult)
 
