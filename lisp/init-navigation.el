@@ -75,7 +75,13 @@
 (setq orderless-skip-highlighting (lambda () selectrum-is-active))
 (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
 
+;;; Recent Files
 (recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+;;; If Emacs exits abruptly for some reason the recent file list will be lost
+;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5
+(run-at-time nil (* 5 60) 'recentf-save-list)
 
 (use-package consult
   :ensure t
