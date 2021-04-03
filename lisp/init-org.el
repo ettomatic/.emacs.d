@@ -65,7 +65,8 @@
                                 (wl . wl)))
                               ))
     (org-open-at-point)))
-;; Depending on universal argument try opening link
+
+;;; Depending on universal argument try opening link
 (defun org-open-maybe (&optional arg)
   (interactive "P")
   (if arg
@@ -73,9 +74,17 @@
     (org-force-open-current-window)
     )
   )
-;; Redefine file opening without clobbering universal argumnet
+
+;;; Redefine file opening without clobbering universal argumnet
 (define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
 (define-key org-mode-map "RET" 'org-open-maybe)
+
+
+;;; Do not ask for confirmation before evaluating
+;;; Ruby or Elixir Babel scripts with C-C C-,
+(defun eb/org-confirm-babel-evaluate (lang body)
+  (not (or (string= lang "ruby") (string= lang "elixir"))))
+(setq org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate)
 
 
 (use-package org-capture
