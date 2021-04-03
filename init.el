@@ -27,7 +27,7 @@
 (require 'init-company-mode)
 (require 'init-docker)
 (require 'init-langs)
-;(require 'init-ocaml)
+(require 'init-ocaml)
 (require 'init-elixir)
 (require 'init-ruby)
 (require 'init-version-control)
