@@ -37,19 +37,20 @@
 
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "|" "DONE(d)")
+      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "PROJ(p)" "|" "DONE(d)")
 	      (sequence "TASK(T)")
-	      (sequence "WAITING(w@/!)" "INACTIVE(i)" "SOMEDAY(s)" "|" "CANCELLED(c@/!)")))
+	      (sequence "WAITING(w)" "INACTIVE(i)" "SOMEDAY(S)" "|" "CANCELLED(c)")))
 ;; Custom colors for the keywords
 (setq org-todo-keyword-faces
       '(("TODO" :foreground "red" :weight bold)
 	      ("TASK" :foreground "#5C888B" :weight bold)
 	      ("NEXT" :foreground "blue" :weight bold)
+	      ("STARTED" :foreground "cyan" :weight bold)
 	      ("PROJ" :foreground "magenta" :weight bold)
 	      ("DONE" :foreground "forest green" :weight bold)
 	      ("WAITING" :foreground "orange" :weight bold)
-	      ("INACTIVE" :foreground "magenta" :weight bold)
-	      ("SOMEDAY" :foreground "cyan" :weight bold)
+	      ("INACTIVE" :foreground "brown" :weight bold)
+	      ("SOMEDAY" :foreground "dark cyan" :weight bold)
 	      ("CANCELLED" :foreground "forest green" :weight bold)))
 
 (require 'org)
@@ -147,11 +148,6 @@
   :config
   (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
   (setq org-id-track-globally t))
-
-;; Allows you to edit entries directly from org-brain-visualize
-;;(use-package polymode
-;;  :config
-;;  (add-hook 'org-brain-visualize-mode-hook #'org-brain-polymode))
 
 ;; Org Cliplink
 (use-package org-cliplink
