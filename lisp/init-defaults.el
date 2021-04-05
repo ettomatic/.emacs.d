@@ -29,7 +29,6 @@
  bidi-inhibit-bpa t                               ; Disabling he Bidirectional Parentheses Algorithm makes redisplay faster
  auto-save-interval 5                             ; Auto save every 5secs
  make-backup-files nil                            ; Turn Off Backup
-;; save-place t                                   ; Go to the last place where it was when you previously visited the same file
  auto-save-visited-file-name t                    ;
  savehist-mode 1                                  ; Preserve commands preserved between sessions
  savehist-file "~/.emacs.d/savehist"              ;

@@ -127,19 +127,6 @@
 
 (define-key global-map (kbd "C-c i") 'org-capture-inbox)
 
-;; (use-package org-journal
-;;   :ensure t
-;;   :defer f
-;;   :after org
-;;   :init
-;;   (global-set-key (kbd "C-c C-j") 'org-journal-new-entry)
-;;   :custom
-;;   (org-journal-dir "~/org/journal")
-;;   (org-journal-date-format "%A, %d %B %Y")
-;;   (org-journal-file-format "%Y%m%d.org")
-;;   (org-journal-enable-agenda-integration t)
-;;   (org-journal-date-prefix "#+TITLE: Daily Notes "))
-
 ;; Org Brain
 (use-package org-brain :ensure t
   :ensure t
