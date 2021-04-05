@@ -25,6 +25,14 @@
                       :family "Fira Code"
                       :height 100))
 
+(custom-theme-set-faces
+ 'user
+ '(org-meta-line ((t (:inherit default))))
+ '(org-special-keyword ((t (:inherit default))))
+ '(org-date ((t (:inherit default))))
+ '(org-block ((t (:inherit default))))
+ '(org-block-begin-line ((t (:inherit default)))))
+
 ;; size & scaling
 (setq text-scale-mode-step 1.05)
 (define-key global-map (kbd "C-+") 'text-scale-increase)
