@@ -53,6 +53,14 @@
 	      ("SOMEDAY" :foreground "dark cyan" :weight bold)
 	      ("CANCELLED" :foreground "forest green" :weight bold)))
 
+;;; Enables auto-saving of org files while emacs is running
+;;; That will put auto-saving all open org files on a timer.
+;;; Performing changes to buffers from the org agenda overview, for example,
+;;; doesn’t mark the buffer as needing to auto-save, as far as I understand.
+;;; So this setting helps to auto-save all org buffers regularly.
+;;; https://christiantietze.de/posts/2019/03/sync-emacs-org-files/
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+
 (require 'org)
 
 ;;; Open org link in the same window
