@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package elixir-mode
-  :ensure t
-  :defer t)
-
 (use-package exunit
   :ensure t
-  :defer t)
+  :defer t
+  :after (elixir-mode))
 
-(add-hook 'elixir-mode-hook 'exunit-mode)
+(use-package elixir-mode
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'elixir-mode-hook 'exunit-mode))
 
 ;;; org-mode
 (use-package ob-elixir

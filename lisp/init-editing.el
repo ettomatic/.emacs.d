@@ -34,45 +34,6 @@
   :ensure t
   :init (whole-line-or-region-global-mode))
 
-;; YAML
-(use-package yaml-mode
-  :ensure t
-  :defer t)
-
-;;
-;; Writing space
-;;
-(use-package olivetti
-  :ensure t
-  :defer t)
-
-(add-hook
- 'olivetti-mode-hook
- 'auto-fill-mode)
-
-(add-hook
- 'olivetti-mode-hook
- 'olivetti-mode)
-
-(add-hook
- 'olivetti-mode-hook
- 'variable-pitch-mode)
-
-(add-hook
- 'olivetti-mode-hook
- 'toggle-word-wrap 1)
-
-(customize-set-variable 'ispell-program-name "aspell")
-(customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
-(add-hook 'olivetti-mode-hook 'flyspell-mode)
-
-;; Markdown with preview
-(use-package markdown-mode
-  :ensure t
-  :defer t
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
 
 ;;; Highlights matching parenthesis
 (show-paren-mode 1)

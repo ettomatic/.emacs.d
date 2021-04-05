@@ -1,4 +1,4 @@
-;;; init-web --- Web technologies Configuration -*- lexical-binding: t -*-
+;;; init-markup --- Web technologies Configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -22,5 +22,18 @@
       (funcall encode array)))
   :config (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line))
 
-(provide 'init-web)
-;;; init-web ends here
+;; YAML
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
+;; Markdown with preview
+(use-package markdown-mode
+  :ensure t
+  :defer t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
+(provide 'init-markup)
+;;; init-markup ends here

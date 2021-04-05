@@ -20,6 +20,7 @@
 
 (use-package git-timemachine
   :ensure t
+  :defer t
   :commands (git-timemachine))
 
 (provide 'init-version-control)
