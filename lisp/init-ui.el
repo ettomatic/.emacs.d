@@ -77,9 +77,6 @@
 
 (setq doom-modeline-height 10)
 
-;; Show a Dashboard at startup
-(require 'dashboard)
-(dashboard-setup-startup-hook)
 ;; Or if you use use-package
 (use-package dashboard
   :ensure t
@@ -95,6 +92,10 @@
   (setq dashboard-startup-banner 1)
   (setq dashboard-projects-switch-function 'projectile-switch-project)
   (setq dashboard-footer-messages '("Emacs is LISP!")))
+
+;; Show a Dashboard at startup
+(require 'dashboard)
+(dashboard-setup-startup-hook)
 
 (provide 'init-ui)
 ;;; init-ui ends here

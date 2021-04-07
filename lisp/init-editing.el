@@ -79,8 +79,8 @@ there's a region, all lines that region covers will be duplicated."
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 (when is-mac
-  (setq mac-option-modifier        'meta)
-  (setq mac-command-modifier       'super)
+  (setq mac-option-modifier        'super)
+  (setq mac-command-modifier       'meta)
   (setq mac-right-command-modifier 'hyper)
   (setq mac-function-modifier      'super))
 
