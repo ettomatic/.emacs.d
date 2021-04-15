@@ -97,5 +97,11 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
+(setq visible-bell 1)
+(use-package mode-line-bell
+  :defer t
+  :init
+  (mode-line-bell-mode))
+
 (provide 'init-ui)
 ;;; init-ui ends here
