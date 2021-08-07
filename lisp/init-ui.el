@@ -2,13 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Automatic resizing of Emacs windows to the golden ratio
-(use-package golden-ratio
-  :ensure t
-  :diminish golden-ratio-mode
-  :config
-  (golden-ratio-mode 1))
-
 ;; Menu Bar
 (menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
@@ -22,7 +15,7 @@
                         :family "JuliaMono"
                         :height 130)
   (set-face-attribute 'default nil
-                      :family "Fira Code"
+                      :family "Hack"
                       :height 100))
 
 (custom-theme-set-faces
@@ -102,6 +95,14 @@
   :defer t
   :init
   (mode-line-bell-mode))
+
+;; Automatic resizing of Emacs windows to the golden ratio
+(use-package golden-ratio
+  :ensure t
+  :diminish golden-ratio-mode
+  :config
+  (golden-ratio-mode 1))
+>>>>>>> dc3aa3c (fonts.)
 
 (provide 'init-ui)
 ;;; init-ui ends here
