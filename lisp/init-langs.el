@@ -25,9 +25,10 @@
   :defer t)
 
 ;;; F#
-(use-package fsharp-mode
- :defer t
- :ensure t)
+;; (use-package fsharp-mode
+;;  :defer t
+;;  :ensure t)
+;; (require 'eglot-fsharp)
 
 (provide 'init-langs)
 ;;; init-langs ends here

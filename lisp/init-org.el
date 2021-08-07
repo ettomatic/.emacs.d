@@ -53,6 +53,8 @@
 	      ("SOMEDAY" :foreground "dark cyan" :weight bold)
 	      ("CANCELLED" :foreground "forest green" :weight bold)))
 
+(set-face-attribute 'org-headline-done nil :strike-through t)
+
 ;;; Enables auto-saving of org files while emacs is running
 ;;; That will put auto-saving all open org files on a timer.
 ;;; Performing changes to buffers from the org agenda overview, for example,
@@ -164,8 +166,11 @@
 
 (use-package org-roam
   :ensure t
+  :after org
+  :init
+  (setq org-roam-v2-ack t) ;; acknowledge upgrade and remove warning at startup
   :custom
-  (org-roam-directory "~/org/zettel")
+  (org-roam-directory (file-truename "~/org/zettel"))
   (org-roam-db-location "~/.org-roam/org-roam.db")
   (org-roam-dailies-directory "journal/")
   (org-roam-open-at-point t)
@@ -175,15 +180,16 @@
       "* %?"
       :file-name "journal/%<%Y-%m-%d>"
       :head "#+title: %<%Y-%m-%d>\n\n")))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
   :config
-  (add-hook 'after-init-hook 'org-roam-mode)
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
+  ;(add-hook 'after-init-hook 'org-roam-mode)
+  (org-roam-setup))
 
 (use-package deft
       :after org
@@ -194,6 +200,8 @@
       (deft-use-filter-string-for-filename t)
       (deft-default-extension "org")
       (deft-directory "~/org/zettel/"))
+
+(setq deft-strip-summary-regexp "\\`\\(.+\n\\)+\n")
 
 (provide 'init-org)
 

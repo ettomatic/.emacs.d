@@ -42,3 +42,21 @@
 
 (provide 'init)
 ;;; init ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(delete-selection-mode nil)
+ '(package-selected-packages
+   '(langtool whole-line-or-region use-package-ensure-system-package undo-tree solo-jazz-theme selectrum-prescient rspec-mode rg rainbow-delimiters projectile org-roam org-cliplink org-bullets org-brain orderless olivetti ob-elixir move-text modus-themes markdown-mode marginalia magit kaolin-themes inf-ruby golden-ratio git-timemachine flycheck fish-mode fish-completion exunit exec-path-from-shell excorporate eshell-syntax-highlighting eshell-bookmark esh-autosuggest enh-ruby-mode embark-consult elpher eglot doom-modeline dockerfile-mode docker-compose-mode docker diff-hl delight deft dashboard crystal-mode company-prescient ayu-theme avy alchemist)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-block ((t (:inherit default))))
+ '(org-block-begin-line ((t (:inherit default))))
+ '(org-date ((t (:inherit default))))
+ '(org-meta-line ((t (:inherit default))))
+ '(org-special-keyword ((t (:inherit default)))))
