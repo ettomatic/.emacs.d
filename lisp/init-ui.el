@@ -115,12 +115,18 @@
   (mode-line-bell-mode))
 
 ;; Automatic resizing of Emacs windows to the golden ratio
-(use-package golden-ratio
-  :ensure t
-  :diminish golden-ratio-mode
-  :config
-  (golden-ratio-mode 1))
->>>>>>> dc3aa3c (fonts.)
+;; (use-package golden-ratio
+;;   :ensure t
+;;   :diminish golden-ratio-mode
+;;   :config
+;;   (golden-ratio-mode 1))
+;; (add-to-list 'golden-ratio-extra-commands 'ace-window)
+
+;; (use-package zoom
+;;   :config
+;;   ;; At least 100 cols wide and 3/4 of frame size in height
+;;   (setq zoom-size '(100 . 0.75))
+;;   (zoom-mode t))
 
 (provide 'init-ui)
 ;;; init-ui ends here
