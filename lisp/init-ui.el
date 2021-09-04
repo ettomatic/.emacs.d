@@ -40,7 +40,7 @@
 (define-key global-map (kbd "C-+") 'text-scale-increase)
 (define-key global-map (kbd "C--") 'text-scale-decrease)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 0)
 
 (if is-gui
     (setq default-frame-alist '((width . 160)

@@ -8,7 +8,8 @@
   :custom
   (org-startup-truncated nil)
   (org-indent-indentation-per-level 1)
-  (org-adapt-indentation nil)
+  (org-adapt-indentation t)
+  (org-startup-indented t)
   (org-hide-leading-stars 't)
   (org-tags-column 10)
   (org-tag-alist '(
@@ -25,7 +26,6 @@
                    (:endgroup . nil)
                    ))
   (org-archive-location "~/org/archives/%s::")
-  (org-src-fontify-natively t)
   (org-log-done 'time)
   (org-return-follows-link t))
 
@@ -90,7 +90,6 @@
 (define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
 (define-key org-mode-map "RET" 'org-open-maybe)
 
-
 ;;; Babel
 
 ;;; Syntax highlightning in code blocks
@@ -106,6 +105,9 @@
 (defun eb/org-confirm-babel-evaluate (lang body)
   (not (or (string= lang "ruby") (string= lang "elixir"))))
 (setq org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate)
+
+
+;;; Capture
 
 (use-package org-capture
   :ensure nil
@@ -146,7 +148,8 @@
 
 (define-key global-map (kbd "C-c i") 'org-capture-inbox)
 
-;; Org Brain
+;;; Org Brain
+
 (use-package org-brain :ensure t
   :ensure t
   :init
@@ -155,7 +158,8 @@
   (bind-key "C-c b" 'org-brain-prefix-map org-mode-map)
   (setq org-id-track-globally t))
 
-;; Org Cliplink
+;;; Org Cliplink
+
 (use-package org-cliplink
   :ensure t
   :config
@@ -174,15 +178,21 @@
   :hook (org-mode . org-appear-mode))
 
 ;; Show org-mode bullets as UTF-8 characters.
-(use-package org-bullets
+(use-package org-superstar
   :ensure t
+  :after org
   :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+  :custom
+  (org-superstar-headline-bullets-list '("⁖" "⁘" "⁝" "⊙" "☊" "☋" "☌" "☍" "∞")))
+
 
 (defun eb/open-backlink ()
   (interactive)
   (let ((current-prefix-arg 4))
     (call-interactively 'org-roam-preview-visit)))
+
+;;; Org-Roam
 
 (use-package org-roam
   :ensure t
