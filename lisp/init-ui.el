@@ -15,23 +15,32 @@
                         :family "JuliaMono"
                         :height 130)
   (set-face-attribute 'default nil
-                      :family "Hack"
+                      :family "iA Writer Mono V"
                       :height 100))
 
-(custom-theme-set-faces
- 'user
- '(org-meta-line ((t (:inherit default))))
- '(org-special-keyword ((t (:inherit default))))
- '(org-date ((t (:inherit default))))
- '(org-block ((t (:inherit default))))
- '(org-block-begin-line ((t (:inherit default)))))
+;; Set the variable pitch face
+(set-face-attribute 'variable-pitch nil
+                    :font "iA Writer Quattro V"
+                    :height 120
+                    :weight 'normal)
+
+;(copy-face 'default 'fixed-pitch)
+
+;;( custom-theme-set-faces
+ ;; 'user
+ ;; '(org-meta-line ((t (:inherit fixed-pitch))))
+ ;; '(org-special-keyword ((t (:inherit fixed-pitch))))
+ ;; '(org-date ((t (:inherit fixed-pitch))))
+ ;; '(org-block ((t (:inherit fixed-pitch))))
+ ;; '(org-block-begin-line ((t (:inherit fixed-pitch)))))
+
 
 ;; size & scaling
 (setq text-scale-mode-step 1.05)
 (define-key global-map (kbd "C-+") 'text-scale-increase)
 (define-key global-map (kbd "C--") 'text-scale-decrease)
 
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 1)
 
 (if is-gui
     (setq default-frame-alist '((width . 160)
@@ -45,9 +54,18 @@
 
 (blink-cursor-mode 1)
 
+
+(setq-default prettify-symbols-alist '(("lambda" . ?λ)
+                                       ("delta" . ?Δ)
+                                       ("gamma" . ?Γ)
+                                       ("phi" . ?φ)
+                                       ("psi" . ?ψ)))
+(global-prettify-symbols-mode +1)
+
+
 ;;; The fringe is a thin strip down the left and/or right edge of a window.
 ;;; They can contain glyphs to indicate various things
-(fringe-mode '(10 . 1))
+;(fringe-mode '(10 . 1))
 
 ;;; Display dividers between windows
 ;;; Window dividers are bars that can be dragged with the mouse, thus allowing
