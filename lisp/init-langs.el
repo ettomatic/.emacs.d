@@ -24,6 +24,10 @@
   :ensure t
   :defer t)
 
+(use-package racket-mode
+  :ensure t
+  :defer t)
+
 ;;; F#
 ;; (use-package fsharp-mode
 ;;  :defer t

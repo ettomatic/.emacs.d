@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Projectile is a project interaction library for Emacs
+;;; Projectile is a project interaction library for Emacs
 (use-package projectile
   :ensure t
   :defer 1
@@ -16,8 +16,14 @@
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; Enable move point from window to window using Shift and the arrow keys
-(windmove-default-keybindings)
+;;; Enable move point from window to window using Shift and the arrow keys
+;;; doesn't play well with Org
+;; (windmove-default-keybindings)
+(use-package ace-window
+  :ensure t
+  :defer t)
+(global-set-key (kbd "M-o") 'ace-window)
+
 
 (use-package dired
   :ensure nil
@@ -140,7 +146,8 @@
 (use-package avy
   :ensure t)
 
-(global-set-key (kbd "s-;") 'avy-goto-char-2)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
+;;

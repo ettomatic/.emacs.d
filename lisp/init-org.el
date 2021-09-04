@@ -91,12 +91,21 @@
 (define-key org-mode-map "RET" 'org-open-maybe)
 
 
+;;; Babel
+
+;;; Syntax highlightning in code blocks
+(setq org-src-fontify-natively t)
+
+;;; Trying to fix indentation behaviour within code blocks.
+(setq org-edit-src-content-indentation 0)
+(setq org-src-tab-acts-natively t)
+(setq org-src-preserve-indentation t)
+
 ;;; Do not ask for confirmation before evaluating
 ;;; Ruby or Elixir Babel scripts with C-C C-,
 (defun eb/org-confirm-babel-evaluate (lang body)
   (not (or (string= lang "ruby") (string= lang "elixir"))))
 (setq org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate)
-
 
 (use-package org-capture
   :ensure nil
@@ -152,17 +161,28 @@
   :config
   (bind-key "C-x p i" '' org-cliplink))
 
-;;; beutify it
-(setq org-hide-emphasis-markers t)
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+;;; beutify org-mode
+(setq org-hide-emphasis-markers t ; Show actually italicized text instead of /italicized text/.
+      org-tags-column 0           ; Show tags directly after headings (not on the right), which plays nicer with line-wrapping.
+      org-startup-with-inline-images t
+      org-image-actual-width '(300))
+
+;;; This package makes it much easier to edit Org documents when org-hide-emphasis-markers is turned on.
+;;; It temporarily shows the emphasis markers around certain markup elements when you place your cursor inside of them.
+;;; No more fumbling around with = and * characters!
+(use-package org-appear
+  :hook (org-mode . org-appear-mode))
 
 ;; Show org-mode bullets as UTF-8 characters.
 (use-package org-bullets
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(defun eb/open-backlink ()
+  (interactive)
+  (let ((current-prefix-arg 4))
+    (call-interactively 'org-roam-preview-visit)))
 
 (use-package org-roam
   :ensure t
@@ -182,27 +202,41 @@
       :head "#+title: %<%Y-%m-%d>\n\n")))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
+         ("C-c n r" . eb/org-roam-rg-search)
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
+         ("M-RET" . eb/open-backlink)
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
   ;(add-hook 'after-init-hook 'org-roam-mode)
   (org-roam-setup))
 
-(use-package deft
-      :after org
-      :bind
-      ("C-c n d" . deft)
-      :custom
-      (deft-recursive t)
-      (deft-use-filter-string-for-filename t)
-      (deft-default-extension "org")
-      (deft-directory "~/org/zettel/"))
+(defun eb/org-roam-rg-search ()
+  "Search org-roam directory using consult-ripgrep. With live-preview."
+  (interactive)
+  (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
+    (consult-ripgrep org-roam-directory)))
 
-(setq deft-strip-summary-regexp "\\`\\(.+\n\\)+\n")
+
+
+;; (setq +org-roam-open-buffer-on-find-file nil)  ;; with +roam, it defaults to t
+;; (setq org-roam-buffer-window-parameters nil)  ;; with +roam, it has some value
+;; (setq org-open-at-point-functions '(org-roam-open-id-at-point)) ;; Looks like Doom puts something related to `jump` something, which I don't fully understand
+
+
+;; (use-package deft
+;;       :after org
+;;       :bind
+;;       ("C-c n d" . deft)
+;;       :custom
+;;       (deft-recursive t)
+;;       (deft-use-filter-string-for-filename t)
+;;       (deft-default-extension "org")
+;;       (deft-directory "~/org/zettel/"))
+
+;; (setq deft-strip-summary-regexp "\\`\\(.+\n\\)+\n")
 
 (provide 'init-org)
-
 ;;; init-org ends here
