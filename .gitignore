@@ -10,4 +10,8 @@ backups
 elpa/
 eshell
 transient
+org-roam.db
+history
+recentf
+tramp
 \.org-id-locations
