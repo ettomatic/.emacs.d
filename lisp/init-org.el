@@ -219,24 +219,9 @@
   (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
     (consult-ripgrep org-roam-directory)))
 
-
-
 ;; (setq +org-roam-open-buffer-on-find-file nil)  ;; with +roam, it defaults to t
 ;; (setq org-roam-buffer-window-parameters nil)  ;; with +roam, it has some value
 ;; (setq org-open-at-point-functions '(org-roam-open-id-at-point)) ;; Looks like Doom puts something related to `jump` something, which I don't fully understand
-
-
-;; (use-package deft
-;;       :after org
-;;       :bind
-;;       ("C-c n d" . deft)
-;;       :custom
-;;       (deft-recursive t)
-;;       (deft-use-filter-string-for-filename t)
-;;       (deft-default-extension "org")
-;;       (deft-directory "~/org/zettel/"))
-
-;; (setq deft-strip-summary-regexp "\\`\\(.+\n\\)+\n")
 
 (provide 'init-org)
 ;;; init-org ends here
