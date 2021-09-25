@@ -1,14 +1,8 @@
 *~
 places
-\.recentf
-\.smex-items
-ido.last
 backups
 elpa/
-org-roam.db
 history
 tramp
-\.org-id-locations
 var/
 etc/
-recentf
