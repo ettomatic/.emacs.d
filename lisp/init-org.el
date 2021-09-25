@@ -205,10 +205,9 @@
   (org-roam-open-at-point t)
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
-      #'org-roam-capture--get-point
       "* %?"
-      :file-name "journal/%<%Y-%m-%d>"
-      :head "#+title: %<%Y-%m-%d>\n\n")))
+      :target (file+head "%<%Y-%m-%d>.org"
+                         "#+title: %<%Y-%m-%d>\n"))))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n r" . eb/org-roam-rg-search)
