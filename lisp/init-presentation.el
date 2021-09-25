@@ -44,13 +44,6 @@
   :hook ((org-present-mode . dw/org-present-hook)
          (org-present-mode-quit . dw/org-present-quit-hook)))
 
-;; Ensure that anything that should be default in Org files appears that way
-(set-face-attribute 'org-block nil :foreground nil :inherit 'default)
-(set-face-attribute 'org-table nil  :inherit 'default)
-(set-face-attribute 'org-formula nil  :inherit 'default)
-(set-face-attribute 'org-code nil   :inherit '(shadow default))
-
-;(add-to-list 'default-frame-alist '(internal-border-width . 24))
 
 (provide 'init-presentation)
 ;;; init-presentation ends here
