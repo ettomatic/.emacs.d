@@ -33,6 +33,11 @@
   :commands (git-timemachine))
 
 (use-package magit-todos
+  :ensure t
+  :defer t)
+
+(use-package git-link
+  :ensure t
   :defer t)
 
 (provide 'init-version-control)
