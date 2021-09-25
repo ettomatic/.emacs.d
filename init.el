@@ -27,6 +27,7 @@
 
 (require 'init-org)
 (require 'init-org-agenda)
+(require 'init-org-roam)
 ;(require 'init-presentation)
 
 (require 'init-langs)
