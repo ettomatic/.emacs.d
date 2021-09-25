@@ -21,9 +21,8 @@
 ;; (windmove-default-keybindings)
 (use-package ace-window
   :ensure t
-  :defer t)
-(global-set-key (kbd "M-o") 'ace-window)
-
+  :defer t
+  :bind (("C-x o" . ace-window)))
 
 (use-package dired
   :ensure nil
@@ -147,9 +146,16 @@
 
 ;;; Avy
 (use-package avy
-  :ensure t)
+  :ensure t
+  :bind (("C-'" . avy-goto-char-2)))
 
-(global-set-key (kbd "C-'") 'avy-goto-char-2)
+;;; buffer placement algorithm
+(setq display-buffer-base-action
+      '(display-buffer-reuse-mode-window
+        display-buffer-reuse-window
+        display-buffer-same-window))
+;; If a popup does happen, don't resize windows to be equal-sized
+(setq even-window-sizes nil)
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
