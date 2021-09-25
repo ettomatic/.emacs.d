@@ -108,7 +108,6 @@
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 
-(setq visible-bell 1)
 (use-package mode-line-bell
   :defer t
   :init

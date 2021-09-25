@@ -11,7 +11,6 @@
   :custom
   (org-roam-directory (file-truename "~/org/zettel"))
   (org-roam-dailies-directory "journal/")
-  (org-roam-open-at-point t)
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
       "* %?"
@@ -27,8 +26,7 @@
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today))
   :config
-  ;(add-hook 'after-init-hook 'org-roam-mode)
-  (org-roam-setup))
+  (org-roam-db-autosync-mode))
 
 (defun eb/org-roam-rg-search ()
   "Search org-roam directory using consult-ripgrep. With live-preview."

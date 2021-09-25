@@ -8,7 +8,9 @@
   (setq modus-themes-slanted-constructs t
         modus-themes-bold-constructs nil
         modus-themes-mode-line 'borderless
-        modus-themes-lang-checkers 'subtle)
+        modus-themes-lang-checkers 'subtle
+        modus-themes-org-blocks 'gray-background
+        modus-themes-italic-constructs t)
 
   ;; Load the theme files before enabling a theme
   (modus-themes-load-themes)
