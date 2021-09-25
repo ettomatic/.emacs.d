@@ -14,6 +14,15 @@
   :ensure t
   :hook ((after-init . global-diff-hl-mode)
          (dired-mode . diff-hl-dired-mode))
+  :init
+  (custom-set-faces
+   '(diff-hl-change ((t (:background "#3a81c3"))))
+   '(diff-hl-insert ((t (:background "#7ccd7c"))))
+   '(diff-hl-delete ((t (:background "#ee6363")))))
+  ;; On-the-fly diff updates
+  (diff-hl-flydiff-mode)
+  ;; Enable diff-hl globally
+  (global-diff-hl-mode 1)
   :config
   ;; https://github.com/dgutov/diff-hl#magit
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
@@ -22,6 +31,9 @@
   :ensure t
   :defer t
   :commands (git-timemachine))
+
+(use-package magit-todos
+  :defer t)
 
 (provide 'init-version-control)
 ;;; init-version-control ends here
