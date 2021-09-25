@@ -49,7 +49,7 @@
 ;; remember last position
 (use-package saveplace
   :hook (after-init . save-place-mode))
-(setq save-place-file (concat user-emacs-directory "places"))
+(setq save-place-file (concat no-littering-var-directory "places"))
 
 (defun toggle-comment-on-line ()
   "Comment or uncomment current line."
