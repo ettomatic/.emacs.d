@@ -46,6 +46,12 @@
 
 (setq create-lockfiles nil)
 
+;; Use no-littering to automatically set common paths to the new user-emacs-directory
+(use-package no-littering)
+
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
 (defvar is-mac (eq system-type 'darwin)
   "Whether Emacs is running in mac or not.")
 
@@ -54,6 +60,9 @@
 
 (defvar is-term (not is-gui)
   "Whether Emacs is running in a terminal or not.")
+
+;; Silence compiler warnings as they can be pretty disruptive
+(setq comp-async-report-warnings-errors nil)
 
 (provide 'init-defaults)
 ;;; init-defaults ends here
