@@ -52,6 +52,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+;;; Emacs will save customizations on etc/ instead of your init.el file by default.
+(setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+
 (defvar is-mac (eq system-type 'darwin)
   "Whether Emacs is running in mac or not.")
 
