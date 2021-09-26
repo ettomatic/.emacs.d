@@ -83,5 +83,9 @@
 ;;   :ensure t
 ;;   :defer t)
 
+(use-package vterm
+  :commands vterm
+  :config
+  (setq vterm-max-scrollback 10000))
 (provide 'init-shell)
 ;;; init-shell ends here
