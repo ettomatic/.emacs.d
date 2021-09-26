@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (use-package org-roam
   :ensure t
   :after org
@@ -20,11 +19,16 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n r" . eb/org-roam-rg-search)
          ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
-         ("M-RET" . eb/open-backlink)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n I" . eb/org-roam-node-insert-immediate)
          ;; Dailies
+         ("C-c n t" . org-roam-dailies-goto-today)
+         ("C-c n y" . org-roam-dailies-goto-yesterday)
+         ("C-c n r" . org-roam-dailies-goto-tomorrow)
          ("C-c n j" . org-roam-dailies-capture-today))
+         ;; Hacks...
+         ("M-RET"   . eb/open-backlink)
   :config
   (org-roam-db-autosync-mode))
 
@@ -37,6 +41,15 @@
 ;; (setq +org-roam-open-buffer-on-find-file nil)  ;; with +roam, it defaults to t
 ;; (setq org-roam-buffer-window-parameters nil)  ;; with +roam, it has some value
 ;; (setq org-open-at-point-functions '(org-roam-open-id-at-point)) ;; Looks like Doom puts something related to `jump` something, which I don't fully understand
+
+(defun eb/org-roam-node-insert-immediate (arg &rest args)
+  "Allows to quickly create new notes for topics you're mentioning while writing."
+  (interactive "P")
+  (let ((args (cons arg args))
+        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+                                                  '(:immediate-finish t)))))
+    (apply #'org-roam-node-insert args)))
+
 
 (provide 'init-org-roam)
 ;;; init-org ends here
