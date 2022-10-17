@@ -43,6 +43,11 @@
   :hook ((enh-ruby-mode . inf-ruby-minor-mode)
          (compilation-filter . inf-ruby-auto-enter)))
 
+;;; Rubocop
+(use-package rubocop
+  :ensure t
+  :defer t)
+
 ;;; org-mode
 (use-package ob-ruby :ensure nil :after org)
 
