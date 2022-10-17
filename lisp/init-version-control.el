@@ -40,5 +40,8 @@
   :ensure t
   :defer t)
 
+(use-package browse-at-remote)
+
+
 (provide 'init-version-control)
 ;;; init-version-control ends here
