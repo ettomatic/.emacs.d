@@ -18,10 +18,12 @@
   (exec-path-from-shell-initialize))
 
 (require 'init-theme)
+(require 'init-fonts)
 (require 'init-ui)
 
 (require 'init-navigation)
 (require 'init-editing)
+(require 'init-completion)
 (require 'init-markup)
 (require 'init-writing)
 
@@ -34,10 +36,12 @@
 ;(require 'init-ocaml)
 (require 'init-elixir)
 (require 'init-ruby)
-(require 'init-company-mode)
+(require 'init-clojure)
 (require 'init-version-control)
 (require 'init-docker)
 (require 'init-shell)
+
+(require 'init-help)
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 10 1000 1000))
