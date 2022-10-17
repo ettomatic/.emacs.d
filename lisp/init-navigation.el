@@ -24,26 +24,28 @@
   :defer t
   :bind (("C-x o" . ace-window)))
 
-(use-package dired
-  :ensure nil
-  :delight "Dired "
+(use-package dirvish
+  :ensure t
+  :defer t
+  :init
+  (dirvish-override-dired-mode)
   :custom
-  (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
-  (dired-hide-details-hide-symlink-targets nil)
-  (dired-listing-switches "-alh")
-  (dired-ls-F-marks-symlinks nil)
-  (dired-recursive-copies 'always))
+  (dirvish-quick-access-entries
+   '(("h" "~/"                          "Home")
+     ("d" "~/Downloads/"                "Downloads")
+     ("c" "~/code/"                     "Code")
+     ("b" "~/code/belfrage/"            "Belfrage")))
+  :config
+  (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
+  :bind
+  (("C-c f" . dirvish-fd)
+   :map dirvish-mode-map
+   ("u"   . dired-up-directory)))
 
 (use-package rg
   :defer t
   :init
   (rg-enable-default-bindings))
-
-(use-package orderless
-  :ensure t)
-
-(setq completion-styles '(orderless))
 
 (use-package marginalia
   :ensure
