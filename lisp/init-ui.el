@@ -9,39 +9,6 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-;; Fonts
-(if is-mac
-    (set-face-attribute 'default nil
-                        :family "JuliaMono"
-                        :height 130)
-  (set-face-attribute 'default nil
-                      :family "iA Writer Mono V"
-                      :height 100))
-
-;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil
-                    :font "iA Writer Quattro V"
-                    :height 120
-                    :weight 'normal)
-
-;(copy-face 'default 'fixed-pitch)
-
-;;( custom-theme-set-faces
- ;; 'user
- ;; '(org-meta-line ((t (:inherit fixed-pitch))))
- ;; '(org-special-keyword ((t (:inherit fixed-pitch))))
- ;; '(org-date ((t (:inherit fixed-pitch))))
- ;; '(org-block ((t (:inherit fixed-pitch))))
- ;; '(org-block-begin-line ((t (:inherit fixed-pitch)))))
-
-
-;; size & scaling
-(setq text-scale-mode-step 1.05)
-(define-key global-map (kbd "C-+") 'text-scale-increase)
-(define-key global-map (kbd "C--") 'text-scale-decrease)
-
-(setq-default line-spacing 0)
-
 (if is-gui
     (setq default-frame-alist '((width . 160)
                                 (height . 60))))
