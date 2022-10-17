@@ -202,7 +202,19 @@
 (use-package org-cliplink
   :ensure t
   :config
-  (bind-key "C-x p i" '' org-cliplink))
+  (bind-key "C-x p i" 'org-cliplink))
+
+
+(use-package org-download
+  :after org
+  :bind
+  (:map org-mode-map
+        (("C-x p c" . org-download-clipboard)
+         ("C-x p s" . org-download-screenshot)
+         ("s-y" . org-download-yank)))
+  :config
+  (setq org-download-screenshot-method "spectacle")
+  (setq-default org-download-image-dir "~/org/img"))
 
 ;;; beutify org-mode
 (setq org-hide-emphasis-markers t ; Show actually italicized text instead of /italicized text/.
