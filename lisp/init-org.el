@@ -141,6 +141,8 @@
   (not (or (string= lang "ruby") (string= lang "elixir"))))
 (setq org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate)
 
+(org-babel-do-load-languages 'org-babel-load-languages
+    '((shell . t)))
 
 ;;; Capture
 
