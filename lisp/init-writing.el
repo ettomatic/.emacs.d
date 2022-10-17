@@ -35,6 +35,7 @@
     :bind
     (("<f9>" . writing-mode)))
 
+;;; Should I use Spell-fu? See init-editing
 (customize-set-variable 'ispell-program-name "aspell")
 (customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
 
