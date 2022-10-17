@@ -32,6 +32,15 @@
   :config
   (org-roam-db-autosync-mode))
 
+(add-to-list 'display-buffer-alist
+             '("\\*org-roam\\*"
+               (display-buffer-in-side-window)
+               (side . right)
+               (slot . 0)
+               (window-width . 0.33)
+               (window-parameters . ((no-other-window . t)
+                                     (no-delete-other-windows . t)))))
+
 (defun eb/org-roam-rg-search ()
   "Search org-roam directory using consult-ripgrep. With live-preview."
   (interactive)
@@ -50,6 +59,19 @@
                                                   '(:immediate-finish t)))))
     (apply #'org-roam-node-insert args)))
 
+
+;;; So much knowledge is still there.....
+(use-package obsidian
+  :ensure t
+  :demand t
+  :config
+  (obsidian-specify-path "~/Storage/zettel/zettel")
+  (global-obsidian-mode t)
+  :bind (:map obsidian-mode-map
+		;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
+		("C-c C-o" . obsidian-follow-link-at-point)
+		;; If you prefer you can use `obsidian-insert-link'
+		("C-c C-l" . obsidian-insert-wikilink)))
 
 (provide 'init-org-roam)
 ;;; init-org ends here

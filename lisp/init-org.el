@@ -110,13 +110,20 @@
   (interactive "P")
   (if arg
       (org-open-at-point)
-    (org-force-open-current-window)
-    )
-  )
+    (org-force-open-current-window)))
+
+;;; Open web link using multiple browsers
+
+(setq browse-url-browser-function 'browse-url-generic
+       browse-url-generic-program "microsoft-edge-beta")
+(setq browse-url-handlers
+      '(("https://.*bbc\.co\.uk\.*" . browse-url-generic)
+    ("." . browse-url-firefox)))
+
 
 ;;; Redefine file opening without clobbering universal argumnet
-(define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
-(define-key org-mode-map "RET" 'org-open-maybe)
+;(define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
+;(define-key org-mode-map "RET" 'org-open-maybe)
 
 ;;; Babel
 
@@ -212,13 +219,12 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
   :custom
-  (org-superstar-headline-bullets-list '("⁖" "⁘" "⁝" "⊙" "☊" "☋" "☌" "☍" "∞")))
+  (org-superstar-headline-bullets-list '("⁖" "⁘" "⊙" "☊" "☋" "☌" "☍" "∞")))
 
-
-(defun eb/open-backlink ()
-  (interactive)
-  (let ((current-prefix-arg 4))
-    (call-interactively 'org-roam-preview-visit)))
+(use-package todoist
+  :ensure t
+  :config
+  (setq todoist-token (getenv "TODOIST_API")))
 
 (provide 'init-org)
 ;;; init-org ends here
