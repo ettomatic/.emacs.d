@@ -21,19 +21,6 @@
 
 (blink-cursor-mode 1)
 
-
-(setq-default prettify-symbols-alist '(("lambda" . ?λ)
-                                       ("delta" . ?Δ)
-                                       ("gamma" . ?Γ)
-                                       ("phi" . ?φ)
-                                       ("psi" . ?ψ)))
-(global-prettify-symbols-mode +1)
-
-
-;;; The fringe is a thin strip down the left and/or right edge of a window.
-;;; They can contain glyphs to indicate various things
-;(fringe-mode '(10 . 1))
-
 ;;; Display dividers between windows
 ;;; Window dividers are bars that can be dragged with the mouse, thus allowing
 ;;; you to easily resize adjacent windows.
@@ -42,24 +29,24 @@
       window-divider-default-right-width 2)
 (add-hook 'window-setup-hook #'window-divider-mode)
 
-(setq default-frame-alist '((cursor-color . "white")))
+;(setq default-frame-alist '((cursor-color . "white")))
 
 ;;; When you try to align your Emacs frame flush on macOS and it just doesn’t quite reach the edge
 (if is-mac
     (setq frame-resize-pixelwise t))
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :ensure t)
+
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 
-(setq doom-modeline-height 10)
-
-;; Or if you use use-package
 (use-package dashboard
   :ensure t
-  :config
+  :init
   (dashboard-setup-startup-hook)
+  :config
   (setq dashboard-items '((recents  . 5)
                           (bookmarks . 5)
                           (projects . 5)
@@ -70,10 +57,6 @@
   (setq dashboard-startup-banner 1)
   (setq dashboard-projects-switch-function 'projectile-switch-project)
   (setq dashboard-footer-messages '("Emacs is LISP!")))
-
-;; Show a Dashboard at startup
-(require 'dashboard)
-(dashboard-setup-startup-hook)
 
 (use-package mode-line-bell
   :defer t
