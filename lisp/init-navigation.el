@@ -56,43 +56,92 @@
   :init
   ;; Must be in the :init section of use-package such that the mode gets
   ;; enabled right away. Note that this forces loading the package.
-  (marginalia-mode)
+  (marginalia-mode))
 
-  ;; When using Selectrum, ensure that Selectrum is refreshed when cycling annotations.
-  (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit 'keep-selected)))))
-
-(use-package selectrum
-  :ensure t)
-
-;;; Prescient as default Sorting & Filtering tool
-(use-package prescient
-  :ensure t)
-
-(use-package selectrum-prescient
+(use-package vertico
   :ensure t
-  :after selectrum)
+  :init
+  (vertico-mode)
 
-(setq selectrum-prescient-enable-filtering nil)
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
 
-(selectrum-mode +1)
-(selectrum-prescient-mode +1)
-(prescient-persist-mode +1)
+  ;; Show more candidates
+  (setq vertico-count 10)
 
-(setq orderless-skip-highlighting (lambda () selectrum-is-active))
-(setq selectrum-highlight-candidates-function #'orderless-highlight-matches)
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+  )
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+  ;; Vertico commands are hidden in normal buffers.
+  (setq read-extended-command-predicate
+        #'command-completion-default-include-p)
+
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
+
+;; Configure directory extension.
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :ensure t
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
 
 ;;; Recent Files
 
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-(add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
-(add-to-list 'recentf-exclude no-littering-var-directory)
-(add-to-list 'recentf-exclude no-littering-etc-directory)
-;;; If Emacs exits abruptly for some reason the recent file list will be lost
-;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5min
-(run-at-time nil (* 5 60) 'recentf-save-list)
+;; (recentf-mode 1)
+;; (setq recentf-max-menu-items 25)
+;; (setq recentf-max-saved-items 25)
+;; (add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
+;; (add-to-list 'recentf-exclude no-littering-var-directory)
+;; (add-to-list 'recentf-exclude no-littering-etc-directory)
+;; ;;; If Emacs exits abruptly for some reason the recent file list will be lost
+;; ;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5min
+;; (run-at-time nil (* 5 60) 'recentf-save-list)
 
 (use-package consult
   :ensure t
@@ -107,44 +156,8 @@
          ("C-c h" . consult-history)
          ("s-#" .  consult-project-imenu)
          ("M-g o" . consult-outline)))
-
 (require 'consult)
 
-(use-package company-prescient
-  :after company
-  :config
-  (company-prescient-mode 1))
-(setq prescient-sort-length-enable nil)
-
-(use-package embark
-  :ensure t
-
-  :bind
-  (("C-S-a" . embark-act)       ;; pick some comfortable binding
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-
-  :init
-
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
-
-  :config
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
-
-;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
-  :hook
-  (embark-collect-mode . embark-consult-preview-minor-mode))
 
 ;;; Avy
 (use-package avy
