@@ -32,14 +32,18 @@
 (require 'init-org-roam)
 (require 'init-presentation)
 
-(require 'init-langs)
-;(require 'init-ocaml)
-(require 'init-elixir)
-(require 'init-ruby)
-(require 'init-clojure)
-(require 'init-version-control)
-(require 'init-docker)
 (require 'init-shell)
+
+(if is-win
+    () ;; don't load the following packages
+    (require 'init-langs)
+    (require 'init-ocaml)
+    (require 'init-elixir)
+    (require 'init-ruby)
+    (require 'init-clojure)
+    (require 'init-version-control))
+
+;(require 'init-docker)
 
 (require 'init-help)
 
