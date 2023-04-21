@@ -10,6 +10,7 @@
   (org-indent-indentation-per-level 1)
   (org-adapt-indentation t)
   (org-startup-indented t)
+  (org-startup-folded t)
   (org-hide-leading-stars 't)
   (org-tags-column 10)
   (org-tag-alist '(
