@@ -229,15 +229,6 @@
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
 
-;; Show org-mode bullets as UTF-8 characters.
-(use-package org-superstar
-  :ensure t
-  :after org
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-  :custom
-  (org-superstar-headline-bullets-list '("⁖" "⁘" "⊙" "☊" "☋" "☌" "☍" "∞")))
-
 (use-package todoist
   :ensure t
   :config
