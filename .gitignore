@@ -6,3 +6,8 @@ history
 tramp
 var/
 etc/
+/elgrep-data.el
+/eln-cache/
+/fontaine-latest-state.eld
+/recentf
+/transient/
