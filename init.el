@@ -37,7 +37,7 @@
 (if is-win
     () ;; don't load the following packages
     (require 'init-langs)
-    (require 'init-ocaml)
+    ;(require 'init-ocaml)
     (require 'init-elixir)
     (require 'init-ruby)
     (require 'init-clojure)
