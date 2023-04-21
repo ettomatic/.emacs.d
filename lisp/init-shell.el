@@ -12,7 +12,7 @@
 (defun eb/eshell-prompt ()
   (concat
    (propertize "λ" 'face `(:foreground "#aece4a"))
-   (propertize " " 'face `(:foreground "white"))))
+   (propertize " " 'face `(:foreground "black"))))
 
 (setq eshell-prompt-function      'eb/eshell-prompt
       eshell-prompt-regexp        "^λ "
@@ -39,53 +39,12 @@
   (set-face-foreground 'company-preview-common "#4b5668")
   (set-face-background 'company-preview nil))
 
+(use-package eat)
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
-;;; my attempt(s) to work on a fix to use REPLs inside eshell
 
-;; (defun eshell-interactive-output-readonly ()
-;;   "Make output of interactive commands in eshell read-only.
-;; This should be the last entry in eshell-output-filter-functions!"
-;;   (let ((end eshell-last-output-end))
-;;     (save-excursion
-;;       (goto-char end)
-;;       (end-of-line 0)
-;;       (setq end (point)))
-;;     (when (< eshell-last-output-block-begin end)
-;;       (put-text-property eshell-last-output-block-begin end 'read-only "Read-only interactive eshell output"))))
-
-;; (defun eshell-make-interactive-output-readonly ()
-;;   (add-hook 'eshell-output-filter-functions 'eshell-interactive-output-readonly 'append))
-
-;; (add-hook 'eshell-mode-hook 'eshell-make-interactive-output-readonly)
-
-;; (add-hook
-;;  'eshell-mode-hook
-;;  (lambda ()
-;;    (setq pcomplete-cycle-completions nil)))
-
-;; (add-hook
-;;  'eshell-mode-hook
-;;  (lambda ()
-;;    (setq eshell-cmpl-cycle-completions nil)))
-
-;; (defadvice comint-output-filter (after output-readonly activate)
-;;   "Set last process output read-only."
-;;   (add-text-properties comint-last-output-start (line-end-position 0)
-;;                '(read-only "Process output is read-only."
-;;                    rear-nonsticky (inhibit-line-move-field-capture))))
-
-;; (defun my-eshell-remove-pcomplete ()
-;;   (remove-hook 'completion-at-point-functions #'pcomplete-completions-at-point t))
-
-;; (add-hook 'eshell-mode-hook #'my-eshell-remove-pcomplete)
-
-;; (use-package shx
-;;   :ensure t
-;;   :defer t)
-
-(use-package vterm
-  :commands vterm
-  :config
-  (setq vterm-max-scrollback 10000))
 (provide 'init-shell)
 ;;; init-shell ends here

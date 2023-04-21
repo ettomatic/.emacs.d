@@ -6,7 +6,8 @@
 (package-initialize)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("elpa" . "https://elpa.gnu.org/packages/")
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
