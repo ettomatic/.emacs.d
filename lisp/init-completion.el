@@ -4,7 +4,7 @@
 
 (use-package corfu
   :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                    ;; Enable auto completion
   (corfu-auto-delay 0.5)
   (corfu-auto-prefix 3)
@@ -12,22 +12,7 @@
   (corfu-quit-at-boundary nil)      ;; Never quit at completion boundary
   (corfu-preview-current 'insert)   ;; Do not preview current candidate
   (corfu-preselect-first nil)       ;; Disable candidate preselection
-  ;; Enable Corfu only for certain modes.
-  ;; :hook ((prog-mode . corfu-mode)
-  ;;        (shell-mode . corfu-mode)
-  ;;        (eshell-mode . corfu-mode))
-  ;; Recommended: Enable Corfu globally.
-  ;; This is recommended since Dabbrev can be used globally (M-/).
-  ;; See also `corfu-excluded-modes'.
   :bind
-  (:map corfu-map
-        ("S-SPC" . corfu-insert-separator)
-        ("TAB"     . corfu-next)
-        ([tab]     . corfu-next)
-        ("S-TAB"   . corfu-previous)
-        ([backtab] . corfu-previous)
-        ("S-<return>" . corfu-insert)
-        ("RET"     . nil))
   :init
   (global-corfu-mode)
   (corfu-history-mode))
