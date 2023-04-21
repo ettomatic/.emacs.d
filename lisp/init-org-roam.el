@@ -15,6 +15,19 @@
       "* %?"
       :target (file+head "%<%Y-%m-%d>.org"
                          "#+title: %<%Y-%m-%d>\n"))))
+  (org-roam-capture-templates
+   '(("d" "default" plain
+      "%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)
+     ("w" "people" plain "%?"
+         :if-new
+         (file+head "people/${title}.org" "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t)
+     ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
+      :if-new (file+head "projects/${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+      :unnarrowed t)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n r" . eb/org-roam-rg-search)
@@ -25,7 +38,7 @@
          ;; Dailies
          ("C-c n t" . org-roam-dailies-goto-today)
          ("C-c n y" . org-roam-dailies-goto-yesterday)
-         ("C-c n r" . org-roam-dailies-goto-tomorrow)
+         ("C-c n o" . org-roam-dailies-goto-tomorrow)
          ("C-c n j" . org-roam-dailies-capture-today))
          ;; Hacks...
          ("M-RET"   . eb/open-backlink)
@@ -59,6 +72,45 @@
                                                   '(:immediate-finish t)))))
     (apply #'org-roam-node-insert args)))
 
+;;; Automatically move completed tasks to dailies
+
+(defun eb/org-roam-copy-todo-to-today ()
+  (interactive)
+  (let ((org-refile-keep nil) ;; Set this to t to keep the original
+        (org-roam-dailies-capture-templates
+          '(("t" "tasks" entry "%?"
+             :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Tasks")))))
+        (org-after-refile-insert-hook #'save-buffer)
+        today-file
+        pos)
+    (save-window-excursion
+      (org-roam-dailies--capture (current-time) t)
+      (setq today-file (buffer-file-name))
+      (setq pos (point)))
+
+    ;; Only refile if the target file is different than the current file
+    (unless (equal (file-truename today-file)
+                   (file-truename (buffer-file-name)))
+      (org-refile nil nil (list "Tasks" today-file nil pos)))))
+
+(add-to-list 'org-after-todo-state-change-hook
+             (lambda ()
+               (when (equal org-state "DONE")
+                 (eb/org-roam-copy-todo-to-today))))
+
+(use-package websocket
+    :after org-roam)
+(use-package org-roam-ui
+    :after org-roam ;; or :after org
+    ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+    ;;         a hookable mode anymore, you're advised to pick something yourself
+    ;;         if you don't care about startup time, use
+    ;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 ;;; So much knowledge is still there.....
 (use-package obsidian
