@@ -34,37 +34,12 @@
         org-ellipsis " ▾"
         org-hide-emphasis-markers t))
 
-;; ;; Increase the size of various headings
-;; (set-face-attribute 'org-document-title nil :font "Iosevka Aile" :weight 'bold :height 1.3)
-;; (dolist (face '((org-level-1 . 1.4)))
-;;   (set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face))
-;;   )
-
 ;; Make sure org-indent face is available
 (require 'org-indent)
 
-;; ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-;; (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-
-;; (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
-;; (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-;; (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-;; (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-;; (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-;; (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-;; (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-;; (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
-
-;; ; I don't want bold headings!
-;; (set-face-attribute 'org-level-2 nil :inherit 'fixed-pitch)
-;; (set-face-attribute 'org-level-3 nil :inherit 'fixed-pitch)
-;; (set-face-attribute 'org-level-4 nil :inherit 'fixed-pitch)
-(set-face-attribute 'org-level-5 nil :inherit 'fixed-pitch)
-
-
 (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
-(setq org-refile-targets '((org-agenda-files . (:maxlevel . 1))))
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
 
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
@@ -165,9 +140,9 @@
      ("n" "Note [inbox]" entry
       (file+headline "~/org/inbox.org" "Notes")
       "* %i%?\n%a")
-     ("m" "Meeting" entry  (file+headline "agenda.org")
-      (concat "* %? :meeting:\n"
-         "<%<%Y-%m-%d %a %H:00>>"))
+     ;; ("m" "Meeting" entry  (file+headline "agenda.org")
+     ;;  (concat "* %? :meeting:\n"
+     ;;     "<%<%Y-%m-%d %a %H:00>>"))
      ("s" "Someday [inbox]" entry
       (file+headline "~/org/inbox.org" "Someday")
       "* %i%?\n%a")
