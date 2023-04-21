@@ -11,7 +11,6 @@
   (org-agenda-prefix-format
       '((agenda . " %i %-12:c%?-12t% s")
         (todo   . " ")
-        (tags   . " %i %-12:c")
         (search . " %i %-12:c")))
   (org-agenda-show-log t)
   (org-agenda-start-day "-1d")
@@ -20,8 +19,8 @@
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t))
 
-;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org" "~/org/exchange.org"))
-(setq org-agenda-files (list org-directory))
+;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org" "~/org/exchange.org" "~/org/zettel/projects"))
+(setq org-agenda-files (list org-directory "~/org/zettel/projects" "~/org/zettel/people"))
 ;; Compact the block agenda view (disabled)
 (setq org-agenda-compact-blocks nil)
 
