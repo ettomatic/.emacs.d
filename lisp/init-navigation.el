@@ -42,6 +42,8 @@
    :map dirvish-mode-map
    ("u"   . dired-up-directory)))
 
+(setq dired-kill-when-opening-new-dired-buffer t)
+
 (use-package rg
   :defer t
   :init
