@@ -22,32 +22,29 @@
 (setq fontaine-presets
       '((fira
          :default-family "Fira Code"
-         :default-height 110
          :italic-family "Hack")
         (hack
          :default-family "Hack"
-         :default-weight medium
-         :default-height 110)
+         :default-weight medium)
         (Cascadia
-         :default-family "Cascadia Code"
-         :default-height 110)
+         :default-family "Cascadia Code")
         (Julia
          :default-family "Julia Mono"
-         :default-height 105
-         :default-width expanded)
+         :default-weight regular)
         (Berkley
-         :default-family "Berkeley Mono Trial"
-         :default-height 105
-         :default-width condensed)
+         :default-family "Berkeley Mono Trial")
+        (JetBrains
+         :default-family "JetBrains Mono"
+         :default-height 110)
         (writing
          :default-family "Writer"
-         :default-height 110
          :line-spacing 4)
         (t
          :default-weight regular
-         :default-height 110
+         :default-height 115 ; 180 4k
          :default-weight normal
-         :line-spacing: nil)))
+         :line-spacing: 0)))
+         ;:default-width condensed)
 
 ;; Recover last preset or fall back to desired style from
 ;; `fontaine-presets'.
