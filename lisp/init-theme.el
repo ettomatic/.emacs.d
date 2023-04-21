@@ -2,35 +2,37 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package modus-themes
-  :ensure t
-  :init
-  (setq modus-themes-mode-line '(accented borderless (padding . 2) (height . 105))
-        modus-themes-italic-constructs t
-        modus-themes-fringes nil
-        modus-themes-hl-line '(accented)
-        modus-themes-markup '(bold italic intense)
-        modus-themes-org-blocks 'gray-background)
-  
-  ;; Load the theme files before enabling a theme
-  (modus-themes-load-themes)
-  :config
-  ;; Load the theme of your choice:
-  (modus-themes-load-operandi) ;; OR (modus-themes-load-vivendi)
-  :bind ("<f5>" . modus-themes-toggle))
-
-;; (use-package doom-themes
-;;   :ensure t
+;; (use-package modus-themes
+;;   :init
+;;   (setq modus-themes-to-toggle '(modus-operandi-deuteranopia modus-vivendi-deuteranopia))
+;;   ;; ... setting all variable that need to
+;;   ;; be present before loading the theme ...
 ;;   :config
-;;   ;; Global settings (defaults)
-;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;   (load-theme 'doom-ayu-light t)
+;;   (load-theme (car modus-themes-to-toggle) t t)
+;;   :bind ("<f5>" . modus-themes-toggle))
 
-;;   ;; Enable flashing mode-line on errors
-;;   (doom-themes-visual-bell-config)
-;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config))
+;; (setq modus-themes-italic-constructs t
+;;       modus-themes-bold-constructs t
+;;       modus-themes-variable-pitch-ui t
+;;       modus-themes-mixed-fonts t)
+
+;; ;; Remove the border
+;; (setq modus-themes-common-palette-overrides
+;;       '((border-mode-line-active unspecified)
+;;         (border-mode-line-inactive unspecified)))
+
+;; ;; Color customizations
+;; (setq modus-themes-prompts '(bold))
+;; (setq modus-themes-completions nil)
+;; (setq modus-themes-org-blocks 'gray-background)
+
+(use-package leuven-theme
+  :config
+  (load-theme 'leuven t))
+
+(setq leuven-scale-outline-headlines nil)
+(setq leuven-scale-org-agenda-structure nil)
+(setq leuven-scale-volatile-highlight nil)
 
 (provide 'init-theme)
 ;;; init-theme ends here
