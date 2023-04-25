@@ -69,7 +69,7 @@
   ;; (setq vertico-scroll-margin 0)
 
   ;; Show more candidates
-  (setq vertico-count 10)
+  (setq vertico-count 15)
 
   ;; Grow and shrink the Vertico minibuffer
   ;; (setq vertico-resize t)

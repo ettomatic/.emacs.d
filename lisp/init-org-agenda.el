@@ -85,8 +85,8 @@
       `(("i" "Today"
 	       (,eb-org-agenda-block--today-schedule
           ,eb-org-agenda-block--next-tasks
-          ,eb-org-agenda-block--inbox
           ,eb-org-agenda-block--upcoming-week
+          ,eb-org-agenda-block--inbox
           ,eb-org-agenda-block--closed-today))))
 
 (defun organised-exchange ()
