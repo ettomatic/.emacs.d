@@ -28,6 +28,13 @@
   :ensure t
   :defer t)
 
+(use-package devdocs)
+(global-set-key (kbd "C-h C-d") 'devdocs-lookup)
+(add-hook 'enh-ruby-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("ruby~3.2"))))
+(add-hook 'elixir-mode-hook
+          (lambda () (setq-local devdocs-current-docs '("elixir~1.14"))))
+
 ;;; F#
 ;; (use-package fsharp-mode
 ;;  :defer t
