@@ -30,7 +30,6 @@
       :unnarrowed t)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
-         ("C-c n r" . eb/org-roam-rg-search)
          ("C-c n g" . org-roam-graph)
          ("C-c n c" . org-roam-capture)
          ("C-c n i" . org-roam-node-insert)
@@ -45,6 +44,34 @@
   :config
   (org-roam-db-autosync-mode))
 
+
+(use-package consult-org-roam
+   :ensure t
+   :after org-roam
+   :init
+   (require 'consult-org-roam)
+   ;; Activate the minor mode
+   (consult-org-roam-mode 1)
+   :custom
+   ;; Use `ripgrep' for searching with `consult-org-roam-search'
+   (consult-org-roam-grep-func #'consult-ripgrep)
+   ;; Configure a custom narrow key for `consult-buffer'
+   (consult-org-roam-buffer-narrow-key ?r)
+   ;; Display org-roam buffers right after non-org-roam buffers
+   ;; in consult-buffer (and not down at the bottom)
+   ;(consult-org-roam-buffer-after-buffers t)
+   :config
+   ;; Eventually suppress previewing for certain functions
+   (consult-customize
+    consult-org-roam-forward-links
+    :preview-key (kbd "M-."))
+   :bind
+   ;; Define some convenient keybindings as an addition
+   ("C-c n e" . consult-org-roam-file-find)
+   ("C-c n b" . consult-org-roam-backlinks)
+   ("C-c n l" . consult-org-roam-forward-links)
+   ("C-c n r" . consult-org-roam-search))
+
 (add-to-list 'display-buffer-alist
              '("\\*org-roam\\*"
                (display-buffer-in-side-window)
@@ -53,12 +80,6 @@
                (window-width . 0.33)
                (window-parameters . ((no-other-window . t)
                                      (no-delete-other-windows . t)))))
-
-(defun eb/org-roam-rg-search ()
-  "Search org-roam directory using consult-ripgrep. With live-preview."
-  (interactive)
-  (let ((consult-ripgrep-command "rg --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
-    (consult-ripgrep org-roam-directory)))
 
 ;; (setq +org-roam-open-buffer-on-find-file nil)  ;; with +roam, it defaults to t
 ;; (setq org-roam-buffer-window-parameters nil)  ;; with +roam, it has some value
