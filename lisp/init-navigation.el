@@ -64,19 +64,10 @@
   :ensure t
   :init
   (vertico-mode)
-
-  ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
-
-  ;; Show more candidates
-  (setq vertico-count 15)
-
-  ;; Grow and shrink the Vertico minibuffer
-  ;; (setq vertico-resize t)
-
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
-  )
+  :config
+  (vertico-multiform-mode)
+  (add-to-list 'vertico-multiform-categories
+               '(jinx grid (vertico-grid-annotate . 25))))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -171,8 +162,23 @@
       '(display-buffer-reuse-mode-window
         display-buffer-reuse-window
         display-buffer-same-window))
+
 ;; If a popup does happen, don't resize windows to be equal-sized
 (setq even-window-sizes nil)
+
+(use-package consult-dir
+  :ensure t
+  :bind (("C-x C-d" . consult-dir)
+         :map minibuffer-local-completion-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file)))
+
+(use-package guru-mode)
+(add-hook 'eshell-mode-hook 'guru-mode)
+(guru-global-mode +1)
+
+;; makes C-n insert newlines if the point is at the end of the buffer
+(setq next-line-add-newlines t)
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
