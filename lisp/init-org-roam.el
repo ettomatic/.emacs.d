@@ -6,7 +6,6 @@
   :ensure t
   :after org
   :init
-  (setq org-roam-v2-ack t) ;; acknowledge upgrade and remove warning at startup
   :custom
   (org-roam-directory (file-truename "~/org/zettel"))
   (org-roam-dailies-directory "journal/")

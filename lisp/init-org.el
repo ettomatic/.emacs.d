@@ -90,15 +90,6 @@
       (org-open-at-point)
     (org-force-open-current-window)))
 
-;;; Open web link using multiple browsers
-
-(setq browse-url-browser-function 'browse-url-generic
-       browse-url-generic-program "microsoft-edge-beta")
-(setq browse-url-handlers
-      '(("https://.*bbc\.co\.uk\.*" . browse-url-generic)
-    ("." . browse-url-firefox)))
-
-
 ;;; Redefine file opening without clobbering universal argumnet
 ;(define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
 ;(define-key org-mode-map "RET" 'org-open-maybe)
@@ -163,6 +154,9 @@
 
 (define-key global-map (kbd "C-c i") 'org-capture-inbox)
 
+(use-package literate-calc-mode
+  :ensure t)
+
 ;;; Org Brain
 
 (use-package org-brain :ensure t
@@ -180,6 +174,11 @@
   :config
   (bind-key "C-x p i" 'org-cliplink))
 
+(use-package org-rich-yank
+  :ensure t
+  :demand t
+  :bind (:map org-mode-map
+              ("C-M-y" . org-rich-yank)))
 
 (use-package org-download
   :after org
