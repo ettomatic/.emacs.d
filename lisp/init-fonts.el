@@ -32,7 +32,8 @@
          :default-family "Julia Mono"
          :default-weight regular)
         (Berkley
-         :default-family "Berkeley Mono Trial")
+         :default-family "Berkeley Mono Trial"
+         :default-weight medium)
         (JetBrains
          :default-family "JetBrains Mono"
          :default-height 110)
@@ -46,34 +47,37 @@
          :line-spacing: 0)))
          ;:default-width condensed)
 
-;; Recover last preset or fall back to desired style from
-;; `fontaine-presets'.
-(fontaine-set-preset (or (fontaine-restore-latest-preset) 'fira))
+(if is-gui
+    ;; Recover last preset or fall back to desired style from
+    ;; `fontaine-presets'.
+    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'Julia Mono))
 
-;; The other side of `fontaine-restore-latest-preset'.
-(add-hook 'kill-emacs-hook #'fontaine-store-latest-preset)
+  ;; The other side of `fontaine-restore-latest-preset'.
+  (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))
+
+
 
 ;; enable ligatures
 
-(use-package ligature
-  :ensure t)
+;; (use-package ligature
+;;   :ensure t)
 
-;; Enable the www ligature in every possible major mode
-(ligature-set-ligatures 't '("www"))
+;; ;; Enable the www ligature in every possible major mode
+;; (ligature-set-ligatures 't '("www"))
 
-;; Enable ligatures in programming modes
-(ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
-                                     ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
-                                     "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
-                                     "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
-                                     "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
-                                     "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
-                                     "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
-                                     "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
-                                     "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
-                                     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+;; ;; Enable ligatures in programming modes
+;; (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+;;                                      ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+;;                                      "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+;;                                      "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+;;                                      "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+;;                                      "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+;;                                      "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+;;                                      "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+;;                                      "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+;;                                      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
 
-(global-ligature-mode 't)
+;; (global-ligature-mode nil)
 
 
 (require 'pixel-scroll)
