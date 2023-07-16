@@ -24,7 +24,15 @@
   :ensure t
   :defer t)
 
+(use-package paredit
+  :ensure t
+  :defer t)
+
 (use-package racket-mode
+  :ensure t
+  :defer t)
+
+(use-package geiser-guile
   :ensure t
   :defer t)
 
