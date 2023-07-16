@@ -11,27 +11,13 @@
 (use-package fish-completion
   :hook (eshell-mode . fish-completion-mode))
 
-(defun eb/eshell-prompt ()
-  (concat
-   (propertize "λ" 'face `(:foreground "#aece4a"))
-   (propertize " " 'face `(:foreground "black"))))
-
-(setq eshell-prompt-function      'eb/eshell-prompt
-      eshell-prompt-regexp        "^λ "
-      eshell-history-size         10000
+(setq eshell-history-size         10000
       eshell-buffer-maximum-lines 10000
       eshell-hist-ignoredups t
       eshell-highlight-prompt t
       eshell-scroll-to-bottom-on-input t
       eshell-destroy-buffer-when-process-dies t
       eshell-prefer-lisp-functions nil)
-
-;; (use-package eshell-prompt-extras)
-
-;; (with-eval-after-load "esh-opt"
-;;   (autoload 'epe-theme-lambda "eshell-prompt-extras")
-;;   (setq eshell-highlight-prompt nil
-;;         eshell-prompt-function 'epe-theme-lambda))
 
 ;; We want to use xterm-256color when running interactive commands
 ;; in eshell but not during other times when we might be launching
@@ -141,6 +127,13 @@ any directory proferred by `consult-dir'."
   (set-face-foreground 'company-preview-common "#4b5668")
   (set-face-background 'company-preview nil))
 
+(use-package eshell-prompt-extras)
+(with-eval-after-load "esh-opt"
+  (autoload 'epe-theme-lambda "eshell-prompt-extras")
+  (setq eshell-highlight-prompt nil
+        eshell-prompt-function 'epe-theme-lambda))
+
+;; a real terminal when necessary
 (use-package eat)
 ;; For `eat-eshell-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
