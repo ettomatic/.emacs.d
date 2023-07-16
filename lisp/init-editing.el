@@ -2,36 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; Flycheck lints warnings and errors directly within buffers.
-(use-package flycheck
-  :defer 2
-  :delight
-  :init (global-flycheck-mode)
+;; Spell checker
+(use-package jinx
+  :hook ((text-mode . jinx-mode)
+         (prog-mode . jinx-mode))
+  :bind (("M-$" . jinx-correct))
   :custom
-  (flycheck-display-errors-delay .3)
-  :config)
-
-(use-package spell-fu)
-
-(add-hook 'org-mode-hook
-  (lambda ()
-    (setq spell-fu-faces-exclude
-     '(org-block-begin-line
-       org-block-end-line
-       org-code
-       org-date
-       org-drawer org-document-info-keyword
-       org-ellipsis
-       org-link
-       org-meta-line
-       org-properties
-       org-properties-value
-       org-special-keyword
-       org-src
-       org-tag
-       org-verbatim))
-    (spell-fu-mode)))
-
+  (jinx-camel-modes '(prog-mode))
+  (jinx-delay 0.1))
 
 ;;; Highlights delimiters such as parentheses, brackets
 ;;; or braces according to their dept
@@ -107,14 +85,14 @@ there's a region, all lines that region covers will be duplicated."
   (setq mac-function-modifier      'super))
 
 ;; undo tree (q to exit)
-(use-package undo-tree
-  :ensure t
-  :bind ("C-x u" . undo-tree-visualize)
-  :diminish undo-tree-mode
-  :hook (after-init . global-undo-tree-mode)
-  :init
-  (setq undo-tree-visualizer-relative-timestamps t
-        undo-tree-visualizer-diff t))
+;; (use-package undo-tree
+;;   :ensure t
+;;   :bind ("C-x u" . undo-tree-visualize)
+;;   :diminish undo-tree-mode
+;;   :hook (after-init . global-undo-tree-mode)
+;;   :init
+;;   (setq undo-tree-visualizer-relative-timestamps t
+;;         undo-tree-visualizer-diff t))
 
 (provide 'init-editing)
 ;;; init-editing ends here
