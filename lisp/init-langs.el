@@ -38,6 +38,10 @@
   :ensure t
   :defer t)
 
+(use-package php-mode
+  :ensure t
+  :defer t)
+
 (use-package devdocs)
 (global-set-key (kbd "C-h C-d") 'devdocs-lookup)
 (add-hook 'enh-ruby-mode-hook
