@@ -5,8 +5,8 @@
 (use-package corfu
   :custom
   (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                    ;; Enable auto completion
-  (corfu-auto-delay 0.5)
+  (corfu-auto nil)                  ;; Enable auto completion
+  (corfu-auto-delay 0.3)
   (corfu-auto-prefix 3)
   (corfu-separator ?\s)             ;; Orderless field separator
   (corfu-quit-at-boundary nil)      ;; Never quit at completion boundary
@@ -33,20 +33,20 @@
   (setq tab-always-indent 'complete))
 
 ;; Use Dabbrev with Corfu!
-(use-package dabbrev
-  ;; Swap M-/ and C-M-/
-  :bind (("M-/" . dabbrev-completion)
-         ("C-M-/" . dabbrev-expand))
-  ;; Other useful Dabbrev configurations.
-  :custom
-  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+;; (use-package dabbrev
+;;   ;; Swap M-/ and C-M-/
+;;   :bind (("M-/" . dabbrev-completion)
+;;          ("C-M-/" . dabbrev-expand))
+;;   ;; Other useful Dabbrev configurations.
+;;   :custom
+;;   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
 ;; Add extensions
 (use-package cape
   :defer 10
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   ;;(add-to-list 'completion-at-point-functions #'cape-history)
   ;;(add-to-list 'completion-at-point-functions #'cape-keyword)

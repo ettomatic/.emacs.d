@@ -43,9 +43,6 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;;; smart tab behavior - indent or complete
-(setq tab-always-indent 'complete)
-
 ;; remember last position
 (use-package saveplace
   :hook (after-init . save-place-mode))
