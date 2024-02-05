@@ -7,10 +7,12 @@
   :ensure t
   :init
   (add-hook 'tuareg-mode-hook 'eglot-ensure)
-  (add-hook 'elixir-mode-hook 'eglot-ensure)
+  (add-hook 'elixir-ts-mode-hook 'eglot-ensure)
+  (add-hook 'ruby-ts-mode-hook 'eglot-ensure)
   (add-hook 'fsharp-mode-hook 'eglot-ensure)
   :config
-  (add-to-list 'eglot-server-programs '(elixir-mode "~/code/ls-servers/elixir-ls/release/language_server.sh"))
+  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/code/ls-servers/elixir-ls/release/language_server.sh"))
+  (add-to-list 'eglot-server-programs '(ruby-mode enh-ruby-mode ruby-ts-mode . ("solargraph" "socket" "--port" "7658")))
   (add-to-list 'eglot-server-programs '(tuareg-mode . ("~/.opam/default/bin/ocamllsp")))
   (put 'tuareg-mode 'eglot-language-id "ocaml"))
 
@@ -42,6 +44,14 @@
           (lambda () (setq-local devdocs-current-docs '("ruby~3.2"))))
 (add-hook 'elixir-mode-hook
           (lambda () (setq-local devdocs-current-docs '("elixir~1.14"))))
+
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 ;;; F#
 ;; (use-package fsharp-mode

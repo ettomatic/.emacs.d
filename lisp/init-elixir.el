@@ -7,7 +7,7 @@
   :defer t
   :after (elixir-mode))
 
-(use-package elixir-mode
+(use-package elixir-ts-mode
   :ensure t
   :defer t
   :init
@@ -21,11 +21,6 @@
    '((emacs-lisp . t)
      (elixir . t)))
   :after org)
-
-;;; Mostly to have a working iex console
-(use-package alchemist
-  :ensure t
-  :defer t)
 
 (provide 'init-elixir)
 ;;; init-elixir ends here
