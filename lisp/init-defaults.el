@@ -51,6 +51,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+;; the majority of the input lag you're noticing with the `pgtk` build
+(setq-default pgtk-wait-for-event-timeout 0)
+
 ;;; Emacs will save customizations on etc/ instead of your init.el file by default.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
 

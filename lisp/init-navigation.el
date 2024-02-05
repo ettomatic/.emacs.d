@@ -138,19 +138,32 @@
 
 (use-package consult
   :ensure t
-  :config
   :bind (([C-tab] . consult-buffer)
          ("C-x b" . consult-buffer)
          ("C-x C-r" . consult-recent-file)
          ("C-s" . consult-line)
-         ("C-x C-a" . consult-ripgrep)
          ("M-g M-g" . consult-goto-line)
+         ("C-x C-a" . consult-ripgrep)
+         ("C-x C-l" . consult-find)
          ("M-y" . consult-yank-pop)
          ("C-c h" . consult-history)
          ("s-#" .  consult-project-imenu)
-         ("M-g o" . consult-outline)))
+         ("M-g o" . consult-outline))
+  ;; Enable automatic preview at point in the *Completions* buffer. This is
+  ;; relevant when you use the default completion UI.
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :init
+   (setq register-preview-delay 0.5)
+  ;;       register-preview-function #'consult-register-format)
+  :config
+  (consult-customize
+   ;; consult-theme :preview-key '(:debounce 0.2 any)
+   ))
 (require 'consult)
 
+(use-package deadgrep
+  :ensure t
+  :bind (("<f5>" . deadgrep)))
 
 ;;; Avy
 (use-package avy
@@ -173,12 +186,35 @@
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
 
-(use-package guru-mode)
-(add-hook 'eshell-mode-hook 'guru-mode)
-(guru-global-mode +1)
+;; (use-package guru-mode)
+;; (add-hook 'eshell-mode-hook 'guru-mode)
+;; (guru-global-mode 0)
 
 ;; makes C-n insert newlines if the point is at the end of the buffer
-(setq next-line-add-newlines t)
+;(setq next-line-add-newlines t)
+
+;;; Open web link using multiple browsers
+(defun eb/browse-url-firefox-private (url &optional new-window)
+  "Make firefox open URL in private-browsing window."
+  (interactive (browse-url-interactive-arg "URL: "))
+  (let ((process-environment (browse-url-process-environment)))
+    (apply 'start-process
+           (concat "firefox " url)
+           nil
+           browse-url-firefox-program
+           (list "-private-window" url))))
+
+(setq browse-url-browser-function 'browse-url-generic
+       browse-url-generic-program "vivaldi-stable")
+(setq browse-url-handlers
+      '(("https://wormhole\.*"        . eb/browse-url-firefox-private)
+        ("https://aws-login\.*"       . eb/browse-url-firefox-private)
+        ("https://.*bbc\.co\.uk\.*"   . browse-url-firefox)
+        ("https://.*bbci\.co\.uk\.*"  . browse-url-firefox)
+        ("https://.*dropbox\.com\.*"  . browse-url-firefox)
+        ("https://.*zoom\.us\.*"      . browse-url-firefox)
+        ("https://.*miro.com\.*"      . browse-url-firefox)
+        ("." . browse-url-generic)))
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
