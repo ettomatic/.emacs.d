@@ -7,10 +7,6 @@
 (require 'init-elpa)
 (require 'init-defaults)
 
-;; Make startup faster by reducing the frequency of garbage
-;; collection.
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;;  Ensure environment variables inside Emacs look the same as in the user's shell.
 (use-package exec-path-from-shell
   :ensure t)
