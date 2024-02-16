@@ -29,6 +29,7 @@
 (require 'init-presentation)
 
 (require 'init-shell)
+(require 'init-ai)
 
 (if is-win
     () ;; don't load the following packages
