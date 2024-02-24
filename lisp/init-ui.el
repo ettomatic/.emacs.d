@@ -40,7 +40,9 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-icon nil))
 
 (use-package dashboard
   :ensure t
