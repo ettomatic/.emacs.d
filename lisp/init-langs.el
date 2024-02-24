@@ -16,6 +16,8 @@
   (add-to-list 'eglot-server-programs '(tuareg-mode . ("~/.opam/default/bin/ocamllsp")))
   (put 'tuareg-mode 'eglot-language-id "ocaml"))
 
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 ;;; Crystal Lang
 (use-package crystal-mode
   :ensure t
