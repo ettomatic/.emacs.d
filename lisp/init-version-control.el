@@ -42,6 +42,10 @@
 
 (use-package browse-at-remote)
 
+(setq auth-sources '("~/.authinfo"))
+
+(use-package forge
+  :after magit)
 
 (provide 'init-version-control)
 ;;; init-version-control ends here
