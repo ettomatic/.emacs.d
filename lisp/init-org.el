@@ -61,13 +61,18 @@
 
 (set-face-attribute 'org-headline-done nil :strike-through t)
 
-;;; Enables auto-saving of org files while emacs is running
-;;; That will put auto-saving all open org files on a timer.
-;;; Performing changes to buffers from the org agenda overview, for example,
-;;; doesn’t mark the buffer as needing to auto-save, as far as I understand.
-;;; So this setting helps to auto-save all org buffers regularly.
-;;; https://christiantietze.de/posts/2019/03/sync-emacs-org-files/
+;; Enables auto-saving of org files while emacs is running
+;; That will put auto-saving all open org files on a timer.
+;; Performing changes to buffers from the org agenda overview, for example,
+;; doesn’t mark the buffer as needing to auto-save, as far as I understand.
+;; So this setting helps to auto-save all org buffers regularly.
+;; https://christiantietze.de/posts/2019/03/sync-emacs-org-files/
 (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+;; If you are using a shared folder or cloud based folder to sync your org files,
+;; you may also be interested in auto-revert for your org buffers as follows:
+(add-hook 'org-mode-hook
+          #'(lambda ()
+              (auto-revert-mode 1)))
 
 (require 'org)
 

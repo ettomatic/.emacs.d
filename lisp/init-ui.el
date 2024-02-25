@@ -44,6 +44,7 @@
   :config
   (setq doom-modeline-height 32)
   (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-vcs-max-length 16)
   (setq doom-modeline-icon t))
 
 (use-package dashboard

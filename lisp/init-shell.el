@@ -23,9 +23,9 @@
 ;; in eshell but not during other times when we might be launching
 ;; a shell command to gather its output.
 (add-hook 'eshell-pre-command-hook
-          '(lambda () (setenv "TERM" "xterm-256color")))
+          #'(lambda () (setenv "TERM" "xterm-256color")))
 (add-hook 'eshell-post-command-hook
-          '(lambda () (setenv "TERM" "dumb")))
+          #'(lambda () (setenv "TERM" "dumb")))
 
 (add-hook 'eshell-mode-hook (lambda ()
     (eshell/alias "f" "find-file $1")
