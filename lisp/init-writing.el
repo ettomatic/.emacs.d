@@ -36,12 +36,12 @@
     (("<f9>" . writing-mode)))
 
 ;;; Should I use Spell-fu? See init-editing
-(customize-set-variable 'ispell-program-name "aspell")
-(customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
+;; (customize-set-variable 'ispell-program-name "aspell")
+;; (customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
 
-(add-hook
- 'olivetti-mode-hook
- 'flyspell-mode)
+;; (add-hook
+;;  'olivetti-mode-hook
+;;  'flyspell-mode)
 
 (use-package langtool
   :defer t

@@ -42,7 +42,9 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-icon nil))
+  (setq doom-modeline-height 32)
+  (setq doom-modeline-buffer-encoding nil)
+  (setq doom-modeline-icon t))
 
 (use-package dashboard
   :ensure t
