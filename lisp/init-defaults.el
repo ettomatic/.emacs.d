@@ -17,11 +17,6 @@
 (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
- ;; if you don't use RTL ever, this could improve perf
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right
-              bidi-inhibit-bpa t)
-
 ;; improves terminal emulator (vterm/eat) throughput
 (setq read-process-output-max (* 2 1024 1024)
           process-adaptive-read-buffering nil)
@@ -55,10 +50,12 @@
  tab-width 2                                      ; Set width for tabs
  use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
  user-full-name "Ettore Berardi"                  ; Set the full name of the current user
- user-mail-address "ettore.berardi@outlook.com"   ; Set the email address of the current user
+ user-mail-address "ettore.berardi@fastmail.com"  ; Set the email address of the current user
+ bidi-display-reordering  'left-to-right          ; if you don't use RTL ever, this could improve perf
  bidi-paragraph-direction 'left-to-right          ; Enable left-to-right as a default to get faster rendering
  bidi-inhibit-bpa t                               ; Disabling he Bidirectional Parentheses Algorithm makes redisplay faster
- auto-save-interval 10                            ; Auto save every 5secs
+ pgtk-wait-for-event-timeout 0                    ; the majority of the input lag you're noticing with the `pgtk` build
+ auto-save-interval 10                            ; Auto save every 10 secs
  make-backup-files nil                            ; Turn Off Backup
  auto-save-visited-file-name t                    ;
  savehist-mode 1                                  ; Preserve commands preserved between sessions
@@ -87,9 +84,6 @@
 ;; Auto Revert mode automatically reverts the buffer when its visited file changes on disk, it will not revert a
 ;; buffer if it has unsaved changes, or if its file on disk is deleted or renamed.
 (setq global-auto-revert-mode t)
-
-;; the majority of the input lag you're noticing with the `pgtk` build
-(setq-default pgtk-wait-for-event-timeout 0)
 
 ;; Emacs will save customizations on etc/ instead of your init.el file by default.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
