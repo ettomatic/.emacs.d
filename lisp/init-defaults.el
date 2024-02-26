@@ -82,14 +82,17 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+;; Trying to keep buffers automatically up-to-date
+;; A buffer can get out of sync with respect to its visited file on disk if that file is changed by another program.
+;; Auto Revert mode automatically reverts the buffer when its visited file changes on disk, it will not revert a
+;; buffer if it has unsaved changes, or if its file on disk is deleted or renamed.
+(setq global-auto-revert-mode t)
+
 ;; the majority of the input lag you're noticing with the `pgtk` build
 (setq-default pgtk-wait-for-event-timeout 0)
 
 ;; Emacs will save customizations on etc/ instead of your init.el file by default.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-
-;; Do not display "Mail" on modeline
-(setq display-time-mail-string "")
 
 ;;; Avoid constant errors on Windows about the coding system by setting the default to UTF-8.
 (set-default-coding-systems 'utf-8)
