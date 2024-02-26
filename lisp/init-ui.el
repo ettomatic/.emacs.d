@@ -44,8 +44,12 @@
   :config
   (setq doom-modeline-height 32)
   (setq doom-modeline-buffer-encoding nil)
-  (setq doom-modeline-vcs-max-length 16)
+  (setq doom-modeline-vcs-max-length 24)
+  (setq doom-modeline-time-icon nil)
   (setq doom-modeline-icon t))
+
+;; Do not display "Mail" on modeline
+(setq display-time-mail-string "")
 
 (use-package dashboard
   :ensure t
