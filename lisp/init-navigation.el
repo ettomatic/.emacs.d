@@ -161,6 +161,10 @@
    ))
 (require 'consult)
 
+;; I have a tendency of using C-x 0 from the minibuffer, this leaves it
+;; open and require C-] to abort the current operation.
+(define-key minibuffer-local-map (kbd "C-x o") 'abort-minibuffers)
+
 (use-package deadgrep
   :ensure t
   :bind (("<f5>" . deadgrep)))
