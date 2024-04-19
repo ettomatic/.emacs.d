@@ -122,13 +122,6 @@ any directory proferred by `consult-dir'."
 ;;                  ("<down>" . 'next-line)
 ;;                  ("<up>" . 'previous-line)))
 
-(use-package esh-autosuggest
-  :hook (eshell-mode . esh-autosuggest-mode)
-  :config
-  (setq esh-autosuggest-delay 0.8)
-  (set-face-foreground 'company-preview-common "#4b5668")
-  (set-face-background 'company-preview nil))
-
 (use-package eshell-prompt-extras
   :ensure t
   :defer t)
@@ -147,6 +140,6 @@ any directory proferred by `consult-dir'."
 ;; For `eat-eshell-visual-command-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
-
+(setq eat-shell "/usr/bin/fish")
 (provide 'init-shell)
 ;;; init-shell ends here

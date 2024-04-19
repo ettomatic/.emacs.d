@@ -48,11 +48,13 @@
   :ensure t
   :defer t)
 
+;; (require 'roc-mode)
+
 (global-set-key (kbd "C-h C-d") 'devdocs-lookup)
 (add-hook 'enh-ruby-mode-hook
           (lambda () (setq-local devdocs-current-docs '("ruby~3.2"))))
 (add-hook 'elixir-mode-hook
-          (lambda () (setq-local devdocs-current-docs '("elixir~1.14"))))
+          (lambda () (setq-local devdocs-current-docs '("elixir~1.15"))))
 
 
 (use-package treesit-auto
@@ -64,11 +66,22 @@
   (global-treesit-auto-mode))
 
 
-;;; F#
-;; (use-package fsharp-mode
-;;  :defer t
-;;  :ensure t)
-;; (require 'eglot-fsharp)
+;; F#
+(use-package fsharp-mode
+ :defer t
+ :ensure t)
+(use-package eglot-fsharp
+ :defer t
+ :ensure t)
+(require 'eglot-fsharp)
+
+(add-hook 'fsharp-mode-hook
+          (lambda () (setq-local eldoc-echo-area-display-truncation-message nil)))
+
+(use-package highlight-indentation
+  :defer t
+  :ensure t)
+(add-hook 'fsharp-mode-hook 'highlight-indentation-mode)
 
 (provide 'init-langs)
 ;;; init-langs ends here

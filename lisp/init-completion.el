@@ -34,13 +34,13 @@
   (setq tab-always-indent 'complete))
 
 ;; Use Dabbrev with Corfu!
-;; (use-package dabbrev
-;;   ;; Swap M-/ and C-M-/
-;;   :bind (("M-/" . dabbrev-completion)
-;;          ("C-M-/" . dabbrev-expand))
-;;   ;; Other useful Dabbrev configurations.
-;;   :custom
-;;   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  ;; Other useful Dabbrev configurations.
+  :custom
+  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
 ;; Add extensions
 (use-package cape

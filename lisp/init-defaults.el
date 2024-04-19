@@ -59,6 +59,8 @@
  make-backup-files nil                            ; Turn Off Backup
  auto-save-visited-file-name t                    ;
  savehist-mode 1                                  ; Preserve commands preserved between sessions
+ display-time-24hr-format t                       ; 24h please
+ display-time-mail-string ""                      ; Do not display "Mail" on modeline
  vc-follow-symlinks t)                            ; Always follow the symlinks
 (cd "~/")                                         ; Move to the user directory
 (column-number-mode 1)                            ; Show the column number

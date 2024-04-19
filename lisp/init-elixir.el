@@ -11,7 +11,7 @@
   :ensure t
   :defer t
   :init
-  (add-hook 'elixir-mode-hook 'exunit-mode))
+  (add-hook 'elixir-ts-mode-hook 'exunit-mode))
 
 ;;; org-mode
 (use-package ob-elixir
