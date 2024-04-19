@@ -40,7 +40,8 @@
   :ensure t
   :defer t)
 
-(use-package browse-at-remote)
+(use-package browse-at-remote
+  :ensure t)
 
 (setq auth-sources '("~/.authinfo"))
 

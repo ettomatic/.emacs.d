@@ -44,7 +44,10 @@
   :ensure t
   :defer t)
 
-(use-package devdocs)
+(use-package devdocs
+  :ensure t
+  :defer t)
+
 (global-set-key (kbd "C-h C-d") 'devdocs-lookup)
 (add-hook 'enh-ruby-mode-hook
           (lambda () (setq-local devdocs-current-docs '("ruby~3.2"))))
@@ -53,11 +56,13 @@
 
 
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
 
 ;;; F#
 ;; (use-package fsharp-mode

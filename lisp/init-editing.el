@@ -14,6 +14,7 @@
 ;;; Highlights delimiters such as parentheses, brackets
 ;;; or braces according to their dept
 (use-package rainbow-delimiters
+  :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;;; get rid of white spaces at the end of the line

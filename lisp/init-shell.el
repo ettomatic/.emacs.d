@@ -5,6 +5,8 @@
 (require 'ansi-color)
 
 (use-package eshell-bookmark
+  :ensure t
+  :defer t
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
 
@@ -127,14 +129,19 @@ any directory proferred by `consult-dir'."
   (set-face-foreground 'company-preview-common "#4b5668")
   (set-face-background 'company-preview nil))
 
-(use-package eshell-prompt-extras)
+(use-package eshell-prompt-extras
+  :ensure t
+  :defer t)
+
 (with-eval-after-load "esh-opt"
   (autoload 'epe-theme-lambda "eshell-prompt-extras")
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-lambda))
 
 ;; a real terminal when necessary
-(use-package eat)
+(use-package eat
+  :ensure t
+  :defer t)
 ;; For `eat-eshell-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 ;; For `eat-eshell-visual-command-mode'.

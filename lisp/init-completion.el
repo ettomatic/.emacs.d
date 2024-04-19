@@ -3,6 +3,7 @@
 ;;; Code:
 
 (use-package corfu
+  :ensure t
   :custom
   (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
   (corfu-auto nil)                  ;; Enable auto completion

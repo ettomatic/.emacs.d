@@ -15,6 +15,8 @@
 
 ;;; org-mode
 (use-package ob-elixir
+  :ensure t
+  :defer t
   :init
   (org-babel-do-load-languages
    'org-babel-load-languages

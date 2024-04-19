@@ -74,7 +74,8 @@
 (setq create-lockfiles nil)
 
 ;; Use no-littering to automatically set common paths to the new user-emacs-directory
-(use-package no-littering)
+(use-package no-littering
+  :ensure t)
 
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
