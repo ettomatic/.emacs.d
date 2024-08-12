@@ -4,7 +4,7 @@
 
 ;; (use-package modus-themes
 ;;   :init
-;;   (setq modus-themes-to-toggle '(modus-operandi-deuteranopia modus-vivendi-deuteranopia))
+;;   (setq modus-themes-tuo-toggle '(modus-operandi-deuteranopia modus-vivendi-deuteranopia))
 ;;   ;; ... setting all variable that need to
 ;;   ;; be present before loading the theme ...
 ;;   :config
@@ -26,13 +26,28 @@
 ;; (setq modus-themes-completions nil)
 ;; (setq modus-themes-org-blocks 'gray-background)
 
-(use-package leuven-theme
-  :config
-  (load-theme 'leuven t))
+;;   :config
+;;   (load-theme 'leuven t))
 
-(setq leuven-scale-outline-headlines nil)
-(setq leuven-scale-org-agenda-structure nil)
-(setq leuven-scale-volatile-highlight nil)
+;; (setq leuven-scale-outline-headlines nil)
+;; (setq leuven-scale-org-agenda-structure nil)
+;; (setq leuven-scale-volatile-highlight nil)
+
+;; (use-package ef-themes
+;;   :config
+;;   (ef-themes-select 'ef-spring))
+
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :config
+;;   (load-theme 'color-theme-sanityinc-tomorrow-day t))
+
+;; (use-package acme-theme
+;;   :config
+;;   (load-theme 'acme t))
+
+(use-package catppuccin-theme)
+(setq catppuccin-flavor 'macchiato) ;; or 'frappe, 'macchiato, or 'mocha
+(catppuccin-reload)
 
 (provide 'init-theme)
 ;;; init-theme ends here
