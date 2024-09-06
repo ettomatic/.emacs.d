@@ -194,6 +194,9 @@
 ;; (add-hook 'eshell-mode-hook 'guru-mode)
 ;; (guru-global-mode 0)
 
+
+(setq tramp-default-method "ssh")
+
 ;; makes C-n insert newlines if the point is at the end of the buffer
 ;(setq next-line-add-newlines t)
 
