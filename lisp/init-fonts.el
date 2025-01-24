@@ -20,19 +20,18 @@
       (locate-user-emacs-file "fontaine-latest-state.eld"))
 
 (setq fontaine-presets
-      '((fira
-         :default-family "Fira Code"
-         :italic-family "Hack")
-        (hack
-         :default-family "Hack"
-         :default-weight medium)
-        (Cascadia
+      '((Cascadia
          :default-family "Cascadia Code")
         (Julia
          :default-family "JuliaMono"
          :default-weight regular)
         (Berkley
          :default-family "Berkeley Mono Trial"
+         :default-height 110
+         :default-weight medium)
+        (Iosevka
+         :default-family "Iosevka Fixed SS03"
+         :default-height 120
          :default-weight medium)
         (JetBrains
          :default-family "JetBrains Mono"
