@@ -200,28 +200,6 @@
 ;; makes C-n insert newlines if the point is at the end of the buffer
 ;(setq next-line-add-newlines t)
 
-;;; Open web link using multiple browsers
-(defun eb/browse-url-firefox-private (url &optional new-window)
-  "Make firefox open URL in private-browsing window."
-  (interactive (browse-url-interactive-arg "URL: "))
-  (let ((process-environment (browse-url-process-environment)))
-    (apply 'start-process
-           (concat "firefox " url)
-           nil
-           browse-url-firefox-program
-           (list "-private-window" url))))
-
-(setq browse-url-browser-function 'browse-url-generic
-       browse-url-generic-program "vivaldi-stable")
-(setq browse-url-handlers
-      '(("https://wormhole\.*"        . eb/browse-url-firefox-private)
-        ("https://aws-login\.*"       . eb/browse-url-firefox-private)
-        ("https://.*bbc\.co\.uk\.*"   . browse-url-firefox)
-        ("https://.*bbci\.co\.uk\.*"  . browse-url-firefox)
-        ("https://.*dropbox\.com\.*"  . browse-url-firefox)
-        ("https://.*zoom\.us\.*"      . browse-url-firefox)
-        ("https://.*miro.com\.*"      . browse-url-firefox)
-        ("." . browse-url-generic)))
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
