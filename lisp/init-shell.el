@@ -134,12 +134,17 @@ any directory proferred by `consult-dir'."
 ;; a real terminal when necessary
 (use-package eat
   :ensure t
-  :defer t)
+  :defer t
+  :init
+  (setenv "SHELL" "/opt/homebrew/bin/fish")
+  :config
+  (setq eat-shell "/opt/homebrew/bin/fish"))
+
 ;; For `eat-eshell-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 ;; For `eat-eshell-visual-command-mode'.
 (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
 
-(setq eat-shell "/usr/bin/fish")
+
 (provide 'init-shell)
 ;;; init-shell ends here
