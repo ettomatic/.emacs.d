@@ -4,8 +4,8 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(require 'init-elpa)
 (require 'init-defaults)
+(require 'init-elpa)
 
 ;;  Ensure environment variables inside Emacs look the same as in the user's shell.
 (use-package exec-path-from-shell
@@ -27,6 +27,7 @@
 (require 'init-org-agenda)
 (require 'init-org-roam)
 (require 'init-presentation)
+(require 'init-notes)
 
 (require 'init-shell)
 (require 'init-ai)
