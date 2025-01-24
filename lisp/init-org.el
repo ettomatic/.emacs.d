@@ -223,14 +223,14 @@
   :config
   (setq todoist-token (getenv "TODOIST_API")))
 
-(add-to-list 'load-path "~/.emacs.d/org-readwise/")
-(require 'org-readwise)
-;; Ensure auth-source is configured to find your Readwise token
-(setq auth-sources '("~/.authinfo"))
-;; Set the output location for your highlights (buffer or file)
-(setq org-readwise-output-location "~/org/readwise-highlights.org")
-;; Optionally set the debug level (0 = no debug, 1 = basic debug, 2 = detailed debug)
-(setq org-readwise-debug-level 1)
+;; (add-to-list 'load-path "~/.emacs.d/org-readwise/")
+;; (require 'org-readwise)
+;; ;; Ensure auth-source is configured to find your Readwise token
+;; (setq auth-sources '("~/.authinfo"))
+;; ;; Set the output location for your highlights (buffer or file)
+;; (setq org-readwise-output-location "~/org/readwise-highlights.org")
+;; ;; Optionally set the debug level (0 = no debug, 1 = basic debug, 2 = detailed debug)
+;; (setq org-readwise-debug-level 1)
 
 (provide 'init-org)
 ;;; init-org ends here
