@@ -29,7 +29,7 @@
         (Cascadia
          :default-family "Cascadia Code")
         (Julia
-         :default-family "Julia Mono"
+         :default-family "JuliaMono"
          :default-weight regular)
         (Berkley
          :default-family "Berkeley Mono Trial"
@@ -40,9 +40,13 @@
         (writing
          :default-family "Writer"
          :line-spacing 4)
+        (mac-ext
+         :default-family "JuliaMono"
+         :default-weight regular
+         :default-height 135) ; 180 4k
         (t
          :default-weight regular
-         :default-height 115 ; 180 4k
+         :default-height 125 ; 180 4k
          :default-weight normal
          :line-spacing: 0)))
          ;:default-width condensed)
@@ -50,7 +54,7 @@
 (if is-gui
     ;; Recover last preset or fall back to desired style from
     ;; `fontaine-presets'.
-    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'Julia Mono))
+    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'JuliaMono))
 
   ;; The other side of `fontaine-restore-latest-preset'.
   (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))
