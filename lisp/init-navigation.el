@@ -126,15 +126,16 @@
 
 ;;; Recent Files
 
-;; (recentf-mode 1)
-;; (setq recentf-max-menu-items 25)
-;; (setq recentf-max-saved-items 25)
-;; (add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
-;; (add-to-list 'recentf-exclude no-littering-var-directory)
-;; (add-to-list 'recentf-exclude no-littering-etc-directory)
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
+(add-to-list 'recentf-exclude no-littering-var-directory)
+(add-to-list 'recentf-exclude no-littering-etc-directory)
 ;; ;;; If Emacs exits abruptly for some reason the recent file list will be lost
 ;; ;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5min
-;; (run-at-time nil (* 5 60) 'recentf-save-list)
+(run-at-time nil (* 5 60) 'recentf-save-list)
 
 (use-package consult
   :ensure t
