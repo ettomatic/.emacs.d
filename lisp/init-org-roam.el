@@ -132,18 +132,18 @@
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
 
-;;; So much knowledge is still there.....
-(use-package obsidian
-  :ensure t
-  :demand t
-  :config
-  (obsidian-specify-path "~/Storage/zettel/zettel")
-  (global-obsidian-mode t)
-  :bind (:map obsidian-mode-map
-		;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
-		("C-c C-o" . obsidian-follow-link-at-point)
-		;; If you prefer you can use `obsidian-insert-link'
-		("C-c C-l" . obsidian-insert-wikilink)))
+;; ;;; So much knowledge is still there.....
+;; (use-package obsidian
+;;   :ensure t
+;;   :demand t
+;;   :config
+;;   (obsidian-specify-path "~/Storage/zettel/zettel")
+;;   (global-obsidian-mode t)
+;;   :bind (:map obsidian-mode-map
+;; 		;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
+;; 		("C-c C-o" . obsidian-follow-link-at-point)
+;; 		;; If you prefer you can use `obsidian-insert-link'
+;; 		("C-c C-l" . obsidian-insert-wikilink)))
 
 (provide 'init-org-roam)
-;;; init-org ends here
+;;; init-org-roam ends here
