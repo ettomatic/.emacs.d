@@ -19,8 +19,7 @@
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t))
 
-(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/calendar.org", "~/org/personal.org"))
-;;(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/projects.org" "~/org/backlog.org" "~/org/exchange.org" "~/org/zettel/projects"))
+(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/calendar.org" "~/org/personal.org"))
 
 ;; Compact the block agenda view (disabled)
 (setq org-agenda-compact-blocks nil)
