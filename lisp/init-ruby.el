@@ -26,6 +26,10 @@
     (setq enh-ruby-program "~/.asdf/shims/ruby")
   (setq enh-ruby-program "/usr/bin/ruby"))
 
+;; Language Server
+(add-hook 'ruby-ts-mode-hook 'eglot-ensure)
+(add-to-list 'eglot-server-programs '(ruby-mode enh-ruby-mode ruby-ts-mode . ("solargraph" "socket" "--port" "7658")))
+
 ;;; RSpec
 (use-package rspec-mode
   :ensure t

@@ -4,14 +4,35 @@
 
 (require 'ansi-color)
 
+;;; Fish Sell
+(use-package fish-mode
+  :ensure t
+  :defer t)
+
+(use-package fish-completion
+  :hook (eshell-mode . fish-completion-mode))
+
+;; a real terminal when necessary
+(use-package eat
+  :ensure t
+  :defer t
+  :init
+  (setenv "SHELL" "/opt/homebrew/bin/fish")
+  :config
+  (setq eat-shell "/opt/homebrew/bin/fish"))
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
+;; eshell
+
 (use-package eshell-bookmark
   :ensure t
   :defer t
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
-
-(use-package fish-completion
-  :hook (eshell-mode . fish-completion-mode))
 
 (setq eshell-history-size         10000
       eshell-buffer-maximum-lines 10000
@@ -130,21 +151,6 @@ any directory proferred by `consult-dir'."
   (autoload 'epe-theme-lambda "eshell-prompt-extras")
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-lambda))
-
-;; a real terminal when necessary
-(use-package eat
-  :ensure t
-  :defer t
-  :init
-  (setenv "SHELL" "/opt/homebrew/bin/fish")
-  :config
-  (setq eat-shell "/opt/homebrew/bin/fish"))
-
-;; For `eat-eshell-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-;; For `eat-eshell-visual-command-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-
 
 (provide 'init-shell)
 ;;; init-shell ends here

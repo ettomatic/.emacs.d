@@ -34,14 +34,11 @@
 (require 'init-shell)
 (require 'init-ai)
 
-(if is-win
-    () ;; don't load the following packages
-    (require 'init-langs)
-    ;(require 'init-ocaml)
-    (require 'init-elixir)
-    (require 'init-ruby)
-    (require 'init-clojure)
-    (require 'init-version-control))
+(require 'init-langs-utils)
+(require 'init-version-control)
+(require 'init-elixir)
+(require 'init-ruby)
+(require 'init-langs-other)
 
 ;(require 'init-docker)
 
