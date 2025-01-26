@@ -88,15 +88,12 @@ there's a region, all lines that region covers will be duplicated."
   ;; (setq kkp-alt-modifier 'alt) ;; use this if you want to map the Alt keyboard modifier to Alt in Emacs (and not to Meta)
   (global-kkp-mode +1))
 
-;; undo tree (q to exit)
-;; (use-package undo-tree
-;;   :ensure t
-;;   :bind ("C-x u" . undo-tree-visualize)
-;;   :diminish undo-tree-mode
-;;   :hook (after-init . global-undo-tree-mode)
-;;   :init
-;;   (setq undo-tree-visualizer-relative-timestamps t
-;;         undo-tree-visualizer-diff t))
+(use-package undo-fu
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x u") 'undo-fu-only-undo)
+  (global-set-key (kbd "C-x r") 'undo-fu-only-redo))
+
 
 (provide 'init-editing)
 ;;; init-editing ends here
