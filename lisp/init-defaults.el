@@ -2,24 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq gcmh-high-cons-threshold (* 1024 1024 1024))
-(setq gcmh-idle-delay-factor 20)
-(setq jit-lock-defer-time 0.05)
-(setq read-process-output-max (* 1024 1024))
-(setq package-native-compile t)
-
-(defun my-minibuffer-setup-hook ()
-  (setq gc-cons-threshold most-positive-fixnum))
-
-(defun my-minibuffer-exit-hook ()
-      (setq gc-cons-threshold (* 32 1024 1024)))
-
-(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
-
-;; improves terminal emulator (vterm/eat) throughput
-(setq read-process-output-max (* 2 1024 1024)
-          process-adaptive-read-buffering nil)
 
 (setq fast-but-imprecise-scrolling t
       redisplay-skip-fontification-on-input t
@@ -31,7 +13,7 @@
 (setq-default
  ad-redefinition-action 'accept                   ; Silence warnings for redefinition
  calendar-location-name "London"                  ; Calendar Location
- calendar-latitude 51.509865                      ; lendar Lat
+ calendar-latitude 51.509865                      ; Calendar Lat
  calendar-longitude  -0.118092                    ; Calendar Long
  calendar-week-start-day 1                        ; starts on Monday
  cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
@@ -93,18 +75,6 @@
 
 ;;; Avoid constant errors on Windows about the coding system by setting the default to UTF-8.
 (set-default-coding-systems 'utf-8)
-
-(defvar is-mac (eq system-type 'darwin)
-  "Whether Emacs is running in mac or not.")
-
-(defvar is-win (eq system-type 'windows-nt)
-  "Whether Emacs is running in Windows or not.")
-
-(defvar is-gui (display-graphic-p)
-  "Whether Emacs is running in gui mode or not.")
-
-(defvar is-term (not is-gui)
-  "Whether Emacs is running in a terminal or not.")
 
 ;; Silence compiler warnings as they can be pretty disruptive
 (setq comp-async-report-warnings-errors nil)
