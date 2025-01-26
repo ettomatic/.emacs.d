@@ -93,7 +93,8 @@ there's a region, all lines that region covers will be duplicated."
   :config
   (global-set-key (kbd "C-x u") 'undo-fu-only-undo)
   (global-set-key (kbd "C-x r") 'undo-fu-only-redo))
-
+(add-to-list 'load-path "~/.emacs.d/pkgs/vundo")
+(use-package vundo :ensure nil)
 
 (provide 'init-editing)
 ;;; init-editing ends here
