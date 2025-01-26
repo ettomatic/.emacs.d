@@ -31,9 +31,8 @@
 
 ;(setq default-frame-alist '((cursor-color . "white")))
 
-;;; When you try to align your Emacs frame flush on macOS and it just doesn’t quite reach the edge
-(if is-mac
-    (setq frame-resize-pixelwise t))
+;;; When you try to align your Emacs frame flush (normally on macOS) and it just doesn’t quite reach the edge
+(setq frame-resize-pixelwise t)
 
 (use-package all-the-icons
   :ensure t)
