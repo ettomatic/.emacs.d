@@ -3,13 +3,24 @@
 ;;; Code:
 
 ;; (use-package modus-themes
-;;   :init
-;;   (setq modus-themes-tuo-toggle '(modus-operandi-deuteranopia modus-vivendi-deuteranopia))
-;;   ;; ... setting all variable that need to
-;;   ;; be present before loading the theme ...
+;;   :ensure t
 ;;   :config
-;;   (load-theme (car modus-themes-to-toggle) t t)
-;;   :bind ("<f5>" . modus-themes-toggle))
+;;   ;; Add all your customizations prior to loading the themes
+;;   (setq modus-themes-italic-constructs t
+;;         modus-themes-bold-constructs t)
+
+;;   ;; Maybe define some palette overrides, such as by using our presets
+;;   ;; (setq modus-themes-common-palette-overrides
+;;   ;;       modus-themes-preset-overrides-intense)
+
+;;   (setq modus-themes-common-palette-overrides
+;;       '((border-mode-line-active bg-mode-line-active)
+;;         (border-mode-line-inactive bg-mode-line-inactive)))
+
+;;   ;; Load the theme of your choice.
+;;   (load-theme 'modus-operandi :no-confirm)
+
+;;   (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
 
 ;; (setq modus-themes-italic-constructs t
 ;;       modus-themes-bold-constructs t
@@ -45,9 +56,13 @@
 ;;   :config
 ;;   (load-theme 'acme t))
 
-(use-package catppuccin-theme)
-(setq catppuccin-flavor 'macchiato) ;; or 'frappe, 'macchiato, or 'mocha
-(catppuccin-reload)
+;; (use-package catppuccin-theme)
+;; (setq catppuccin-flavor 'latte) ;; or 'frappe, 'macchiato, or 'mocha
+;; (catppuccin-reload)
 
+(use-package dakrone-light-theme
+  :ensure t
+  :init
+  (load-theme 'dakrone-light t))
 (provide 'init-theme)
 ;;; init-theme ends here
