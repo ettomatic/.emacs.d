@@ -41,6 +41,9 @@
 ;; (use-package tempel-collection)
 ;; (use-package eglot-tempel)
 
+(use-package corfu-terminal
+  :ensure t
+  :defer t)
 
 (use-package corfu
   :ensure t
@@ -56,7 +59,9 @@
   :bind
   :init
   (global-corfu-mode)
-  (corfu-history-mode))
+  (corfu-history-mode)
+  (unless (display-graphic-p)
+  (corfu-terminal-mode +1)))
 
 ;; A few more useful configurations...
 (use-package emacs
