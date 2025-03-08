@@ -25,7 +25,11 @@
   (global-diff-hl-mode 1)
   :config
   ;; https://github.com/dgutov/diff-hl#magit
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (add-hook 'diff-hl-mode-on-hook
+            (lambda ()
+              (unless (display-graphic-p)
+                (diff-hl-margin-local-mode)))))
 
 (use-package git-timemachine
   :ensure t
