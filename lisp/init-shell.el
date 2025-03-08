@@ -32,6 +32,22 @@
   ;; (setq kkp-alt-modifier 'alt) ;; use this if you want to map the Alt keyboard modifier to Alt in Emacs (and not to Meta)
   (global-kkp-mode +1))
 
+(use-package mistty
+  :ensure t
+  :defer t
+  :init
+  (setenv "SHELL" "/usr/bin/fish")
+  :bind (("C-c y" . mistty)
+         ;; bind here the shortcuts you'd like the
+         ;; shell to handle instead of Emacs.
+         :map mistty-prompt-map
+         ;; fish: directory history
+         ;; ("M-<up>" . mistty-send-key)
+         ;; ("M-<down>" . mistty-send-key)
+         ;; ("M-<left>" . mistty-send-key)
+         ;; ("M-<right>" . mistty-send-key)
+         ))
+
 ;; eshell
 
 (use-package eshell-bookmark
@@ -157,6 +173,5 @@ any directory proferred by `consult-dir'."
   (autoload 'epe-theme-lambda "eshell-prompt-extras")
   (setq eshell-highlight-prompt nil
         eshell-prompt-function 'epe-theme-lambda))
-
 (provide 'init-shell)
 ;;; init-shell ends here
