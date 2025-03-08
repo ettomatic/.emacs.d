@@ -173,7 +173,7 @@
 ;;; Avy
 (use-package avy
   :ensure t
-  :bind (("C-'" . avy-goto-char-2)))
+  :bind (("C-\\" . avy-goto-char-2)))
 
 ;;; buffer placement algorithm
 (setq display-buffer-base-action
