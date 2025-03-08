@@ -35,6 +35,8 @@
   :ensure t
   :init (whole-line-or-region-global-mode))
 
+(global-set-key "\C-ck" 'kill-whole-line)
+
 
 ;;; Highlights matching parenthesis
 (show-paren-mode 1)
