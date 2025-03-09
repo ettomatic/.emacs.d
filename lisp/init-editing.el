@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Enable Mouse Support from terminal
+(xterm-mouse-mode +1)
+
 ;; Spell checker
 (use-package jinx
   :hook ((text-mode . jinx-mode)
