@@ -2,40 +2,40 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (use-package modus-themes
-;;   :ensure t
-;;   :config
-;;   ;; Add all your customizations prior to loading the themes
-;;   (setq modus-themes-italic-constructs t
-;;         modus-themes-bold-constructs t)
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs t)
 
-;;   ;; Maybe define some palette overrides, such as by using our presets
-;;   ;; (setq modus-themes-common-palette-overrides
-;;   ;;       modus-themes-preset-overrides-intense)
+  ;; Maybe define some palette overrides, such as by using our presets
+  ;; (setq modus-themes-common-palette-overrides
+  ;;       modus-themes-preset-overrides-intense)
 
-;;   (setq modus-themes-common-palette-overrides
-;;       '((border-mode-line-active bg-mode-line-active)
-;;         (border-mode-line-inactive bg-mode-line-inactive)))
+  (setq modus-themes-common-palette-overrides
+      '((border-mode-line-active bg-mode-line-active)
+        (border-mode-line-inactive bg-mode-line-inactive)))
 
-;;   ;; Load the theme of your choice.
-;;   (load-theme 'modus-operandi :no-confirm)
+  ;; Load the theme of your choice.
+  (load-theme 'modus-operandi :no-confirm)
 
-;;   (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
+  (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
 
-;; (setq modus-themes-italic-constructs t
-;;       modus-themes-bold-constructs t
-;;       modus-themes-variable-pitch-ui t
-;;       modus-themes-mixed-fonts t)
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs t
+      modus-themes-variable-pitch-ui t
+      modus-themes-mixed-fonts t)
 
-;; ;; Remove the border
-;; (setq modus-themes-common-palette-overrides
-;;       '((border-mode-line-active unspecified)
-;;         (border-mode-line-inactive unspecified)))
+;; Remove the border
+(setq modus-themes-common-palette-overrides
+      '((border-mode-line-active unspecified)
+        (border-mode-line-inactive unspecified)))
 
-;; ;; Color customizations
-;; (setq modus-themes-prompts '(bold))
-;; (setq modus-themes-completions nil)
-;; (setq modus-themes-org-blocks 'gray-background)
+;; Color customizations
+(setq modus-themes-prompts '(bold))
+(setq modus-themes-completions nil)
+(setq modus-themes-org-blocks 'gray-background)
 
 ;;   :config
 ;;   (load-theme 'leuven t))
@@ -57,12 +57,13 @@
 ;;   (load-theme 'acme t))
 
 ;; (use-package catppuccin-theme)
-;; (setq catppuccin-flavor 'latte) ;; or 'frappe, 'macchiato, or 'mocha
+;; (setq catppuccin-flavor 'mocha) ;; or 'frappe, 'macchiato, 'latte or 'mocha
 ;; (catppuccin-reload)
 
-(use-package dakrone-light-theme
-  :ensure t
-  :init
-  (load-theme 'dakrone-light t))
+;; ;; (use-package dakrone-light-theme
+;; ;;   :ensure t
+;; ;;   :init
+;; ;;   (load-theme 'dakrone-light t))
+
 (provide 'init-theme)
 ;;; init-theme ends here
