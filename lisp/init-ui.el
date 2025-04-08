@@ -61,7 +61,8 @@
   (setq dashboard-set-file-icons t)
   (setq dashboard-startup-banner 1)
   (setq dashboard-projects-switch-function 'projectile-switch-project)
-  (setq dashboard-footer-messages '("Emacs is LISP!")))
+  (setq dashboard-footer-messages '("Emacs is LISP!"))
+  (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name))))
 
 (use-package mode-line-bell
   :defer t

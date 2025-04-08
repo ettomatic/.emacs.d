@@ -16,7 +16,7 @@
 
 ;; Language Servers
 (add-hook 'elixir-ts-mode-hook 'eglot-ensure)
-(add-to-list 'eglot-server-programs '(elixir-ts-mode . "~/code/ls-servers/elixir-ls/release/language_server.sh"))
+(add-to-list 'eglot-server-programs '(elixir-ts-mode "~/code/ls-servers/elixir-ls/language_server.sh"))
 
 ;;; org-mode
 (use-package ob-elixir
