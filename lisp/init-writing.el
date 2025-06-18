@@ -43,13 +43,13 @@
 ;;  'olivetti-mode-hook
 ;;  'flyspell-mode)
 
-(use-package langtool
-  :defer t
-  :config
-  (setq langtool-http-server-host "localhost"
-        langtool-http-server-port 8010)
-  (setq langtool-default-language "en-GB")
-  (setq langtool-mother-tongue "it"))
+;; (use-package langtool
+;;   :defer t
+;;   :config
+;;   (setq langtool-http-server-host "localhost"
+;;         langtool-http-server-port 8010)
+;;   (setq langtool-default-language "en-GB")
+;;   (setq langtool-mother-tongue "it"))
 
 (provide 'init-writing)
 ;;; init-writing ends here
