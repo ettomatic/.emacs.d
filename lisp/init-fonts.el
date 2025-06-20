@@ -27,8 +27,8 @@
          :default-weight regular)
         (Berkley
          :default-family "Berkeley Mono Trial"
-         :default-height 110
-         :default-weight medium)
+         :default-height 115
+         :default-weight regular)
         (Iosevka
          :default-family "Iosevka Fixed SS03"
          :default-height 120

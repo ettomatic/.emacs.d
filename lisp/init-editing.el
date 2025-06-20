@@ -83,11 +83,10 @@ there's a region, all lines that region covers will be duplicated."
 
 (when is-mac
   (setq mac-command-modifier       'meta)
+  (setq mac-option-modifier        'meta)
+  ;; (setq mac-option-key-is-meta t)
   (setq mac-right-command-modifier 'hyper)
   (setq mac-function-modifier      'super))
-
-;; (setq mac-option-key-is-meta t)
-;; (setq mac-option-modifier 'super)
 
 (use-package kkp
   :ensure t

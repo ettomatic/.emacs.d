@@ -26,7 +26,7 @@
 
 (require 'init-org)
 (require 'init-notes)
-(require 'init-org-extra)
+;; (require 'init-org-extra)
 (require 'init-org-agenda)
 ;; (require 'init-org-roam)
 ;; (require 'init-presentation)
