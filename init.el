@@ -22,23 +22,23 @@
 (require 'init-editing)
 (require 'init-completion)
 (require 'init-markup)
-(require 'init-writing)
+;; (require 'init-writing)
 
 (require 'init-org)
 (require 'init-notes)
 (require 'init-org-extra)
 (require 'init-org-agenda)
-(require 'init-org-roam)
-(require 'init-presentation)
+;; (require 'init-org-roam)
+;; (require 'init-presentation)
 
 (require 'init-shell)
-(require 'init-ai)
+;; (require 'init-ai)
 
 (require 'init-langs-utils)
 (require 'init-version-control)
 (require 'init-elixir)
 (require 'init-ruby)
-(require 'init-langs-other)
+;; (require 'init-langs-other)
 
 ;(require 'init-docker)
 

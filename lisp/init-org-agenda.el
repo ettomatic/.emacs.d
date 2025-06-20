@@ -9,7 +9,8 @@
   :custom
   (org-agenda-tags-column -100)
   (org-agenda-prefix-format
-      '((agenda . " %i %-12:c%?-12t% s")
+      ;; '((agenda . " %i %-12:c%?-12t% s")
+      '((agenda . " %?-12t% s")
         (todo   . " ")
         (search . " %i %-12:c")))
   (org-agenda-show-log t)
@@ -19,7 +20,7 @@
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t))
 
-(setq org-agenda-files (list "~/org/agenda.org" "~/org/inbox.org" "~/org/calendar.org" "~/org/personal.org"))
+(setq org-agenda-files (list "~/org/inbox.org" "~/org/calendar.org" "~/org/notes/journal"))
 
 ;; Compact the block agenda view (disabled)
 (setq org-agenda-compact-blocks nil)

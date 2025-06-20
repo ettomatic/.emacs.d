@@ -45,7 +45,7 @@
          :default-height 135) ; 180 4k
         (t
          :default-weight regular
-         :default-height 125 ; 180 4k
+         :default-height 145 ; 180 4k
          :default-weight normal
          :line-spacing: 0)))
          ;:default-width condensed)

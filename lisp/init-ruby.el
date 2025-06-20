@@ -23,7 +23,7 @@
 ;; 		  enh-ruby-hanging-indent-level 2)))
 
 (if is-mac
-    (setq enh-ruby-program "~/.asdf/shims/ruby")
+    (setq enh-ruby-program "/Users/berare01/.asdf/shims/ruby")
   (setq enh-ruby-program "/usr/bin/ruby"))
 
 ;; Language Server

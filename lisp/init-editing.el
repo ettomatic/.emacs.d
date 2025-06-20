@@ -81,11 +81,25 @@ there's a region, all lines that region covers will be duplicated."
       (goto-char (+ origin (* (length region) arg) arg)))))
 (global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
-;; (when is-mac
-;;   (setq mac-option-modifier        'super)
-;;   (setq mac-command-modifier       'meta)
-;;   (setq mac-right-command-modifier 'hyper)
-;;   (setq mac-function-modifier      'super))
+(when is-mac
+  (setq mac-command-modifier       'meta)
+  (setq mac-right-command-modifier 'hyper)
+  (setq mac-function-modifier      'super))
+
+(use-package kkp
+  :ensure t
+  :config
+  ;; (setq kkp-alt-modifier 'alt) ;; use this if you want to map the Alt keyboard modifier to Alt in Emacs (and not to Meta)
+  (global-kkp-mode +1))
+
+;; (setq mac-option-key-is-meta t)
+;; (setq mac-option-modifier 'super)
+
+;; (use-package kkp
+;;   :ensure t
+;;   :config
+;;   ;; (setq kkp-alt-modifier 'alt) ;; use this if you want to map the Alt keyboard modifier to Alt in Emacs (and not to Meta)
+;;   (global-kkp-mode +1))
 
 (use-package undo-fu
   :ensure t
