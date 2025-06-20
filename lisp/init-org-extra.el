@@ -23,7 +23,7 @@
          ("C-x p s" . org-download-screenshot)
          ("s-y" . org-download-yank)))
   :config
-  (setq org-download-screenshot-method "spectacle")
+  ;; (setq org-download-screenshot-method "spectacle")
   (setq-default org-download-image-dir "~/org/img"))
 
 ;;; Org Brain
