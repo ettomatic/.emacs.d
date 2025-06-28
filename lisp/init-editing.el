@@ -94,13 +94,10 @@ there's a region, all lines that region covers will be duplicated."
   ;; (setq kkp-alt-modifier 'alt) ;; use this if you want to map the Alt keyboard modifier to Alt in Emacs (and not to Meta)
   (global-kkp-mode +1))
 
-(use-package undo-fu
+(use-package vundo
   :ensure t
   :config
-  (global-set-key (kbd "C-x u") 'undo-fu-only-undo)
-  (global-set-key (kbd "C-x r") 'undo-fu-only-redo))
-(add-to-list 'load-path "~/.emacs.d/pkgs/vundo")
-(use-package vundo :ensure nil)
+  (global-set-key (kbd "C-x u") 'vundo))
 
 (provide 'init-editing)
 ;;; init-editing ends here
