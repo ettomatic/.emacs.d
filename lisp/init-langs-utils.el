@@ -12,13 +12,38 @@
 ;;; ls-server
 (use-package eglot
   :ensure t
+  :bind
+  (("C-c l i" . eglot-find-implementation)
+   ("C-c l e" . eglot)
+   ("C-c l k" . eglot-shutdown-all)
+   ("C-c l r" . eglot-rename)
+   ("C-c l x" . eglot-reconnect)
+   ("C-c l a" . eglot-code-actions)
+   ("C-c l m" . eglot-menu)
+   ("C-c l f" . eglot-format-buffer)
+   ("C-c l h" . eglot-inlay-hints-mode))
   :init
   ;; Disable the per-server *EGLOT events* log buffers, which otherwise
   ;; default to 2MB each and are only useful for debugging the connection.
   (setq eglot-events-buffer-config '(:size 0 :format full))
   ;; Kill the LSP server process once its last managed buffer is closed,
   ;; instead of leaving it running in the background indefinitely.
-  (setq eglot-autoshutdown t))
+  (setq eglot-autoshutdown t)
+  (setq eglot-report-progress t)
+  ;; Allows Emacs’ cross-re;; ferencing commands to smoothly transition into
+  ;; external library files outside of workspace directory.
+  (setq eglot-extend-to-xref t)
+  :hook
+  (elixir-ts-mode . eglot-ensure)
+  (ruby-ts-mode . eglot-ensure)
+  (before-save . eglot-format-buffer)
+  :config
+  ;; Cleans up Emacs 31 visual noise
+  (setopt eglot-code-action-indications nil)
+  (add-to-list 'eglot-server-programs `(elixir-ts-mode . ("~/code/ls-servers/elixir-ls/language_server.sh")))
+  (add-to-list 'eglot-server-programs `(ruby-mode enh-ruby-mode ruby-ts-mode . ("solargraph"
+                                                                                "socket"
+                                                                                "--port" "7658"))))
 
 (use-package devdocs
   :ensure t
