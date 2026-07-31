@@ -11,8 +11,16 @@
   (org-adapt-indentation t)
   (org-startup-indented t)
   (org-startup-folded t)
-  (org-hide-leading-stars 't)
-  (org-tags-column 10)
+  (org-hide-leading-stars t)
+  (org-archive-location "~/org/archives/%s::")
+  (org-log-done 'time)
+  (org-return-follows-link t)
+  (org-directory "~/org")
+  (org-ellipsis " ▾")
+  (org-hide-emphasis-markers t) ; Show actually italicized text instead of /italicized text/.
+  (org-tags-column 0)           ; Show tags directly after headings (not on the right), which plays nicer with line-wrapping.
+  (org-startup-with-inline-images t)
+  (org-image-actual-width '(300))
   (org-tag-alist '(
                    (:startgroup . nil)
                    ("meeting" . ?m)
@@ -27,38 +35,36 @@
                    ;; ("research" . ?r)
                    ;; (:endgroup . nil)
                    ))
-  (org-archive-location "~/org/archives/%s::")
-  (org-log-done 'time)
-  (org-return-follows-link t)
-  :config
-  (setq org-directory "~/org"
-        org-ellipsis " ▾"
-        org-hide-emphasis-markers t))
+  (org-refile-use-outline-path 'file)
+  (org-outline-path-complete-in-steps nil)
+  (org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
+  (org-use-fast-todo-selection t)
+  (org-todo-keywords
+   '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "PROJ(p)" "|" "DONE(d)")
+     (sequence "TASK(T)")
+     (sequence "WAITING(w)" "INACTIVE(i)" "SOMEDAY(S)" "|" "CANCELLED(c)")))
+  ;; Custom colors for the keywords
+  (org-todo-keyword-faces
+   '(("TODO" :foreground "red" :weight bold)
+     ("TASK" :foreground "#5C888B" :weight bold)
+     ("NEXT" :foreground "blue" :weight bold)
+     ("STARTED" :foreground "cyan" :weight bold)
+     ("PROJ" :foreground "magenta" :weight bold)
+     ("DONE" :foreground "forest green" :weight bold)
+     ("WAITING" :foreground "orange" :weight bold)
+     ("INACTIVE" :foreground "brown" :weight bold)
+     ("SOMEDAY" :foreground "dark cyan" :weight bold)
+     ("CANCELLED" :foreground "forest green" :weight bold)))
+  ;;; Babel
+  (org-src-fontify-natively t)                ; Syntax highlighting in code blocks
+  (org-edit-src-content-indentation 0)        ; Trying to fix indentation behaviour within code blocks.
+  (org-src-tab-acts-natively t)
+  (org-src-preserve-indentation t)
+  ;;; Do not ask for confirmation before evaluating Ruby or Elixir Babel scripts with C-c C-,
+  (org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate))
 
 ;; Make sure org-indent face is available
 (require 'org-indent)
-
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
-(setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
-
-(setq org-use-fast-todo-selection t)
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "PROJ(p)" "|" "DONE(d)")
-	      (sequence "TASK(T)")
-	      (sequence "WAITING(w)" "INACTIVE(i)" "SOMEDAY(S)" "|" "CANCELLED(c)")))
-;; Custom colors for the keywords
-(setq org-todo-keyword-faces
-      '(("TODO" :foreground "red" :weight bold)
-	      ("TASK" :foreground "#5C888B" :weight bold)
-	      ("NEXT" :foreground "blue" :weight bold)
-	      ("STARTED" :foreground "cyan" :weight bold)
-	      ("PROJ" :foreground "magenta" :weight bold)
-	      ("DONE" :foreground "forest green" :weight bold)
-	      ("WAITING" :foreground "orange" :weight bold)
-	      ("INACTIVE" :foreground "brown" :weight bold)
-	      ("SOMEDAY" :foreground "dark cyan" :weight bold)
-	      ("CANCELLED" :foreground "forest green" :weight bold)))
 
 (set-face-attribute 'org-headline-done nil :strike-through t)
 
@@ -85,8 +91,6 @@
           #'(lambda ()
               (auto-revert-mode 1)))
 
-(require 'org)
-
 ;;; Open org link in the same window
 (defun org-force-open-current-window ()
   (interactive)
@@ -110,24 +114,12 @@
 ;(define-key org-mode-map "\C-c\C-o" 'org-open-maybe)
 ;(define-key org-mode-map "RET" 'org-open-maybe)
 
-;;; Babel
-
-;;; Syntax highlighting in code blocks
-(setq org-src-fontify-natively t)
-
-;;; Trying to fix indentation behaviour within code blocks.
-(setq org-edit-src-content-indentation 0)
-(setq org-src-tab-acts-natively t)
-(setq org-src-preserve-indentation t)
-
-;;; Do not ask for confirmation before evaluating
-;;; Ruby or Elixir Babel scripts with C-C C-,
 (defun eb/org-confirm-babel-evaluate (lang _body)
   (not (or (string= lang "ruby") (string= lang "elixir"))))
-(setq org-confirm-babel-evaluate 'eb/org-confirm-babel-evaluate)
 
 (org-babel-do-load-languages 'org-babel-load-languages
-    '((shell . t)))
+    '((shell . t)
+      (sqlite . t)))
 
 ;;; Capture
 
@@ -170,21 +162,11 @@
 
 (define-key global-map (kbd "C-c i") 'org-capture-inbox)
 
-;;; beutify org-mode
-(setq org-hide-emphasis-markers t ; Show actually italicized text instead of /italicized text/.
-      org-tags-column 0           ; Show tags directly after headings (not on the right), which plays nicer with line-wrapping.
-      org-startup-with-inline-images t
-      org-image-actual-width '(300))
-
 ;;; This package makes it much easier to edit Org documents when org-hide-emphasis-markers is turned on.
 ;;; It temporarily shows the emphasis markers around certain markup elements when you place your cursor inside of them.
 ;;; No more fumbling around with = and * characters!
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((sqlite . t)))
 
 (provide 'init-org)
 ;;; init-org ends here
