@@ -73,9 +73,6 @@
 ;; Emacs will save customizations on etc/ instead of your init.el file by default.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
 
-;;; Avoid constant errors on Windows about the coding system by setting the default to UTF-8.
-(set-default-coding-systems 'utf-8)
-
 ;; Silence compiler warnings as they can be pretty disruptive
 (setq comp-async-report-warnings-errors nil)
 
