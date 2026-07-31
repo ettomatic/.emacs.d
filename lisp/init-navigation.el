@@ -6,10 +6,8 @@
 (use-package projectile
   :ensure t
   :defer 1
-  :preface
   :custom
   (projectile-keymap-prefix (kbd "C-c C-p"))
-  (projectile-mode-line '(:eval (projectile-project-name)))
   (projectile-completion-system 'default)
   :config (projectile-mode))
 
@@ -172,15 +170,13 @@
   ;; relevant when you use the default completion UI.
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
-   (setq register-preview-delay 0.5)
-  ;;       register-preview-function #'consult-register-format)
+  (setq register-preview-delay 0.5)
   :config
   (consult-customize
    ;; consult-theme :preview-key '(:debounce 0.2 any)
    ))
-(require 'consult)
 
-;; I have a tendency of using C-x 0 from the minibuffer, this leaves it
+;; I have a tendency of using C-x o from the minibuffer, this leaves it
 ;; open and require C-] to abort the current operation.
 (define-key minibuffer-local-map (kbd "C-x o") 'abort-minibuffers)
 
