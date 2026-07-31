@@ -42,23 +42,21 @@
     ("C-c C-d C-k" . denote-dired-rename-marked-files-with-keywords)
     ("C-c C-d C-R" . denote-dired-rename-marked-files-using-front-matter))
 
-  :config
+  :custom
   ;; Remember to check the doc string of each of those variables.
-  (setq denote-directory (expand-file-name "~/org/notes/"))
-  (setq denote-save-buffers nil)
-  (setq denote-known-keywords '("bbc" "emacs" "elixir" "people" "team" "meeting"))
-  (setq denote-infer-keywords t)
-  (setq denote-sort-keywords t)
-  (setq denote-prompts '(title keywords))
-  (setq denote-excluded-directories-regexp nil)
-  (setq denote-excluded-keywords-regexp nil)
-  (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
-
+  (denote-directory (expand-file-name "~/org/notes/"))
+  (denote-save-buffers nil)
+  (denote-known-keywords '("bbc" "emacs" "elixir" "people" "team" "meeting"))
+  (denote-infer-keywords t)
+  (denote-sort-keywords t)
+  (denote-prompts '(title keywords))
+  (denote-excluded-directories-regexp nil)
+  (denote-excluded-keywords-regexp nil)
+  (denote-rename-confirmations '(rewrite-front-matter modify-file-name))
   ;; Pick dates, where relevant, with Org's advanced interface:
-  (setq denote-date-prompt-use-org-read-date t)
-
-  (setq xref-search-program 'ripgrep)
-
+  (denote-date-prompt-use-org-read-date t)
+  (xref-search-program 'ripgrep)
+  :config
   ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
   (denote-rename-buffer-mode 1))
 
@@ -82,17 +80,15 @@
   (:map global-map
         ("C-c n j n" . denote-journal-new-or-existing-entry))
   :hook (calendar-mode . denote-journal-calendar-mode)
-  :config
+  :custom
   ;; Use the "journal" subdirectory of the `denote-directory'.  Set this
   ;; to nil to use the `denote-directory' instead.
-  (setq denote-journal-directory
-        (expand-file-name "journal" denote-directory))
-
+  (denote-journal-directory (expand-file-name "journal" denote-directory))
   ;; Default keyword for new journal entries. It can also be a list of
   ;; strings.
-  (setq denote-journal-keyword "journal")
+  (denote-journal-keyword "journal")
   ;; Read the doc string of `denote-journal-title-format'.
-  (setq denote-journal-title-format 'day-date-month-year))
+  (denote-journal-title-format 'day-date-month-year))
 
 (with-eval-after-load 'org-capture
   (add-to-list 'org-capture-templates
