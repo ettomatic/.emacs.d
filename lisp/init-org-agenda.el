@@ -18,22 +18,16 @@
   (org-agenda-span 5)
   (org-agenda-start-on-weekday nil)
   (org-agenda-hide-tags-regexp ".")
-  (org-agenda-restore-windows-after-quit t))
-
-(setq org-agenda-files (list "~/org/inbox.org" "~/org/calendar.org" "~/org/notes/journal"))
-
-;; Compact the block agenda view (disabled)
-(setq org-agenda-compact-blocks nil)
-
-;; Set the times to display in the time grid
-(setq org-agenda-time-grid
-      (quote
-       ((daily today remove-match)
-        (800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000)
-        "......" "----------------")))
-
-;; not sure why need to set it here as well
-(setq org-agenda-restore-windows-after-quit t)
+  (org-agenda-restore-windows-after-quit t)
+  (org-agenda-files (list "~/org/inbox.org" "~/org/calendar.org" "~/org/notes/journal"))
+  ;; Compact the block agenda view (disabled)
+  (org-agenda-compact-blocks nil)
+  ;; Set the times to display in the time grid
+  (org-agenda-time-grid
+   (quote
+    ((daily today remove-match)
+     (800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000)
+     "......" "----------------"))))
 
 ;;  Pressing Tab while the cursor is on a task will expand that task in a separate buffer
 (add-hook 'org-agenda-mode-hook
