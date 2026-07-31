@@ -47,17 +47,18 @@
 ;;   (doom-modeline-time-icon nil)
 ;;   (doom-modeline-icon t))
 
+;; Not deferred: punch-line requires flycheck's library at load time,
+;; but nothing in this config turns on flycheck-mode to trigger a
+;; deferred load, so it must be loaded eagerly here instead.
 (use-package flycheck
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package punch-line
+  :defer t
   :vc (:url "https://github.com/konrad1977/punch-line" :rev :newest)
+  :ensure nil
   :after flycheck
-  :hook ((after-init . punch-line-mode)
-         (after-init . punch-weather-update)
-         ;; (after-init . punch-load-tasks)
-         )
+  :hook ((after-init . punch-line-mode))
   :config
   (setq
    punch-line-left-separator "  "
