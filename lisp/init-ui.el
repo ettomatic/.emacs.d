@@ -88,11 +88,11 @@
   (spacious-padding-widths
    '( :internal-border-width 2
       :header-line-width 4
-      :mode-line-width 6
+      :mode-line-width 8
       :custom-button-width 3
       :tab-width 4
       :right-divider-width 4
-      :scroll-bar-width 8
+      :scroll-bar-width 6
       :fringe-width 8))
   :config
   (spacious-padding-mode 1)
