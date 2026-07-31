@@ -36,14 +36,13 @@
 
 (use-package magit-todos
   :ensure t
-  :defer t)
+  :after magit
+  :config
+  (magit-todos-mode 1))
 
 (use-package git-link
   :ensure t
   :defer t)
-
-(use-package browse-at-remote
-  :ensure t)
 
 (setq auth-sources '("~/.authinfo"))
 
