@@ -12,35 +12,31 @@
 (use-package fish-completion
   :hook (eshell-mode . fish-completion-mode))
 
-;; a real terminal when necessary
-(use-package eat
-  :ensure t
-  :defer t
-  :init
-  (setenv "SHELL" "/opt/homebrew/bin/fish")
+(use-package ghostel
+  :custom
+  (ghostel-shell "/opt/homebrew/bin/fish")
+  :bind (("C-x m" . ghostel)
+         :map ghostel-semi-char-mode-map
+         ("C-s"  . consult-line)
+         ("C-k"  . my/ghostel-send-C-k-and-kill)
+         ;; I'm used to go up/down the shell history with M-n/p from eshell
+         ;; Simulate this behavior in ghostel by sending C-p and C-n
+         ("M-p" . (lambda () (interactive) (ghostel-send-key "p" "ctrl")))
+         ("M-n" . (lambda () (interactive) (ghostel-send-key "n" "ctrl")))
+         :map project-prefix-map
+         ("m" . ghostel-project)
+         ("M" . ghostel-project-list-buffers))
   :config
-  (setq eat-shell "/opt/homebrew/bin/fish"))
+  (defun my/ghostel-send-C-k-and-kill ()
+    "Send `C-k' to ghostel.
+Like normal Emacs `C-k'.  Kill to end of line and put content in kill-ring."
+    (interactive)
+    (kill-ring-save (point) (line-end-position))
+    (ghostel-send-key "k" "ctrl"))
 
-;; For `eat-eshell-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-;; For `eat-eshell-visual-command-mode'.
-(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
-
-(use-package mistty
-  :ensure t
-  :defer t
-  :init
-  (setenv "SHELL" "/usr/bin/fish")
-  :bind (("C-c y" . mistty)
-         ;; bind here the shortcuts you'd like the
-         ;; shell to handle instead of Emacs.
-         :map mistty-prompt-map
-         ;; fish: directory history
-         ;; ("M-<up>" . mistty-send-key)
-         ;; ("M-<down>" . mistty-send-key)
-         ;; ("M-<left>" . mistty-send-key)
-         ;; ("M-<right>" . mistty-send-key)
-         ))
+  (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
+  (add-to-list 'ghostel-eval-cmds '("magit-status-setup-buffer" magit-status-setup-buffer)))
 
 ;; eshell
 
