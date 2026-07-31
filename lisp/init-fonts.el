@@ -49,12 +49,19 @@
       :line-spacing 0))))
 
 (if is-gui
-    ;; Recover last preset or fall back to desired style from
-    ;; `fontaine-presets'.
-    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'Julia))
+    ;; Recover last preset, but only if it's still a valid entry in
+    ;; `fontaine-presets' -- `fontaine-latest-state-file' may be shared
+    ;; across machines (e.g. via dotfiles) and reference a preset that
+    ;; doesn't exist here, otherwise fall back to `Julia'.
+    (let ((preset (fontaine-restore-latest-preset)))
+      (fontaine-set-preset (if (assq preset fontaine-presets) preset 'Julia)))
+
+;; Persist the latest font preset when closing/starting Emacs and
+;; while switching between themes.
+(fontaine-mode 1)
 
   ;; The other side of `fontaine-restore-latest-preset'.
-  (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))
+;;  (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))
 
 
 

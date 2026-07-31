@@ -12,6 +12,7 @@
 (use-package fish-completion
   :hook (eshell-mode . fish-completion-mode))
 
+;; C-c C-t away and you can navigate like in a normal Emacs buffer.
 (use-package ghostel
   :custom
   (ghostel-shell "/opt/homebrew/bin/fish")
