@@ -125,9 +125,7 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
-
 ;;; Recent Files
-
 (use-package recentf
   :ensure nil
   :custom
@@ -206,8 +204,30 @@
 ;; makes C-n insert newlines if the point is at the end of the buffer
 ;(setq next-line-add-newlines t)
 
-;; Having observed beginners struggle with C-g not closing the open minibuffer, I know that the following is a quality-of-life refinement:
+;; By default the keybindings C-x 2 (creates new horizontal window)
+;; and C-x 3 (creates new vertical window) don't move the cursor to
+;; the newly created window.
+;; The cursor stays in the current window and most of the time
+;; I just move it to the new window manually, by C-x o.
+;; Now the cursor jumps to the newly created window and it become active:
+(use-package window
+  :ensure nil
+  :preface
+  (defun hsplit-last-buffer ()
+    "Focus to the last created horizontal window."
+    (interactive)
+    (split-window-horizontally)
+    (other-window 1))
+  (defun vsplit-last-buffer ()
+    "Focus to the last created vertical window."
+    (interactive)
+    (split-window-vertically)
+    (other-window 1))
+  (global-set-key (kbd "C-x 2") #'vsplit-last-buffer)
+  (global-set-key (kbd "C-x 3") #'hsplit-last-buffer))
 
+;; Having observed beginners struggle with C-g not closing the open minibuffer,
+;; I know that the following is a quality-of-life refinement:
 (defun prot/keyboard-quit-dwim ()
   "Do-What-I-Mean behaviour for a general `keyboard-quit'.
 The generic `keyboard-quit' does not do the expected thing when
