@@ -21,8 +21,6 @@
    '(diff-hl-delete ((t (:background "#ee6363")))))
   ;; On-the-fly diff updates
   (diff-hl-flydiff-mode)
-  ;; Enable diff-hl globally
-  (global-diff-hl-mode 1)
   :config
   ;; https://github.com/dgutov/diff-hl#magit
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
