@@ -48,22 +48,17 @@
       :default-height 145 ; 180 4k
       :line-spacing 0))))
 
-(if is-gui
-    ;; Recover last preset, but only if it's still a valid entry in
-    ;; `fontaine-presets' -- `fontaine-latest-state-file' may be shared
-    ;; across machines (e.g. via dotfiles) and reference a preset that
-    ;; doesn't exist here, otherwise fall back to `Julia'.
-    (let ((preset (fontaine-restore-latest-preset)))
-      (fontaine-set-preset (if (assq preset fontaine-presets) preset 'Julia)))
+(when is-gui
+  ;; Recover last preset, but only if it's still a valid entry in
+  ;; `fontaine-presets' -- `fontaine-latest-state-file' may be shared
+  ;; across machines (e.g. via dotfiles) and reference a preset that
+  ;; doesn't exist here, otherwise fall back to `Julia'.
+  (let ((preset (fontaine-restore-latest-preset)))
+    (fontaine-set-preset (if (assq preset fontaine-presets) preset 'Julia))))
 
 ;; Persist the latest font preset when closing/starting Emacs and
 ;; while switching between themes.
 (fontaine-mode 1)
-
-  ;; The other side of `fontaine-restore-latest-preset'.
-;;  (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))
-
-
 
 ;; enable ligatures
 
@@ -87,33 +82,35 @@
 
 ;; (global-ligature-mode nil)
 
-
+;; pixel-scroll.el: animates C-v/M-v as a smooth pixel-by-pixel scroll
+;; instead of an instant jump.
 (require 'pixel-scroll)
-(setq pixel-scroll-precision-large-scroll-height 40.0)
+;; Default `factor' used by `pixel-scroll-precision-interpolate' below.
 (setq pixel-scroll-precision-interpolation-factor 30)
 
 (defun joe/smooth-scroll-half-page-down ()
-  "Smooth scroll down"
+  "Animate scrolling the buffer down by half a window height."
   (interactive)
   (let ((half-height (/ (window-height) 2)))
     (pixel-scroll-precision-interpolate (* 5 (- half-height)))))
 
 (defun joe/smooth-scroll-half-page-up ()
-  "Smooth scroll down"
+  "Animate scrolling the buffer up by half a window height."
   (interactive)
   (let ((half-height (/ (window-height) 2)))
     (pixel-scroll-precision-interpolate (* 5 half-height))))
 
-;; scroll-up-command
+;; Replace the default instant-jump `scroll-up-command'/`scroll-down-command'
+;; with the smooth half-page versions above.
 (global-set-key (kbd "C-v") #'joe/smooth-scroll-half-page-down)
 (global-set-key (kbd "M-v") #'joe/smooth-scroll-half-page-up)
 
-;; scroll one line at a time (less "jumpy" than defaults)
+;; Mouse wheel / trackpad scrolling (separate from pixel-scroll above,
+;; since `pixel-scroll-precision-mode' is not enabled).
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
-
 
 (provide 'init-fonts)
 ;;; init-fonts ends here
