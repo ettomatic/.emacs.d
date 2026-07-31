@@ -14,41 +14,38 @@
 (global-prettify-symbols-mode +1)
 
 (use-package fontaine
-  :ensure t)
-
-(setq fontaine-latest-state-file
-      (locate-user-emacs-file "fontaine-latest-state.eld"))
-
-(setq fontaine-presets
-      '((Cascadia
-         :default-family "Cascadia Code")
-        (Julia
-         :default-family "JuliaMono"
-         :default-weight regular)
-        (Berkley
-         :default-family "Berkeley Mono Trial"
-         :default-height 115
-         :default-weight regular)
-        (Iosevka
-         :default-family "Iosevka Fixed SS03"
-         :default-height 120
-         :default-weight medium)
-        (JetBrains
-         :default-family "JetBrains Mono"
-         :default-height 110)
-        (writing
-         :default-family "Writer"
-         :line-spacing 4)
-        (mac-ext
-         :default-family "JuliaMono"
-         :default-weight regular
-         :default-height 135) ; 180 4k
-        (t
-         :default-weight regular
-         :default-height 145 ; 180 4k
-         :default-weight normal
-         :line-spacing: 0)))
-         ;:default-width condensed)
+  :ensure t
+  :custom
+  (fontaine-latest-state-file
+   (locate-user-emacs-file "fontaine-latest-state.eld"))
+  (fontaine-presets
+   '((Cascadia
+      :default-family "Cascadia Code")
+     (Julia
+      :default-family "JuliaMono"
+      :default-weight regular)
+     (Berkley
+      :default-family "Berkeley Mono Trial"
+      :default-height 115
+      :default-weight regular)
+     (Iosevka
+      :default-family "Iosevka Fixed SS03"
+      :default-height 120
+      :default-weight medium)
+     (JetBrains
+      :default-family "JetBrains Mono"
+      :default-height 110)
+     (writing
+      :default-family "Writer"
+      :line-spacing 4)
+     (mac-ext
+      :default-family "JuliaMono"
+      :default-weight regular
+      :default-height 135) ; 180 4k
+     (t
+      :default-weight regular
+      :default-height 145 ; 180 4k
+      :line-spacing 0))))
 
 (if is-gui
     ;; Recover last preset or fall back to desired style from
