@@ -10,8 +10,8 @@
 (use-package olivetti
   :ensure t
   ;:defer t
-  :init
-  (setq olivetti-body-width 74)
+  :custom
+  (olivetti-body-width 74)
   :config
   (defun writing-mode ()
     "Distraction-free writing environment"
