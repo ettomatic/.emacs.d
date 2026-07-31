@@ -35,22 +35,22 @@
   (aw-display-mode-overlay nil)
   :bind (("C-x o" . ace-window)))
 
-(use-package dirvish
-  :ensure t
-  :defer t
-  :init
-  (dirvish-override-dired-mode)
-  :custom
-  (dirvish-quick-access-entries
-   '(("h" "~/"                          "Home")
-     ("d" "~/Downloads/"                "Downloads")
-     ("c" "~/code/"                     "Code")
-     ("b" "~/code/belfrage/"            "Belfrage")))
-  (dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
-  :bind
-  (("C-c f" . dirvish-fd)
-   :map dirvish-mode-map
-   ("u"   . dired-up-directory)))
+;; (use-package dirvish
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (dirvish-override-dired-mode)
+;;   :custom
+;;   (dirvish-quick-access-entries
+;;    '(("h" "~/"                          "Home")
+;;      ("d" "~/Downloads/"                "Downloads")
+;;      ("c" "~/code/"                     "Code")
+;;      ("b" "~/code/belfrage/"            "Belfrage")))
+;;   (dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
+;;   :bind
+;;   (("C-c f" . dirvish-fd)
+;;    :map dirvish-mode-map
+;;    ("u"   . dired-up-directory)))
 
 (use-package dired
   :ensure nil
@@ -223,7 +223,6 @@
 
 (defun prot/keyboard-quit-dwim ()
   "Do-What-I-Mean behaviour for a general `keyboard-quit'.
-
 The generic `keyboard-quit' does not do the expected thing when
 the minibuffer is open.  Whereas we want it to close the
 minibuffer, even without explicitly focusing it.
@@ -246,14 +245,6 @@ The DWIM behaviour of this command is as follows:
     (keyboard-quit))))
 
 (define-key global-map (kbd "C-g") #'prot/keyboard-quit-dwim)
-
-(use-package ultra-scroll
-  :vc (:url "https://github.com/jdtsmith/ultra-scroll")
-  :init
-  (setq scroll-conservatively 3 ; or whatever value you prefer, since v0.4
-        scroll-margin 0)        ; important: scroll-margin>0 not yet supported
-  :config
-  (ultra-scroll-mode 1))
 
 (provide 'init-navigation)
 ;;; init-navigation ends here
