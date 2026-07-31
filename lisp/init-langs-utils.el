@@ -36,6 +36,12 @@
   ;; every language into its ts-mode -- and thus an install -- even without a
   ;; grammar; that's not used here, so this alone won't trigger it unprompted).
   (treesit-auto-install 'prompt)
+  ;; `treesit-auto-langs' defaults to EVERY language treesit-auto knows (60+),
+  ;; and `global-treesit-auto-mode' recomputes readiness for all of them on
+  ;; every file visit -- that's what made opening a new file take ~2s;
+  ;; scoping it to what's actually installed drops that to ~0.2s. Add a
+  ;; language here once its grammar is installed.
+  (treesit-auto-langs '(bash dockerfile elixir heex lua python ruby toml yaml))
   :config
   (treesit-auto-add-to-auto-mode-alist)
   (global-treesit-auto-mode))
