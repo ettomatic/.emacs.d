@@ -22,9 +22,10 @@
         (("C-x p c" . org-download-clipboard)
          ("C-x p s" . org-download-screenshot)
          ("s-y" . org-download-yank)))
-  :config
-  ;; (setq org-download-screenshot-method "spectacle")
-  (setq-default org-download-image-dir "~/org/img"))
+  :custom
+  (org-download-image-dir "~/org/img")
+  ;; (org-download-screenshot-method "spectacle")
+  )
 
 ;;; Org Brain
 ;; (use-package org-brain :ensure t
