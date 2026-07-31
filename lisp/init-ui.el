@@ -116,14 +116,7 @@
   (spacious-padding-mode 1)
   (define-key global-map (kbd "<f8>") #'spacious-padding-mode))
 
-;; Automatic resizing of Emacs windows to the golden ratio
-;; (use-package golden-ratio
-;;   :ensure t
-;;   :diminish golden-ratio-mode
-;;   :config
-;;   (golden-ratio-mode 1))
-;; (add-to-list 'golden-ratio-extra-commands 'ace-window)
-
+;; Golden Ratio
 (use-package zoom
   :config
   ;; At least 100 cols wide and 3/4 of frame size in height
