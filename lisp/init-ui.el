@@ -9,6 +9,11 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
+;; Apple menu bar like other macOS apps
+(use-package menu-bar
+  :config
+  (menu-bar-mode +1))
+
 (if is-gui
     (setq default-frame-alist '((width . 160)
                                 (height . 60))))
@@ -77,6 +82,8 @@
      ((mood-line-segment-checker)    . "  ")
      ((mood-line-segment-process)    . "  ")))))
 
+;;fix mode line rendering artefacts.
+(setq ns-use-srgb-colorspace nil)
 
 (use-package dashboard
   :ensure t
