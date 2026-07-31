@@ -40,13 +40,6 @@
 
 (global-set-key "\C-ck" 'kill-whole-line)
 
-
-;;; Highlights matching parenthesis
-(show-paren-mode 1)
-
-;;; Highlight current line
-(global-hl-line-mode 1)
-
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; remember last position
