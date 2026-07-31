@@ -37,15 +37,31 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package doom-modeline
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1)
+;;   :custom
+;;   (doom-modeline-height 32)
+;;   (doom-modeline-buffer-encoding nil)
+;;   (doom-modeline-vcs-max-length 24)
+;;   (doom-modeline-time-icon nil)
+;;   (doom-modeline-icon t))
+
+(use-package flycheck
   :ensure t
-  :init (doom-modeline-mode 1)
-  :custom
-  (doom-modeline-height 32)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-vcs-max-length 24)
-  (doom-modeline-time-icon nil)
-  (doom-modeline-icon t))
+  :defer t)
+
+(use-package punch-line
+  :vc (:url "https://github.com/konrad1977/punch-line" :rev :newest)
+  :after flycheck
+  :hook ((after-init . punch-line-mode)
+         (after-init . punch-weather-update)
+         ;; (after-init . punch-load-tasks)
+         )
+  :config
+  (setq
+   punch-line-left-separator "  "
+   punch-line-right-separator "  "))
 
 (use-package dashboard
   :ensure t
