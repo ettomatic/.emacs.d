@@ -36,7 +36,6 @@
 (defvar eb-org-agenda-block--today-schedule
   '(agenda "" ((org-agenda-overriding-header "Today's Schedule:\n")
 	       (org-agenda-span 'day)
-	       (org-agenda-ndays 1)
 	       (org-agenda-start-on-weekday nil)
 	       (org-agenda-start-day "+0d")))
   "A block showing a 1 day schedule.")
