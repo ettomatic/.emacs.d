@@ -39,7 +39,7 @@
   :ensure t
   :init (whole-line-or-region-global-mode))
 
-(global-set-key "\C-ck" 'kill-whole-line)
+(global-set-key (kbd "C-c k") 'kill-whole-line)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -55,26 +55,8 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
-(defun duplicate-current-line-or-region (arg)
-  "Duplicates the current line or region ARG times.
-If there's no region, the current line will be duplicated.  However, if
-there's a region, all lines that region covers will be duplicated."
-  (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-        (exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let ((region (buffer-substring-no-properties beg end)))
-      (dotimes (i arg)
-        (goto-char end)
-        (newline)
-        (insert region)
-        (setq end (point)))
-      (goto-char (+ origin (* (length region) arg) arg)))))
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+;; Duplicate the current line, or the active region N times (prefix arg).
+(global-set-key (kbd "C-c d") 'duplicate-dwim)
 
 (when is-mac
   (setq mac-command-modifier       'meta)
