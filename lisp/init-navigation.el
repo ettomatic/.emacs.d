@@ -2,15 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; Projectile is a project interaction library for Emacs
-(use-package projectile
-  :ensure t
-  :defer 1
-  :custom
-  (projectile-keymap-prefix (kbd "C-c C-p"))
-  (projectile-completion-system 'default)
-  :config (projectile-mode))
-
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
