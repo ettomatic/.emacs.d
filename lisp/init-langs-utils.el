@@ -4,10 +4,14 @@
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-(use-package paredit
-  :ensure t
-  :hook ((emacs-lisp-mode . paredit-mode)
-         (lisp-interaction-mode . paredit-mode)))
+;; Bug with move text up and down via M-up or M-down
+;; paredit-splice-sexp: Can’t splice top level
+;; see https://emacsredux.com/blog/2026/03/27/paredit-keybinding-conflicts/
+;; shoudl move to Smartparens?
+;; (use-package paredit
+;;   :ensure t
+;;   :hook ((emacs-lisp-mode . paredit-mode)
+;;          (lisp-interaction-mode . paredit-mode)))
 
 ;;; ls-server
 (use-package eglot
