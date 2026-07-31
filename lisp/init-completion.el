@@ -49,19 +49,22 @@
   :ensure t
   :custom
   (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto nil)                  ;; Enable auto completion
-  (corfu-auto-delay 0.3)
-  (corfu-auto-prefix 3)
+  (corfu-auto t)                    ;; Enable auto completion
   (corfu-separator ?\s)             ;; Orderless field separator
   (corfu-quit-at-boundary nil)      ;; Never quit at completion boundary
   (corfu-preview-current 'insert)   ;; Do not preview current candidate
-  (corfu-preselect-first nil)       ;; Disable candidate preselection
-  :bind
+  (corfu-preselect 'prompt)         ;; Disable candidate preselection
   :init
   (global-corfu-mode)
   (corfu-history-mode)
   (unless (display-graphic-p)
-  (corfu-terminal-mode +1)))
+    (corfu-terminal-mode +1))
+  :config
+  ;; `corfu-auto-delay'/`corfu-auto-prefix' live in the `corfu-auto' submodule,
+  ;; only loaded once `corfu-mode' sees `corfu-auto' is non-nil; `:custom'
+  ;; would silently no-op since that defcustom doesn't exist yet.
+  (setq corfu-auto-delay 0.2
+        corfu-auto-prefix 3))
 
 ;; A few more useful configurations...
 (use-package emacs
