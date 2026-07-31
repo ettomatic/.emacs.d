@@ -33,8 +33,9 @@
       :default-height 120
       :default-weight medium)
      (JetBrains
-      :default-family "JetBrains Mono"
-      :default-height 110)
+      :default-family "JetBrains Mono")
+     (FiraCode
+      :default-family "Fira Code")
      (writing
       :default-family "Writer"
       :line-spacing 4)
@@ -50,7 +51,7 @@
 (if is-gui
     ;; Recover last preset or fall back to desired style from
     ;; `fontaine-presets'.
-    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'JuliaMono))
+    (fontaine-set-preset (or (fontaine-restore-latest-preset) 'Julia))
 
   ;; The other side of `fontaine-restore-latest-preset'.
   (add-hook 'kill-emacs-hook #'fontaine-store-latest-preset))

@@ -47,22 +47,18 @@
 ;;   (doom-modeline-time-icon nil)
 ;;   (doom-modeline-icon t))
 
-;; Not deferred: punch-line requires flycheck's library at load time,
-;; but nothing in this config turns on flycheck-mode to trigger a
-;; deferred load, so it must be loaded eagerly here instead.
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :defer t)
 
-(use-package punch-line
-  :defer t
-  :vc (:url "https://github.com/konrad1977/punch-line" :rev :newest)
-  :ensure nil
-  :after flycheck
-  :hook ((after-init . punch-line-mode))
+(use-package mood-line
+  ;; Enable mood-line
   :config
-  (setq
-   punch-line-left-separator "  "
-   punch-line-right-separator "  "))
+  (mood-line-mode)
+  ;; Use pretty Fira Code-compatible glyphs
+  :custom
+  (mood-line-glyph-alist mood-line-glyphs-fira-code))
+
 
 (use-package dashboard
   :ensure t
@@ -85,6 +81,22 @@
   :defer t
   :init
   (mode-line-bell-mode))
+
+(use-package spacious-padding
+  :ensure t
+  :custom
+  (spacious-padding-widths
+   '( :internal-border-width 2
+      :header-line-width 4
+      :mode-line-width 6
+      :custom-button-width 3
+      :tab-width 4
+      :right-divider-width 4
+      :scroll-bar-width 8
+      :fringe-width 8))
+  :config
+  (spacious-padding-mode 1)
+  (define-key global-map (kbd "<f8>") #'spacious-padding-mode))
 
 ;; Automatic resizing of Emacs windows to the golden ratio
 ;; (use-package golden-ratio
