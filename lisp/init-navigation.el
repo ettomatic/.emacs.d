@@ -210,6 +210,7 @@
 ;; The cursor stays in the current window and most of the time
 ;; I just move it to the new window manually, by C-x o.
 ;; Now the cursor jumps to the newly created window and it become active:
+;; TODO: this breaks Zoom to get Golden radio splits.
 (use-package window
   :ensure nil
   :preface

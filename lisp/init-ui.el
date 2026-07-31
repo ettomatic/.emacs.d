@@ -114,11 +114,11 @@
 (add-hook 'enable-theme-functions #'+modeline-add-padding)
 
 ;; Golden Ratio
-(use-package zoom
-  :config
-  ;; At least 100 cols wide and 3/4 of frame size in height
-  (setq zoom-size '(100 . 0.75))
-  (zoom-mode t))
+;; (use-package zoom
+;;   :config
+;;   ;; At least 100 cols wide and 3/4 of frame size in height
+;;   (setq zoom-size '(100 . 0.75))
+;;   (zoom-mode t))
 
 ;;; init-ui ends here
 (provide 'init-ui)
