@@ -41,7 +41,7 @@
   ;; every file visit -- that's what made opening a new file take ~2s;
   ;; scoping it to what's actually installed drops that to ~0.2s. Add a
   ;; language here once its grammar is installed.
-  (treesit-auto-langs '(bash dockerfile elixir heex lua python ruby toml yaml))
+  (treesit-auto-langs '(elixir heex ruby))
   :config
   (treesit-auto-add-to-auto-mode-alist)
   (global-treesit-auto-mode))
