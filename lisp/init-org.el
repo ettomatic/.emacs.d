@@ -15,16 +15,17 @@
   (org-tags-column 10)
   (org-tag-alist '(
                    (:startgroup . nil)
-                   ("home" . ?h)
-                   ("work" . ?w)
+                   ("meeting" . ?m)
+                   ("1:1" . ?1)
+                   ("retro" . ?1)
                    (:endgroup . nil)
-                   (:startgroup . nil)
-                   ("til" . ?t)
-                   ("link" . ?l)
-                   ("phone" . ?p)
-                   ("emacs" . ?e)
-                   ("research" . ?r)
-                   (:endgroup . nil)
+                   ;; (:startgroup . nil)
+                   ;; ("til" . ?t)
+                   ;; ("link" . ?l)
+                   ;; ("phone" . ?p)
+                   ;; ("emacs" . ?e)
+                   ;; ("research" . ?r)
+                   ;; (:endgroup . nil)
                    ))
   (org-archive-location "~/org/archives/%s::")
   (org-log-done 'time)
@@ -180,6 +181,10 @@
 ;;; No more fumbling around with = and * characters!
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((sqlite . t)))
 
 (provide 'init-org)
 ;;; init-org ends here

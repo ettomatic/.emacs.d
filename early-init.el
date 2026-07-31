@@ -1,3 +1,7 @@
+;;; early-init --- initial configuration -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (setq gcmh-high-cons-threshold (* 1024 1024 1024))
 (setq gcmh-idle-delay-factor 20)
 (setq jit-lock-defer-time 0.05)
@@ -26,3 +30,6 @@
 (let ((gccjitpath "/opt/homebrew/lib/gcc/14:/opt/homebrew/lib"))
   (mapc (lambda (var-name) (my-append-env-var var-name gccjitpath))
         '("LIBRARY_PATH" "LD_LIBRARY_PATH" "PATH")))
+
+(provide 'early-init)
+;;; early-init ends here

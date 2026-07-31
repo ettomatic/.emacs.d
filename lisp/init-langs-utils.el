@@ -14,6 +14,7 @@
   :init
   (add-hook 'tuareg-mode-hook 'eglot-ensure)
   (add-hook 'fsharp-mode-hook 'eglot-ensure)
+  (setq jsonrpc-event-hook nil)
   :config
   (add-to-list 'eglot-server-programs '(tuareg-mode . ("~/.opam/default/bin/ocamllsp")))
   (put 'tuareg-mode 'eglot-language-id "ocaml"))
@@ -29,13 +30,13 @@
           (lambda () (setq-local devdocs-current-docs '("elixir~1.18"))))
 
 
-(use-package treesit-auto
-  :ensure t
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+;; (use-package treesit-auto
+;;   :ensure t
+;;   :custom
+;;   (treesit-auto-install 'prompt)
+;;   :config
+;;   (treesit-auto-add-to-auto-mode-alist 'all)
+;;   (global-treesit-auto-mode))
 
 
 (provide 'init-langs-utils)

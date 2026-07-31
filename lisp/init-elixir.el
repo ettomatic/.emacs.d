@@ -9,6 +9,7 @@
 
 (use-package elixir-ts-mode
   :ensure t
+  :mode ("\\.ex\\'" "\\.exs\\'")
   :defer t
   :init
   (add-hook 'elixir-ts-mode-hook 'exunit-mode))

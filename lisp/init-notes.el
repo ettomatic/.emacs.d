@@ -57,6 +57,8 @@
   ;; Pick dates, where relevant, with Org's advanced interface:
   (setq denote-date-prompt-use-org-read-date t)
 
+  (setq xref-search-program 'ripgrep)
+
   ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
   (denote-rename-buffer-mode 1))
 
