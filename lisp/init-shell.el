@@ -50,6 +50,10 @@
   :config
   (add-hook 'eshell-mode-hook #'eshell-bookmark-setup))
 
+;; Note: plain `setq' (not use-package :custom) is required here because
+;; these variables belong to eshell's `em-hist' submodule, which is only
+;; loaded lazily when an eshell session starts; :custom would silently
+;; have no effect since the defcustom doesn't exist yet at init time.
 (setq eshell-history-size         10000
       eshell-buffer-maximum-lines 10000
       eshell-hist-ignoredups t
