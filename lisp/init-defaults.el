@@ -11,7 +11,6 @@
 
 
 (setq-default
- ad-redefinition-action 'accept                   ; Silence warnings for redefinition
  calendar-location-name "London"                  ; Calendar Location
  calendar-latitude 51.509865                      ; Calendar Lat
  calendar-longitude  -0.118092                    ; Calendar Long
@@ -36,18 +35,16 @@
  bidi-display-reordering  'left-to-right          ; if you don't use RTL ever, this could improve perf
  bidi-paragraph-direction 'left-to-right          ; Enable left-to-right as a default to get faster rendering
  bidi-inhibit-bpa t                               ; Disabling he Bidirectional Parentheses Algorithm makes redisplay faster
- pgtk-wait-for-event-timeout 0                    ; the majority of the input lag you're noticing with the `pgtk` build
  auto-save-interval 10                            ; Auto save every 10 secs
  make-backup-files nil                            ; Turn Off Backup
  auto-save-visited-file-name t                    ;
- savehist-mode 1                                  ; Preserve commands preserved between sessions
  display-time-24hr-format t                       ; 24h please
  display-time-mail-string ""                      ; Do not display "Mail" on modeline
  vc-follow-symlinks t)                            ; Always follow the symlinks
 (cd "~/")                                         ; Move to the user directory
 (column-number-mode 1)                            ; Show the column number
 (display-time-mode 1)                             ; Enable time in the mode-line
-(fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
+(setq use-short-answers t)                        ; Replace yes/no prompts with y/n
 (global-hl-line-mode)                             ; Hightlight current line
 (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
 (show-paren-mode 1)                               ; Show the parent
@@ -68,13 +65,10 @@
 ;; A buffer can get out of sync with respect to its visited file on disk if that file is changed by another program.
 ;; Auto Revert mode automatically reverts the buffer when its visited file changes on disk, it will not revert a
 ;; buffer if it has unsaved changes, or if its file on disk is deleted or renamed.
-(setq global-auto-revert-mode t)
+(global-auto-revert-mode 1)
 
 ;; Emacs will save customizations on etc/ instead of your init.el file by default.
 (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-
-;; Silence compiler warnings as they can be pretty disruptive
-(setq comp-async-report-warnings-errors nil)
 
 ;; Displaying World Time
 (setq display-time-world-list
