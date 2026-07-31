@@ -9,7 +9,8 @@
 (use-package jinx
   :hook ((text-mode . jinx-mode)
          (prog-mode . jinx-mode))
-  :bind (("M-$" . jinx-correct))
+  ;; avoid M-$ (Cmd-Shift-4 via mac-command-modifier), clashes with macOS screenshot
+  :bind (("C-c s" . jinx-correct))
   :custom
   (jinx-camel-modes '(prog-mode))
   (jinx-delay 0.1))
