@@ -57,7 +57,25 @@
   (mood-line-mode)
   ;; Use pretty Fira Code-compatible glyphs
   :custom
-  (mood-line-glyph-alist mood-line-glyphs-fira-code))
+  (mood-line-glyph-alist mood-line-glyphs-fira-code)
+  ;; Default format plus the ace-window number on the right side.
+  (mood-line-format
+   (mood-line-defformat
+    :left
+    (((mood-line-segment-modal)                  . " ")
+     ((or (mood-line-segment-buffer-status) " ") . " ")
+     ((mood-line-segment-buffer-name)            . "  ")
+     ((mood-line-segment-anzu)                   . "  ")
+     ((mood-line-segment-multiple-cursors)       . "  ")
+     ((mood-line-segment-cursor-position)        . " ")
+     (mood-line-segment-scroll))
+    :right
+    (((window-parameter (selected-window) 'ace-window-path) . "  ")
+     ((mood-line-segment-vc)         . "  ")
+     ((mood-line-segment-major-mode) . "  ")
+     ((mood-line-segment-misc-info)  . "  ")
+     ((mood-line-segment-checker)    . "  ")
+     ((mood-line-segment-process)    . "  ")))))
 
 
 (use-package dashboard
@@ -106,11 +124,11 @@
 ;;   (golden-ratio-mode 1))
 ;; (add-to-list 'golden-ratio-extra-commands 'ace-window)
 
-;; (use-package zoom
-;;   :config
-;;   ;; At least 100 cols wide and 3/4 of frame size in height
-;;   (setq zoom-size '(100 . 0.75))
-;;   (zoom-mode t))
+(use-package zoom
+  :config
+  ;; At least 100 cols wide and 3/4 of frame size in height
+  (setq zoom-size '(100 . 0.75))
+  (zoom-mode t))
 
-(provide 'init-ui)
 ;;; init-ui ends here
+(provide 'init-ui)

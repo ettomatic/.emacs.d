@@ -22,6 +22,17 @@
 (use-package ace-window
   :ensure t
   :defer t
+  :init
+  ;; Keep the `ace-window-path' window parameter updated for the mood-line
+  ;; segment, without letting `ace-window-display-mode' clobber mood-line's
+  ;; own `mode-line-format' (it isn't a plain list, so its splicing corrupts it).
+  (require 'ace-window)
+  (setq ace-window-display-mode t)
+  (aw-update)
+  (add-hook 'window-configuration-change-hook #'aw-update)
+  :custom
+  ;; number already shows in the mode-line; skip the selection-time overlay
+  (aw-display-mode-overlay nil)
   :bind (("C-x o" . ace-window)))
 
 (use-package dirvish
