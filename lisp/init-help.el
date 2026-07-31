@@ -33,4 +33,4 @@
 
 
 (provide 'init-help)
-;;; init-version-control ends here
+;;; init-help ends here

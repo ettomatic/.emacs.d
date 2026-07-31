@@ -9,10 +9,6 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 (use-package delight :ensure t)
 (use-package use-package-ensure-system-package :ensure t)
 
