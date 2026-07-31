@@ -44,8 +44,9 @@
 
 ;; remember last position
 (use-package saveplace
-  :hook (after-init . save-place-mode))
-(setq save-place-file (concat no-littering-var-directory "places"))
+  :hook (after-init . save-place-mode)
+  :custom
+  (save-place-file (concat no-littering-var-directory "places")))
 
 (defun toggle-comment-on-line ()
   "Comment or uncomment current line."
