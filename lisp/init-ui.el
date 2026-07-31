@@ -40,29 +40,29 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-height 32)
-  (setq doom-modeline-buffer-encoding nil)
-  (setq doom-modeline-vcs-max-length 24)
-  (setq doom-modeline-time-icon nil)
-  (setq doom-modeline-icon t))
+  :custom
+  (doom-modeline-height 32)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-vcs-max-length 24)
+  (doom-modeline-time-icon nil)
+  (doom-modeline-icon t))
 
 (use-package dashboard
   :ensure t
   :init
   (dashboard-setup-startup-hook)
-  :config
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5)))
-  (setq dashboard-center-content t)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-startup-banner 1)
-  (setq dashboard-projects-switch-function 'projectile-switch-project)
-  (setq dashboard-footer-messages '("Emacs is LISP!"))
-  (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name))))
+  :custom
+  (dashboard-items '((recents  . 5)
+                     (bookmarks . 5)
+                     (projects . 5)
+                     (agenda . 5)))
+  (dashboard-center-content t)
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+  (dashboard-startup-banner 1)
+  (dashboard-projects-switch-function 'projectile-switch-project)
+  (dashboard-footer-messages '("Emacs is LISP!"))
+  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name))))
 
 (use-package mode-line-bell
   :defer t
