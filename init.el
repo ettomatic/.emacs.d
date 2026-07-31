@@ -4,9 +4,10 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(require 'init-defaults)
-(require 'init-utils)
+;; Package management must load first: later files use `use-package' with `:ensure'.
 (require 'init-elpa)
+(require 'init-utils)
+(require 'init-defaults)
 
 ;;  Ensure environment variables inside Emacs look the same as in the user's shell.
 (use-package exec-path-from-shell
