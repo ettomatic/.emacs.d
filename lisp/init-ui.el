@@ -100,21 +100,16 @@
   :init
   (mode-line-bell-mode))
 
-(use-package spacious-padding
-  :ensure t
-  :custom
-  (spacious-padding-widths
-   '( :internal-border-width 2
-      :header-line-width 4
-      :mode-line-width 8
-      :custom-button-width 3
-      :tab-width 4
-      :right-divider-width 4
-      :scroll-bar-width 6
-      :fringe-width 8))
-  :config
-  (spacious-padding-mode 1)
-  (define-key global-map (kbd "<f8>") #'spacious-padding-mode))
+;; Add vertical padding to the mode-line with an invisible box, so it gets
+;; some breathing room without pulling in spacious-padding.
+(defun +modeline-add-padding (&rest _)
+  (dolist (face '(mode-line mode-line-active mode-line-inactive))
+    (when (facep face)
+      (set-face-attribute face nil :box
+                           (list :line-width 8
+                                 :color (face-attribute face :background nil t))))))
+(+modeline-add-padding)
+(add-hook 'enable-theme-functions #'+modeline-add-padding)
 
 ;; Golden Ratio
 (use-package zoom
