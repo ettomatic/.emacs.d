@@ -26,8 +26,7 @@
   :init
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((emacs-lisp . t)
-     (elixir . t)))
+   (append '((elixir . t)) org-babel-load-languages))
   :after org)
 
 (provide 'init-elixir)

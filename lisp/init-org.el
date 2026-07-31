@@ -118,8 +118,9 @@
   (not (or (string= lang "ruby") (string= lang "elixir"))))
 
 (org-babel-do-load-languages 'org-babel-load-languages
-    '((shell . t)
-      (sqlite . t)))
+    (append '((shell . t)
+              (sqlite . t))
+            org-babel-load-languages))
 
 ;;; Capture
 
