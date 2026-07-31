@@ -9,11 +9,6 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-;; Apple menu bar like other macOS apps
-(use-package menu-bar
-  :config
-  (menu-bar-mode +1))
-
 (if is-gui
     (setq default-frame-alist '((width . 160)
                                 (height . 60))))
