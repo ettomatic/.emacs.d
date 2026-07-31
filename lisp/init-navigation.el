@@ -35,14 +35,16 @@
      ("d" "~/Downloads/"                "Downloads")
      ("c" "~/code/"                     "Code")
      ("b" "~/code/belfrage/"            "Belfrage")))
-  :config
-  (setq dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
+  (dirvish-attributes '(vc-state subtree-state all-the-icons collapse git-msg file-size))
   :bind
   (("C-c f" . dirvish-fd)
    :map dirvish-mode-map
    ("u"   . dired-up-directory)))
 
-(setq dired-kill-when-opening-new-dired-buffer t)
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-kill-when-opening-new-dired-buffer t))
 
 (use-package rg
   :defer t
@@ -126,16 +128,21 @@
 
 ;;; Recent Files
 
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-(add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
-(add-to-list 'recentf-exclude no-littering-var-directory)
-(add-to-list 'recentf-exclude no-littering-etc-directory)
-;; ;;; If Emacs exits abruptly for some reason the recent file list will be lost
-;; ;;;  therefore you may wish to call `recentf-save-list` periodically, e.g. every 5min
-(run-at-time nil (* 5 60) 'recentf-save-list)
+(use-package recentf
+  :ensure nil
+  :custom
+  (recentf-auto-cleanup 'never) ;; disable before we start recentf!
+  (recentf-max-menu-items 25)
+  (recentf-max-saved-items 25)
+  :init
+  (recentf-mode 1)
+  :config
+  (add-to-list 'recentf-exclude "~/.emacs.d/elpa/")
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  ;; If Emacs exits abruptly for some reason the recent file list will be lost,
+  ;; therefore call `recentf-save-list' periodically, e.g. every 5min.
+  (run-at-time nil (* 5 60) 'recentf-save-list))
 
 (use-package consult
   :ensure t
