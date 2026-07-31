@@ -2,10 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq gcmh-high-cons-threshold (* 1024 1024 1024))
-(setq gcmh-idle-delay-factor 20)
 (setq jit-lock-defer-time 0.05)
-(setq read-process-output-max (* 1024 1024))
 (setq package-native-compile t)
 
 (defun my-minibuffer-setup-hook ()
