@@ -57,23 +57,5 @@
   :hook ((ruby-ts-mode . (lambda () (setq-local devdocs-current-docs '("ruby~3.3"))))
          (elixir-ts-mode . (lambda () (setq-local devdocs-current-docs '("elixir~1.20"))))))
 
-(use-package treesit-auto
-  :ensure t
-  :custom
-  ;; Ask before installing a missing grammar (the actual cause of the earlier
-  ;; slowdown was `treesit-auto-add-to-auto-mode-alist' with `all', which forces
-  ;; every language into its ts-mode -- and thus an install -- even without a
-  ;; grammar; that's not used here, so this alone won't trigger it unprompted).
-  (treesit-auto-install 'prompt)
-  ;; `treesit-auto-langs' defaults to EVERY language treesit-auto knows (60+),
-  ;; and `global-treesit-auto-mode' recomputes readiness for all of them on
-  ;; every file visit -- that's what made opening a new file take ~2s;
-  ;; scoping it to what's actually installed drops that to ~0.2s. Add a
-  ;; language here once its grammar is installed.
-  (treesit-auto-langs '(elixir heex ruby))
-  :config
-  (treesit-auto-add-to-auto-mode-alist)
-  (global-treesit-auto-mode))
-
 (provide 'init-langs-utils)
 ;;; init-langs-utils ends here
