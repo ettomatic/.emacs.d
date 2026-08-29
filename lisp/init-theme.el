@@ -10,6 +10,7 @@
   (modus-themes-bold-constructs t)
   (modus-themes-variable-pitch-ui nil)
   (modus-themes-mixed-fonts t)
+  (modus-themes-disable-other-themes t)
   ;; Maybe define some palette overrides, such as by using our presets
   ;; modus-themes-preset-overrides-intense
   (modus-themes-common-palette-overrides
