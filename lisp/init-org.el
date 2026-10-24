@@ -169,5 +169,15 @@
 (use-package org-appear
   :hook (org-mode . org-appear-mode))
 
+(use-package org-caldav
+  :ensure t
+  :config
+  (setq org-caldav-url (getenv "CALDAV_URL"))
+  (setq org-caldav-calendars
+        `((:calendar-id, (getenv "CALDAV_ID")
+                        :inbox "~/org/calendar.org")))
+  (setq org-icalendar-timezone "Europe/London")
+  (setq org-caldav-sync-direction 'cal->org))
+
 (provide 'init-org)
 ;;; init-org ends here
