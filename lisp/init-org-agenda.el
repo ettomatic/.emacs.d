@@ -83,13 +83,49 @@
           ,eb-org-agenda-block--inbox
           ,eb-org-agenda-block--closed-today))))
 
-(defun organised-exchange ()
-  "Sync Outlook Calendar ics with Org Agenda."
+(use-package org-caldav
+  :ensure t
+  :config
+  (let ((url (getenv "CALDAV_URL"))
+        (id (getenv "CALDAV_ID")))
+    (unless url
+      (user-error "CALDAV_URL is not set"))
+    (unless id
+      (user-error "CALDAV_ID is not set"))
+    (setq org-caldav-url url
+          org-caldav-calendars
+          `((:calendar-id ,id
+                          :inbox "~/org/calendar.org"))
+          org-icalendar-timezone "Europe/London"
+          org-caldav-sync-direction 'cal->org)))
+
+(defun my/org-caldav-sync-silent ()
+  "Run `org-caldav-sync' without showing its buffer."
+  (let ((display-buffer-overriding-action '(display-buffer-no-window)))
+    (save-window-excursion
+      (org-caldav-sync))))
+
+(defvar my/org-caldav-sync-timer nil)
+
+(defun my/org-caldav-start-sync-timer ()
+  "Start periodic silent org-caldav sync after Emacs has been idle."
   (interactive)
-  (if (get-buffer "exchange.org")
-      (kill-buffer "exchange.org"))
-  (shell-command "~/code/organised-exchange/bin/eto")
-  (message "calendar imported!"))
+  (when my/org-caldav-sync-timer
+    (cancel-timer my/org-caldav-sync-timer))
+  (setq my/org-caldav-sync-timer
+        (run-with-idle-timer
+         300 t #'my/org-caldav-sync-silent)))  ;; 5 minutes idle, then every 15 min
+
+(defun my/org-caldav-stop-sync-timer ()
+  "Stop periodic org-caldav sync."
+  (interactive)
+  (when my/org-caldav-sync-timer
+    (cancel-timer my/org-caldav-sync-timer)
+    (setq my/org-caldav-sync-timer nil)))
+
+;; Start automatically after Emacs loads
+;; Note: `run-with-idle-timer` doesn’t mean “run exactly every 15 minutes”; it means “after Emacs has been idle for 5 minutes, then repeat every 15 minutes while idle.” If you want **strictly every 15 minutes, but only when idle at the due time**, I can give you that version too.
+(add-hook 'emacs-startup-hook #'my/org-caldav-start-sync-timer)
 
 (provide 'init-org-agenda)
 ;;; init-org-agenda ends here
