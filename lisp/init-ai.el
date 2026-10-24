@@ -2,34 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (use-package gptel
-;;   :ensure t
-;;   :custom
-;;   (gptel-model   'sonar-pro)
-;;   (gptel-backend (gptel-make-openai "Perplexity"
-;;                    :host "api.perplexity.ai"
-;;                    :key (getenv "PERPLEXITY_API_KEY")
-;;                    :endpoint "/chat/completions"
-;;                    :stream t
-;;                    :models '(sonar-pro)
-;;                    )
-;;                  )
-;;   )
-
 (use-package gptel
   :ensure t
-  :custom
-  (gptel-model   'meta-llama/llama-3.3-70b-instruct)
-  (gptel-backend (gptel-make-openai "OpenRouter"
-                   :host "openrouter.ai"
-                   :key (getenv "OPENROUTER_API_KEY")
-                   :endpoint "/api/v1/chat/completions"
-                   :stream t
-                   :models '(google/gemini-2.5-pro-preview-03-25
-                             deepseek/deepseek-chat:free
-                             anthropic/claude-4.0-sonnet
-                             deepseek/deepseek-r1))))
-
+  :init
+  (setq gptel-model 'gpt-6-luna)
+  :config
+  (setq gptel-api-key #'gptel-api-key-from-auth-source))
 
 ;; (add-to-list 'load-path "~/.emacs.d/codeium.el")
 ;; (require 'codeium)
