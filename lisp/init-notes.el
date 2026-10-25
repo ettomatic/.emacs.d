@@ -5,18 +5,9 @@
 (use-package denote
   :ensure t
   :hook
-  ( ;; If you use Markdown or plain text files, then you want to make
-   ;; the Denote links clickable (Org renders links as buttons right
-   ;; away)
-   (text-mode . denote-fontify-links-mode-maybe)
-   ;; Apply colours to Denote names in Dired.  This applies to all
-   ;; directories.  Check `denote-dired-directories' for the specific
-   ;; directories you may prefer instead.  Then, instead of
-   ;; `denote-dired-mode', use `denote-dired-mode-in-directories'.
+  ((text-mode . denote-fontify-links-mode-maybe)
    (dired-mode . denote-dired-mode))
   :bind
-  ;; Denote DOES NOT define any key bindings.  This is for the user to
-  ;; decide.  For example:
   ( :map global-map
     ("C-c n n" . denote)
     ("C-c n d" . denote-dired)
@@ -30,12 +21,8 @@
     ("C-c n b" . denote-backlinks)
     ("C-c n q c" . denote-query-contents-link) ; create link that triggers a grep
     ("C-c n q f" . denote-query-filenames-link) ; create link that triggers a dired
-    ;; Note that `denote-rename-file' can work from any context, not just
-    ;; Dired bufffers.  That is why we bind it here to the `global-map'.
     ("C-c n r" . denote-rename-file)
     ("C-c n R" . denote-rename-file-using-front-matter)
-
-    ;; Key bindings specifically for Dired.
     :map dired-mode-map
     ("C-c C-d C-i" . denote-dired-link-marked-notes)
     ("C-c C-d C-r" . denote-dired-rename-files)
@@ -43,17 +30,15 @@
     ("C-c C-d C-R" . denote-dired-rename-marked-files-using-front-matter))
 
   :custom
-  ;; Remember to check the doc string of each of those variables.
   (denote-directory (expand-file-name "~/org/notes/"))
   (denote-save-buffers nil)
-  (denote-known-keywords '("bbc" "emacs" "elixir" "people" "team" "meeting"))
+  (denote-known-keywords '("bbc" "emacs" "elixir" "people" "team" "meeting" "research"))
   (denote-infer-keywords t)
   (denote-sort-keywords t)
   (denote-prompts '(title keywords))
   (denote-excluded-directories-regexp nil)
   (denote-excluded-keywords-regexp nil)
   (denote-rename-confirmations '(rewrite-front-matter modify-file-name))
-  ;; Pick dates, where relevant, with Org's advanced interface:
   (denote-date-prompt-use-org-read-date t)
   (xref-search-program 'ripgrep)
   :config
@@ -89,16 +74,6 @@
   (denote-journal-keyword "journal")
   ;; Read the doc string of `denote-journal-title-format'.
   (denote-journal-title-format 'day-date-month-year))
-
-(with-eval-after-load 'org-capture
-  (add-to-list 'org-capture-templates
-               '("n" "New note (with Denote)" plain
-                 (file denote-last-path)
-                 #'denote-org-capture
-                 :no-save t
-                 :immediate-finish nil
-                 :kill-buffer t
-                 :jump-to-captured t)))
 
 ;; (require 'howm-org)
 ;; (use-package howm
