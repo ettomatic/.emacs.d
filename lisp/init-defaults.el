@@ -80,15 +80,5 @@
         ("Asia/Tokyo" "Tokyo")
         ("Pacific/Auckland" "Auckland")))
 
-(use-package exec-path-from-shell
-  :ensure t
-  :if (memq window-system '(mac ns))
-  :init
-  (setq exec-path-from-shell-shell-name "/opt/homebrew/bin/fish")
-  :config
-  (dolist (var '("CALDAV_URL" "CALDAV_ID"))
-    (add-to-list 'exec-path-from-shell-variables var))
-  (exec-path-from-shell-initialize))
-
 (provide 'init-defaults)
 ;;; init-defaults ends here

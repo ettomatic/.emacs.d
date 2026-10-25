@@ -4,16 +4,21 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+;; Ensure environment variables inside Emacs look the same as in the user's shell.
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns))
+  :init
+  (setq exec-path-from-shell-shell-name "/opt/homebrew/bin/fish")
+  :config
+  (dolist (var '("CALDAV_URL" "CALDAV_ID"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  (exec-path-from-shell-initialize))
+
 ;; Package management must load first: later files use `use-package' with `:ensure'.
 (require 'init-elpa)
 (require 'init-utils)
 (require 'init-defaults)
-
-;;  Ensure environment variables inside Emacs look the same as in the user's shell.
-(use-package exec-path-from-shell
-  :ensure t)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
 (require 'init-theme)
 (require 'init-fonts)
