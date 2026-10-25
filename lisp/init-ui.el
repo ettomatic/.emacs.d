@@ -9,9 +9,13 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-(if is-gui
-    (setq default-frame-alist '((width . 160)
-                                (height . 60))))
+(when is-gui
+  (setq default-frame-alist
+        (append '((width . 160)
+                  (height . 60)
+                  (top . 100)
+                  (left . 180))
+                default-frame-alist)))
 
 (setq select-enable-clipboard t
       select-enable-primary t
