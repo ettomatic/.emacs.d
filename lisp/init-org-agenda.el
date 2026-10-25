@@ -19,7 +19,7 @@
   (org-agenda-start-on-weekday nil)
   (org-agenda-hide-tags-regexp ".")
   (org-agenda-restore-windows-after-quit t)
-  (org-agenda-files (list "~/org/inbox.org" "~/org/calendar.org" "~/org/notes/journal"))
+  (org-agenda-files (list "~/org/inbox.org" "~/org/calendar.org"))
   ;; Compact the block agenda view (disabled)
   (org-agenda-compact-blocks nil)
   ;; Set the times to display in the time grid
