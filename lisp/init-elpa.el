@@ -6,11 +6,10 @@
 (package-initialize)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")
+                         ;; ("elpa" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (use-package delight :ensure t)
-(use-package use-package-ensure-system-package :ensure t)
 
 (provide 'init-elpa)
 ;;; init-elpa ends here
