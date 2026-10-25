@@ -47,9 +47,8 @@
   (dired-kill-when-opening-new-dired-buffer t))
 
 (use-package rg
-  :defer t
-  :init
-  (rg-enable-default-bindings))
+  :ensure t
+  :ensure-system-package rg)
 
 (use-package marginalia
   :ensure
