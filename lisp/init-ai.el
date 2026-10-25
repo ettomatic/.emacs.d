@@ -5,9 +5,12 @@
 (use-package gptel
   :ensure t
   :init
-  (setq gptel-model 'gpt-6-luna)
+  (setq gptel-model 'ChatGPT:gpt-6-luna
+        gptel-default-mode 'org-mode)
   :config
-  (setq gptel-api-key #'gptel-api-key-from-auth-source))
+  (setq gptel-api-key #'gptel-api-key-from-auth-source)
+  (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
+  (add-hook 'gptel-post-response-functions #'gptel-end-of-response))
 
 ;; (add-to-list 'load-path "~/.emacs.d/codeium.el")
 ;; (require 'codeium)
