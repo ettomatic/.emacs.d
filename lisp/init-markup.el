@@ -33,7 +33,9 @@
   :defer t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)))
+         ("\\.markdown\\'" . markdown-mode))
+  :config
+  (setq markdown-list-item-bullets '("·")))
 
 (provide 'init-markup)
 ;;; init-markup ends here
