@@ -38,6 +38,7 @@
 ;; (require 'init-presentation)
 
 (require 'init-shell)
+(require 'init-databases)
 ;; (require 'init-ai)
 
 (require 'init-langs-utils)
