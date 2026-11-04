@@ -4,49 +4,60 @@
 
 (use-package denote
   :ensure t
-  :hook
-  ((text-mode . denote-fontify-links-mode-maybe)
-   (dired-mode . denote-dired-mode))
-  :bind
-  ( :map global-map
-    ("C-c n n" . denote)
-    ("C-c n d" . denote-dired)
-    ("C-c n g" . denote-grep)
-    ;; If you intend to use Denote with a variety of file types, it is
-    ;; easier to bind the link-related commands to the `global-map', as
-    ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
-    ;; `markdown-mode-map', and/or `text-mode-map'.
-    ("C-c n l" . denote-link)
-    ("C-c n L" . denote-add-links)
-    ("C-c n b" . denote-backlinks)
-    ("C-c n q c" . denote-query-contents-link) ; create link that triggers a grep
-    ("C-c n q f" . denote-query-filenames-link) ; create link that triggers a dired
-    ("C-c n r" . denote-rename-file)
-    ("C-c n R" . denote-rename-file-using-front-matter)
-    :map dired-mode-map
-    ("C-c C-d C-i" . denote-dired-link-marked-notes)
-    ("C-c C-d C-r" . denote-dired-rename-files)
-    ("C-c C-d C-k" . denote-dired-rename-marked-files-with-keywords)
-    ("C-c C-d C-R" . denote-dired-rename-marked-files-using-front-matter))
-
+  :init
+  (setq denote-directory (expand-file-name "~/org/notes/")
+        denote-file-type 'markdown-yaml
+        denote-excluded-directories-regexp
+        (rx "/" (or "assets" "images") "/"))
   :custom
-  (denote-directory (expand-file-name "~/org/notes/"))
-  (denote-save-buffers nil)
+  (denote-save-buffers t)
   (denote-known-keywords '("bbc" "emacs" "elixir" "people" "team" "meeting" "research"))
   (denote-infer-keywords t)
   (denote-sort-keywords t)
   (denote-prompts '(title keywords))
-  (denote-excluded-directories-regexp nil)
   (denote-excluded-keywords-regexp nil)
   (denote-rename-confirmations '(rewrite-front-matter modify-file-name))
   (denote-date-prompt-use-org-read-date t)
   (xref-search-program 'ripgrep)
+  :hook
+  ((markdown-mode . denote-fontify-links-mode-maybe)
+   (org-mode . denote-fontify-links-mode-maybe)
+   (dired-mode . denote-dired-mode))
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n N" . denote-type)
+   ("C-c n d" . denote-dired)
+   ("C-c n G" . denote-grep)
+   ("C-c n l" . denote-link)
+   ("C-c n L" . denote-add-links)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n q c" . denote-query-contents-link)
+   ("C-c n q f" . denote-query-filenames-link)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n R" . denote-rename-file-using-front-matter)
+   :map dired-mode-map
+   ("C-c C-d C-i" . denote-dired-link-marked-notes)
+   ("C-c C-d C-r" . denote-dired-rename-files)
+   ("C-c C-d C-k" . denote-dired-rename-marked-files-with-keywords)
+   ("C-c C-d C-R" . denote-dired-rename-marked-files-using-front-matter))
   :config
-  ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
-  (denote-rename-buffer-mode 1))
+  (denote-rename-buffer-mode 1)
+  (with-eval-after-load 'markdown-mode
+    (define-key markdown-mode-map (kbd "C-c n i") #'denote-link-or-create)
+    (define-key markdown-mode-map (kbd "C-c n o") #'denote-open-or-create))
+  (with-eval-after-load 'org
+    (define-key org-mode-map (kbd "C-c n i") #'denote-link-or-create)
+    (define-key org-mode-map (kbd "C-c n o") #'denote-open-or-create)))
 
-;; (use-package denote-markdown
-;;   :ensure t)
+(use-package consult-denote
+  :ensure t
+  :bind
+  (:map global-map
+        ("C-c n f" . consult-denote-find)
+        ("C-c n g" . consult-denote-grep))
+  :config
+  (setq consult-denote-grep-command #'consult-ripgrep)
+  (consult-denote-mode 1))
 
 (defun my/denote-olivetti-setup ()
   (when (and buffer-file-name
@@ -56,13 +67,6 @@
     (olivetti-mode 1)))
 
 (add-hook 'find-file-hook #'my/denote-olivetti-setup)
-
-(use-package consult-denote
-  :ensure t
-  :bind
-  (:map global-map
-    ("C-c n f" . consult-denote-find)
-    ("C-c n g" . consult-denote-grep)))
 
 (use-package denote-journal
   :ensure t
