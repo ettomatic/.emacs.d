@@ -11,7 +11,8 @@
   :ensure t
   ;:defer t
   :custom
-  (olivetti-body-width 74)
+  (olivetti-body-width 80)
+  (olivetti-margin-width 10)
   :config
   (defun writing-mode ()
     "Distraction-free writing environment"
@@ -34,22 +35,6 @@
         (text-scale-decrease 2))))
     :bind
     (("<f9>" . writing-mode)))
-
-;;; Should I use Spell-fu? See init-editing
-;; (customize-set-variable 'ispell-program-name "aspell")
-;; (customize-set-variable 'ispell-extra-args '("--sug-mode=ultra"))
-
-;; (add-hook
-;;  'olivetti-mode-hook
-;;  'flyspell-mode)
-
-;; (use-package langtool
-;;   :defer t
-;;   :config
-;;   (setq langtool-http-server-host "localhost"
-;;         langtool-http-server-port 8010)
-;;   (setq langtool-default-language "en-GB")
-;;   (setq langtool-mother-tongue "it"))
 
 (provide 'init-writing)
 ;;; init-writing ends here

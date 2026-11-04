@@ -48,6 +48,15 @@
 ;; (use-package denote-markdown
 ;;   :ensure t)
 
+(defun my/denote-olivetti-setup ()
+  (when (and buffer-file-name
+             (string-prefix-p (expand-file-name denote-directory)
+                              (file-name-directory (expand-file-name buffer-file-name)))
+             (derived-mode-p 'org-mode 'markdown-mode))
+    (olivetti-mode 1)))
+
+(add-hook 'find-file-hook #'my/denote-olivetti-setup)
+
 (use-package consult-denote
   :ensure t
   :bind

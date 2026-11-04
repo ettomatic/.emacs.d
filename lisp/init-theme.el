@@ -18,7 +18,8 @@
      (border-mode-line-inactive unspecified)))
   :config
   (load-theme 'modus-operandi-tritanopia :no-confirm)
-  (define-key global-map (kbd "<f5>") #'modus-themes-toggle))
+  (define-key global-map (kbd "<f5>") #'modus-themes-toggle)
+  (set-fringe-mode 0))
 
 ;;   :config
 ;;   (load-theme 'leuven t))
