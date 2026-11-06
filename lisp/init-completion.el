@@ -110,10 +110,8 @@
   :config
   ;; Silence then pcomplete capf, no errors or messages!
   (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
-
-  ;; Ensure that pcomplete does not write to the buffer
-  ;; and behaves as a pure `completion-at-point-function'.
-  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify))
+  ;; Remove obsolete advice when reloading; Emacs now protects the buffer.
+  (advice-remove 'pcomplete-completions-at-point #'cape-wrap-purify))
 
 (provide 'init-completion)
 ;;; init-completion ends here
