@@ -22,33 +22,5 @@
   (define-key global-map (kbd "<f5>") #'modus-themes-toggle)
   (set-fringe-mode 0))
 
-;;   :config
-;;   (load-theme 'leuven t))
-
-;; (setq leuven-scale-outline-headlines nil)
-;; (setq leuven-scale-org-agenda-structure nil)
-;; (setq leuven-scale-volatile-highlight nil)
-
-;; (use-package ef-themes
-;;   :config
-;;   (ef-themes-select 'ef-spring))
-
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :config
-;;   (load-theme 'color-theme-sanityinc-tomorrow-day t))
-
-;; (use-package acme-theme
-;;   :config
-;;   (load-theme 'acme t))
-
-;; (use-package catppuccin-theme)
-;; (setq catppuccin-flavor 'mocha) ;; or 'frappe, 'macchiato, 'latte or 'mocha
-;; (catppuccin-reload)
-
-;; ;; (use-package dakrone-light-theme
-;; ;;   :ensure t
-;; ;;   :init
-;; ;;   (load-theme 'dakrone-light t))
-
 (provide 'init-theme)
-;;; init-theme ends here
+;;; init-theme.el ends here
