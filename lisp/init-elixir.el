@@ -5,14 +5,11 @@
 (use-package exunit
   :ensure t
   :defer t
-  :after (elixir-mode))
+  :after (elixir-ts-mode))
 
 (use-package elixir-ts-mode
-  :ensure t
   :mode ("\\.ex\\'" "\\.exs\\'")
-  :defer t
-  :init
-  (add-hook 'elixir-ts-mode-hook 'exunit-mode))
+  :hook (elixir-ts-mode . exunit-mode))
 
 ;;; org-mode
 (use-package ob-elixir

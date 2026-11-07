@@ -44,10 +44,21 @@
   :config
   ;; Cleans up Emacs 31 visual noise
   (setopt eglot-code-action-indications nil)
-  (add-to-list 'eglot-server-programs `(elixir-ts-mode . ("~/code/ls-servers/elixir-ls/language_server.sh")))
+  ;; (add-to-list 'eglot-server-programs `(elixir-ts-mode . ("~/code/ls-servers/elixir-ls/language_server.sh")))
   (add-to-list 'eglot-server-programs `(ruby-mode enh-ruby-mode ruby-ts-mode . ("solargraph"
                                                                                 "socket"
                                                                                 "--port" "7658"))))
+
+
+(with-eval-after-load 'eglot
+  (setf (alist-get '(elixir-mode elixir-ts-mode heex-ts-mode)
+                   eglot-server-programs
+                   nil nil #'equal)
+        (if (and (fboundp 'w32-shell-dos-semantics)
+                 (w32-shell-dos-semantics))
+            '(("expert" "--stdio"))
+          (eglot-alternatives
+           '(("expert" "--stdio"))))))
 
 (use-package devdocs
   :ensure t
