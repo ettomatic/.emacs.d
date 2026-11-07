@@ -51,16 +51,6 @@
 ;;   (doom-modeline-time-icon nil)
 ;;   (doom-modeline-icon t))
 
-;; Thsi shouldn't be here!
-(use-package flycheck
-  :ensure t
-  :defer t
-  :hook ((after-init . global-flycheck-mode)
-         ;; Show diagnostics inline, next to the code (Error Lens style)
-         (after-init . global-flycheck-annotate-mode))
-  :config
-  ;; Report Eglot's LSP diagnostics through Flycheck
-  (global-flycheck-eglot-mode 1))
 
 (use-package mood-line
   ;; Enable mood-line

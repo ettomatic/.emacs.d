@@ -46,4 +46,4 @@
 (add-hook 'fsharp-mode-hook 'highlight-indentation-mode)
 
 (provide 'init-langs-other)
-;;; init-langs-other ends here
+;;; init-langs-other.el ends here

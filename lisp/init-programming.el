@@ -1,4 +1,4 @@
-;;; init-langs-utils --- Languages miscellaneous -*- lexical-binding: t -*-
+;;; init-programming --- Languages miscellaneous -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -49,7 +49,6 @@
                                                                                 "socket"
                                                                                 "--port" "7658"))))
 
-
 (with-eval-after-load 'eglot
   (setf (alist-get '(elixir-mode elixir-ts-mode heex-ts-mode)
                    eglot-server-programs
@@ -60,6 +59,16 @@
           (eglot-alternatives
            '(("expert" "--stdio"))))))
 
+(use-package flycheck
+  :ensure t
+  :defer t
+  :hook ((after-init . global-flycheck-mode)
+         ;; Show diagnostics inline, next to the code (Error Lens style)
+         (after-init . global-flycheck-annotate-mode))
+  :config
+  ;; Report Eglot's LSP diagnostics through Flycheck
+  (global-flycheck-eglot-mode 1))
+
 (use-package devdocs
   :ensure t
   :bind ("C-h C-d" . devdocs-lookup)
@@ -68,5 +77,5 @@
   :hook ((ruby-ts-mode . (lambda () (setq-local devdocs-current-docs '("ruby~3.3"))))
          (elixir-ts-mode . (lambda () (setq-local devdocs-current-docs '("elixir~1.20"))))))
 
-(provide 'init-langs-utils)
-;;; init-langs-utils ends here
+(provide 'init-programming)
+;;; init-programming.el ends here
