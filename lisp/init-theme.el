@@ -17,7 +17,8 @@
    '((border-mode-line-active unspecified)
      (border-mode-line-inactive unspecified)))
   :config
-  (load-theme 'modus-operandi-tritanopia :no-confirm)
+;;(load-theme 'modus-operandi-tritanopia :no-confirm)
+  (load-theme 'modus-vivendi-deuteranopia :no-confirm)
   (define-key global-map (kbd "<f5>") #'modus-themes-toggle)
   (set-fringe-mode 0))
 
