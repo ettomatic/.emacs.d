@@ -3,38 +3,55 @@
 ;;; Code:
 
 ;;
-;; Writing space
+;; Writing space NOT USED!
 ;;
 
 ;; Distraction-free screen
 (use-package olivetti
   :ensure t
-  ;:defer t
   :custom
-  (olivetti-body-width 80)
+  (olivetti-body-width 100)
   (olivetti-margin-width 10)
   :config
-  (defun writing-mode ()
-    "Distraction-free writing environment"
-    (interactive)
-    (if (equal olivetti-mode nil)
+  (defvar-local writing-mode--saved-window-config nil)
+  (defvar-local writing-mode--saved-text-scale 0)
+  (defvar-local writing-mode--saved-hl-line nil)
+
+  (define-minor-mode writing-mode
+    "Toggle a distraction-free writing environment."
+    :init-value nil
+    :lighter " Write"
+    :global nil
+    (if writing-mode
         (progn
-          (window-configuration-to-register 1)
+          (setq writing-mode--saved-window-config (current-window-configuration)
+                writing-mode--saved-text-scale text-scale-mode-amount
+                writing-mode--saved-hl-line global-hl-line-mode)
+
           (delete-other-windows)
-          (text-scale-increase 2)
-          (variable-pitch-mode t)
-          (visual-line-mode t)
-          (auto-fill-mode t)
-          (global-hl-line-mode 0)
-          (olivetti-mode t))
-      (progn
-        (jump-to-register 1)
-        (olivetti-mode 0)
-        (variable-pitch-mode 0)
-        (global-hl-line-mode 1)
-        (text-scale-decrease 2))))
-    :bind
-    (("<f9>" . writing-mode)))
+          (variable-pitch-mode 1)
+          (visual-line-mode 1)
+          (auto-fill-mode 1)
+          (global-hl-line-mode -1)
+          (text-scale-set 2)
+          (olivetti-mode 1))
+      (when writing-mode--saved-window-config
+        (set-window-configuration writing-mode--saved-window-config))
+
+      (text-scale-set writing-mode--saved-text-scale)
+      (variable-pitch-mode -1)
+      (visual-line-mode -1)
+      (auto-fill-mode -1)
+      (olivetti-mode -1)
+
+      (when writing-mode--saved-hl-line
+        (global-hl-line-mode 1))
+
+      (setq writing-mode--saved-window-config nil
+            writing-mode--saved-text-scale 0
+            writing-mode--saved-hl-line nil)))
+
+  (global-set-key (kbd "<f9>") #'writing-mode))
 
 (provide 'init-writing)
 ;;; init-writing ends here

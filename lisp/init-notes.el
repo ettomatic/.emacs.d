@@ -2,6 +2,24 @@
 ;;; Commentary:
 ;;; Code:
 
+;; YAML
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
+;; Markdown with preview
+(use-package markdown-mode
+  :ensure t
+  :defer t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :config
+  (setq markdown-list-item-bullets '("·"))
+  (setq markdown-display-remote-images t))
+
+;; Denote
+
 (use-package denote
   :ensure t
   :init
@@ -59,6 +77,20 @@
   (setq consult-denote-grep-command #'consult-ripgrep)
   (consult-denote-mode 1))
 
+
+;; Olivetti
+;; Distraction-free screen
+
+(use-package olivetti
+  :ensure t
+  :custom
+  (olivetti-body-width 100)
+  (olivetti-margin-width 10)
+  :config
+  (defvar-local writing-mode--saved-window-config nil)
+  (defvar-local writing-mode--saved-text-scale 0)
+  (defvar-local writing-mode--saved-hl-line nil))
+
 (defun my/denote-olivetti-setup ()
   (when (and buffer-file-name
              (string-prefix-p (expand-file-name denote-directory)
@@ -87,6 +119,28 @@
   (denote-journal-keyword "journal")
   ;; Read the doc string of `denote-journal-title-format'.
   (denote-journal-title-format 'day-date-month-year))
+
+;; Insert current date for Journal
+;; alternatively use M-x org-time-stamp
+(defun today ()
+  "Insert string for today's date nicely formatted e.g. Sunday 17 September 2000"
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%A %e %B %Y")))
+
+(global-set-key (kbd "C-c t") 'today)
+
+
+;; (add-to-list 'load-path ".emacs.d/pkgs/textui")
+;; (require 'textui)
+;; ;; (use-package ht :ensure t)
+;; (add-to-list 'load-path ".emacs.d/pkgs/ht")
+;; (require 'ht)
+;; (add-to-list 'load-path ".emacs.d/pkgs/supertag")
+;; (setq supertag-sync-directories '("~/org/notes/"))
+;; (setq supertag-file-id-source 'denote)
+;; (setq supertag-org-capture-auto-enable t)
+;; (require 'supertag)
+;; (global-corfu-mode 1)
 
 ;; (require 'howm-org)
 ;; (use-package howm
@@ -129,15 +183,6 @@
 ;;   :bind
 ;;   ("C-x C-m" . consult-notes-search-in-all-notes )
 ;;   ("C-x C-n" . consult-notes))
-
-;; Insert current date for Journal
-;; alternatively use M-x org-time-stamp
-(defun today ()
-  "Insert string for today's date nicely formatted e.g. Sunday 17 September 2000"
-  (interactive)                 ; permit invocation in minibuffer
-  (insert (format-time-string "%A %e %B %Y")))
-
-(global-set-key (kbd "C-c t") 'today)
 
 (provide 'init-notes)
 ;;; init-notes ends here

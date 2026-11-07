@@ -22,20 +22,6 @@
       (funcall encode array)))
   :config (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line))
 
-;; YAML
-(use-package yaml-mode
-  :ensure t
-  :defer t)
-
-;; Markdown with preview
-(use-package markdown-mode
-  :ensure t
-  :defer t
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :config
-  (setq markdown-list-item-bullets '("·")))
 
 (provide 'init-markup)
 ;;; init-markup ends here
