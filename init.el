@@ -28,7 +28,6 @@
 (require 'init-editing)
 (require 'init-completion)
 (require 'init-markup)
-;; (require 'init-writing)
 
 (require 'init-org)
 (require 'init-notes)
